@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAE_SIBILIA.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace SAE_SIBILIA.Windows
     {
         public CreationClient()
         {
+            this.DataContext = new Client();
             InitializeComponent();
         }
     }
