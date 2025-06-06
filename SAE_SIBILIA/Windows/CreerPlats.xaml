@@ -80,7 +80,7 @@
             </Border>
 
             <!-- Bouton -->
-            <Button x:Name="buttValiderClient" Content="Créer le client"
+            <Button x:Name="buttValiderClient" Content="Créer le plat"
                 Background="#0D1F3C" Foreground="#D4A857" FontWeight="Bold"
                 Padding="10" Margin="0,20,0,0" BorderThickness="0" Cursor="Hand"/>
         </StackPanel>
