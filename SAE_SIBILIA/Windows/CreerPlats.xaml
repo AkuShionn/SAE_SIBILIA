@@ -9,17 +9,17 @@
     <Grid>
         <Label Content="Creer un plat" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
         <StackPanel x:Name="stackpanel_plat" VerticalAlignment="Center" Height="400">
-            <TextBox x:Name="textBox_Nomduplat" HorizontalAlignment="Left" Margin="20,60,0,0" TextWrapping="Wrap" Text="Nom du plat" VerticalAlignment="Top" Width="200" FontStyle="Italic" Background="#FFF5F3F3"/>
+            <TextBox x:Name="textBox_Nomduplat" HorizontalAlignment="Left" Margin="20,60,0,0" TextWrapping="Wrap" Text="{Binding NomPlat}" VerticalAlignment="Top" Width="200" FontStyle="Italic" Background="#FFF5F3F3"/>
 
             <Label x:Name="label_Categorie" Content="Categorie" Margin="20,0.5,0,0"/>
             <ComboBox x:Name="comboBox_Categorie" HorizontalAlignment="Left" Margin="20,0.5,0,0" VerticalAlignment="Top" Width="120"/>
             <Label x:Name="label_SousCategorie" Content="Sous-Categorie" Margin="20,0.5,0,0"/>
             <ComboBox x:Name="comboBox_SousCategorie" HorizontalAlignment="Left" Margin="20,0.5,0,0" VerticalAlignment="Top" Width="120"/>
 
-            <TextBox x:Name="textBox_Nbpersonne" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" Text="Nombre de personnes" VerticalAlignment="Top" Width="200" FontStyle="Italic" Background="#FFF5F3F3"/>
-            <TextBox x:Name="textBox_Prix" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" Text="Prix Unitaire (€)" VerticalAlignment="Top" Width="200" FontStyle="Italic" Background="#FFF5F3F3"/>
-            <TextBox x:Name="textBox_TempsPreparation" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" Text="Temps de preparation" VerticalAlignment="Top" Width="200" FontStyle="Italic" Background="#FFF5F3F3"/>
-            <TextBox x:Name="textBox_Periode" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" Text="Periode (ex: hiver , noel...)" VerticalAlignment="Top" Width="200" FontStyle="Italic" Background="#FFF5F3F3"/>
+            <TextBox x:Name="textBox_Nbpersonne" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" Text="{Binding nbPersonnes}" VerticalAlignment="Top" Width="200" FontStyle="Italic" Background="#FFF5F3F3"/>
+            <TextBox x:Name="textBox_Prix" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" Text="{Binding prixUnitaire}" VerticalAlignment="Top" Width="200" FontStyle="Italic" Background="#FFF5F3F3"/>
+            <TextBox x:Name="textBox_TempsPreparation" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" Text="{Binding delaiPreparation}" VerticalAlignment="Top" Width="200" FontStyle="Italic" Background="#FFF5F3F3"/>
+            <TextBox x:Name="textBox_Periode" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" Text="{Binding libellePeriode}" VerticalAlignment="Top" Width="200" FontStyle="Italic" Background="#FFF5F3F3"/>
             <Button Content="VALIDER" Width="75" Margin="0,21,0,0" Background="#FF2075E6" FontWeight="Bold"/>
         </StackPanel>
 
