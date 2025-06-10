@@ -32,7 +32,7 @@ namespace SAE_SIBILIA
         private void ButtonAcceuil_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
-            Menu.Content = mainWindow;
+            Menu.Content = null;
 
         }
 
