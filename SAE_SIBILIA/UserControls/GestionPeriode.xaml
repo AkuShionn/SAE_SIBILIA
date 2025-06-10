@@ -25,8 +25,8 @@
 
         <!-- Boutons de gestion -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
-            <Button Content="Ajouter" Background="#F59E0B" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10" Click="AddPeriod_Click"/>
-            <Button Content="Modifier" Background="#2196F3" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10" Click="ModifyPeriod_Click"/>
+            <Button Content="Ajouter" Background="#F59E0B" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10" />
+            <Button Content="Modifier" Background="#2196F3" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10" />
         </StackPanel>
 
 
