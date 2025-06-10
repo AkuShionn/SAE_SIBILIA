@@ -87,7 +87,7 @@
 
         <!-- Footer -->
         <StackPanel Grid.Row="2">
-            <TextBlock Text="Version 2.4.1 © 2023 Sibilla Gestion" FontSize="10" Foreground="Gray" TextAlignment="Center"/>
+            <TextBlock Text="Version 2.0.1 © 2023 Sibilla Gestion" FontSize="10" Foreground="Gray" TextAlignment="Center"/>
             <TextBlock Text="Tous droits réservés" FontSize="10" Foreground="Gray" TextAlignment="Center"/>
         </StackPanel>
     </Grid>
