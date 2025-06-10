@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace SAE_SIBILIA.Classes
         private string adresseRue;
         private string adresseCP;
         private string adresseVille;
+        private ObservableCollection<Client> lesClients;
 
         public Client(string nomClient, string prenomClient, string telClient, string adresseRue, string adresseCP, string adresseVille)
         {
