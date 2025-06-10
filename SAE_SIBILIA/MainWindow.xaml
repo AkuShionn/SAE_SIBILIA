@@ -20,7 +20,7 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" Content="Accueil" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10" Click="ButtonAcceuil_Click"/>
-            <Button Grid.Column="1" Content="Nouvelle Commande" Background="#F59E0B" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="10" Margin="10,0,0,0"/>
+            <Button Grid.Column="1" Content="Nouvelle Commande" Background="#F59E0B" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="10" Margin="10,0,0,0" Click="ButtonNouvelleCommande_Click"/>
             <Button Grid.Column="2" Content="Commandes du Jour" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10"/>
             <Button Grid.Column="3" Content="Gestion Plats" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10"/>
             <Button Grid.Column="4" Content="Client" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10" Click="ButtonClient_Click"/>
