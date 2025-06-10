@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SAE_SIBILIA.Classes
 {
-    public class Client
+    public class Client : ICrud<Client>, INotifyPropertyChanged
     {
         private int numClient;
         private string nomClient;
@@ -17,6 +18,10 @@ namespace SAE_SIBILIA.Classes
         private string adresseCP;
         private string adresseVille;
         private ObservableCollection<Client> lesClients;
+
+        public Client()
+        {
+        }
 
         public Client(string nomClient, string prenomClient, string telClient, string adresseRue, string adresseCP, string adresseVille)
         {
@@ -128,6 +133,38 @@ namespace SAE_SIBILIA.Classes
             {
                 this.adresseVille = value;
             }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public int Create()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Client> FindAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Client> FindBySelection(string criteres)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

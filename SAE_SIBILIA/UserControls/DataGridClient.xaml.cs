@@ -1,4 +1,5 @@
-﻿using SAE_SIBILIA.Fenetres;
+﻿using SAE_SIBILIA.Classes;
+using SAE_SIBILIA.Fenetres;
 using System;
 using System.Collections.Generic;
 using System.Linq;

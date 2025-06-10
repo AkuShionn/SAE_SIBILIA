@@ -58,6 +58,7 @@ namespace SAE_SIBILIA.Classes
             return connection;
         }
 
+
         //  pour requêtes SELECT et retourne un DataTable ( table de données en mémoire)
         public DataTable ExecuteSelect(NpgsqlCommand cmd)
         {
