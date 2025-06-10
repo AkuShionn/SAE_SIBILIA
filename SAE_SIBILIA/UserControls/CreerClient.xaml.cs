@@ -1,5 +1,4 @@
-﻿using SAE_SIBILIA.Classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,18 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SAE_SIBILIA.Windows
+namespace SAE_SIBILIA.UserControls
 {
     /// <summary>
-    /// Logique d'interaction pour CreationClient.xaml
+    /// Logique d'interaction pour CreerClient.xaml
     /// </summary>
-    public partial class CreationClient : Window
+    public partial class CreerClient : UserControl
     {
-        public CreationClient()
+        public CreerClient()
         {
-            this.DataContext = new Client();
             InitializeComponent();
         }
     }
