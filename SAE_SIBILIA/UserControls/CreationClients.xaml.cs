@@ -16,13 +16,18 @@ using System.Windows.Shapes;
 namespace SAE_SIBILIA.UserControls
 {
     /// <summary>
-    /// Logique d'interaction pour CreerClient.xaml
+    /// Logique d'interaction pour CreationClients.xaml
     /// </summary>
-    public partial class CreerClient : UserControl
+    public partial class CreationClients : UserControl
     {
-        public CreerClient()
+        public CreationClients()
         {
             InitializeComponent();
+        }
+
+        private void buttValiderClient_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

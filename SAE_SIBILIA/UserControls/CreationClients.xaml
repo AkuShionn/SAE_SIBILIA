@@ -1,12 +1,12 @@
-﻿<UserControl x:Class="SAE_SIBILIA.Windows.ClientForm"
+﻿<UserControl x:Class="SAE_SIBILIA.UserControls.CreationClients"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:SAE_SIBILIA.Windows"
-             mc:Ignorable="d"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SAE_SIBILIA.UserControls"
+             mc:Ignorable="d" 
              Background="White">
-
+    
     <StackPanel Margin="20">
 
         <!-- En-tête -->
@@ -57,7 +57,7 @@
             <!-- Bouton -->
             <Button x:Name="buttValiderClient" Content="Créer le client" 
                     Background="#0D1F3C" Foreground="#D4A857" FontWeight="Bold"
-                    Padding="10" Margin="0,20,0,0" BorderThickness="0" Cursor="Hand"/>
+                    Padding="10" Margin="0,20,0,0" BorderThickness="0" Cursor="Hand" Click="buttValiderClient_Click"/>
         </StackPanel>
 
         <!-- Footer -->
