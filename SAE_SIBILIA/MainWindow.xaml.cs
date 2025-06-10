@@ -1,4 +1,5 @@
-﻿using SAE_SIBILIA.UserControls;
+﻿using SAE_SIBILIA.Fenetres;
+using SAE_SIBILIA.UserControls;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,8 +25,8 @@ namespace SAE_SIBILIA
 
         private void ButtonClient_Click(object sender, RoutedEventArgs e)
         {
-            CreationClients clientControl = new CreationClients();
-            Menu.Content = clientControl;
+            DataGridClient dgclientControl = new DataGridClient();
+            Menu.Content = dgclientControl;
         }
 
         private void ButtonAcceuil_Click(object sender, RoutedEventArgs e)
@@ -45,5 +46,6 @@ namespace SAE_SIBILIA
             CreerCommande commmandeControl = new CreerCommande();
             Menu.Content = commmandeControl;
         }
+
     }
 }

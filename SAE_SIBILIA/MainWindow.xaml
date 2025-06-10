@@ -53,8 +53,8 @@
             </StackPanel>
         </StackPanel>
 
-        <ContentControl x:Name="Menu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,70,20,20"/>
-        
+        <ContentControl x:Name="Menu" Margin="20,50,20,80"/>
+
         <!-- Bas de page -->
         <StackPanel VerticalAlignment="Bottom" Background="#1E3A8A" Height="80">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">

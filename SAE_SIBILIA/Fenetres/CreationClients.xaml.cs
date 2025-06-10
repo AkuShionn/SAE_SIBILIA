@@ -10,24 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SAE_SIBILIA.UserControls
+namespace SAE_SIBILIA.Fenetres
 {
     /// <summary>
     /// Logique d'interaction pour CreationClients.xaml
     /// </summary>
-    public partial class CreationClients : UserControl
+    public partial class CreationClients : Window
     {
         public CreationClients()
         {
             InitializeComponent();
-        }
-
-        private void buttValiderClient_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAE_SIBILIA.Fenetres;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace SAE_SIBILIA.UserControls
         public DataGridClient()
         {
             InitializeComponent();
+        }
+
+        private void ButtonCreerClient_Click(object sender, RoutedEventArgs e)
+        {
+            CreationClients fenetreClient = new CreationClients();
+            fenetreClient.ShowDialog();
         }
     }
 }

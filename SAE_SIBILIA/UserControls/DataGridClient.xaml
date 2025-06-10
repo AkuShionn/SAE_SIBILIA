@@ -5,42 +5,84 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SAE_SIBILIA.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
     mc:Ignorable="d">
+
     <Grid>
+        <!-- Définition de la grille avec des lignes et colonnes flexibles -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Ligne pour les boutons -->
+            <RowDefinition Height="*"/>
+            <!-- Ligne pour le DataGrid -->
+            <RowDefinition Height="Auto"/>
+            <!-- Espace pour d'autres boutons ou contrôles -->
+        </Grid.RowDefinitions>
+
+        <!-- DataGrid -->
         <DataGrid
             x:Name="dgClients"
-            Margin="65,50,155,0"
+            Grid.Row="1" 
             AutoGenerateColumns="False"
             IsReadOnly="True"
-            ItemsSource="{Binding LesClients}">
+            ItemsSource="{Binding LesClients}"
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Stretch">
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding Nom, ValidatesOnExceptions=true}"
+                    Width="*" Binding="{Binding Nom, ValidatesOnExceptions=true}"
                     Header="Nom" />
                 <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding Prenom, ValidatesOnExceptions=true}"
+                    Width="*" Binding="{Binding Prenom, ValidatesOnExceptions=true}"
                     Header="Prénom" />
                 <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding TelClient, ValidatesOnExceptions=true}"
+                    Width="*" Binding="{Binding TelClient, ValidatesOnExceptions=true}"
                     Header="N° Téléphone" />
                 <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding AdresseRue, ValidatesOnExceptions=true}"
+                    Width="*" Binding="{Binding AdresseRue, ValidatesOnExceptions=true}"
                     Header="Adresse" />
                 <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding AdresseCP, ValidatesOnExceptions=true}"
+                    Width="*" Binding="{Binding AdresseCP, ValidatesOnExceptions=true}"
                     Header="Code Postal" />
                 <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding AdresseVille, ValidatesOnExceptions=true}"
+                    Width="*" Binding="{Binding AdresseVille, ValidatesOnExceptions=true}"
                     Header="Ville" />
             </DataGrid.Columns>
         </DataGrid>
+
+        <!-- Bouton Créer Client -->
+        <Button
+            Grid.Row="0"
+            Content="Créer Client"
+            Background="#1E3A8A"
+            FontWeight="Bold"
+            Foreground="White"
+            Width="100" Height="30"
+            HorizontalAlignment="Left" 
+            Margin="10" Click="ButtonCreerClient_Click" />
+
+            <!-- Bouton Modifier Client -->
+            <Button
+            Grid.Row="0"
+            Content="Modifier Client"
+            Background="#1E3A8A"
+            FontWeight="Bold"
+            Foreground="White"
+            Width="100" Height="30"
+            HorizontalAlignment="Left" 
+            Margin="120,0,0,0" />
+            <!-- Décalage à droite du bouton précédent -->
+
+            <!-- Bouton Supprimer Client -->
+            <Button
+            Grid.Row="0"
+            Content="Supprimer Client"
+            Background="#1E3A8A"
+            FontWeight="Bold"
+            Foreground="White"
+            Width="100" Height="30"
+            HorizontalAlignment="Left" 
+            Margin="230,0,0,0" />
+            <!-- Décalage à droite -->
+
     </Grid>
 </UserControl>
