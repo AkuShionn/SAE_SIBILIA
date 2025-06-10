@@ -16,6 +16,27 @@ namespace SAE_SIBILIA.Classes
         private string adresseCP;
         private string adresseVille;
 
+        public Client(string nomClient, string prenomClient, string telClient, string adresseRue, string adresseCP, string adresseVille)
+        {
+            this.NomClient = nomClient;
+            this.PrenomClient = prenomClient;
+            this.TelClient = telClient;
+            this.AdresseRue = adresseRue;
+            this.AdresseCP = adresseCP;
+            this.AdresseVille = adresseVille;
+        }
+
+        public Client(int numClient, string nomClient, string prenomClient, string telClient, string adresseRue, string adresseCP, string adresseVille)
+        {
+            this.NumClient = numClient;
+            this.NomClient = nomClient;
+            this.PrenomClient = prenomClient;
+            this.TelClient = telClient;
+            this.AdresseRue = adresseRue;
+            this.AdresseCP = adresseCP;
+            this.AdresseVille = adresseVille;
+        }
+
         public int NumClient
         {
             get

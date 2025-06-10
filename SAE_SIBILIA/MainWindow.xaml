@@ -5,8 +5,87 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE_SIBILIA"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1000">
     <Grid>
+        <!-- Menu de navigation -->
+        <Grid Name="MenuGrid" Height="50" Background="#1E3A8A" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <!-- Nouvelle colonne pour le bouton "Client" -->
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
+            <Button Grid.Column="0" Content="Accueil" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10"/>
+            <Button Grid.Column="1" Content="Nouvelle Commande" Background="#F59E0B" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="10" Margin="10,0,0,0"/>
+            <Button Grid.Column="2" Content="Commandes du Jour" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10"/>
+            <Button Grid.Column="3" Content="Gestion Plats" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10"/>
+            <Button Grid.Column="4" Content="Client" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10"/>
+        </Grid>
+
+        <!-- Contenu principal -->
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="20,70,20,20">
+            <!-- Section image et titre -->
+            <StackPanel HorizontalAlignment="Center" Margin="0,20">
+                <TextBlock Text="Bienvenue sur Sibilla Gestion" FontSize="32" FontWeight="Bold" Foreground="#0D1F3C" HorizontalAlignment="Center" Margin="0,10"/>
+                <TextBlock Text="Système de gestion des commandes des Halles de Lyon" FontSize="16" Foreground="Gray" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Boutons d'action -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
+                <Button Content="Nouvelle Commande" Background="#F59E0B" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10"/>
+                <Button Content="Commandes du Jour" Background="#1E3A8A" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10"/>
+                <Button Content="Gestion Plats" Background="#1E3A8A" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10"/>
+            </StackPanel>
+
+            <!-- Section Dernières actualités -->
+            <StackPanel Margin="0,40">
+                <TextBlock Text="Dernières actualités" FontSize="22" FontWeight="Bold" Foreground="#0D1F3C" Margin="0,10"/>
+                <StackPanel>
+                    <TextBlock Text="• Nouveau plat saisonnier disponible" Margin="5"/>
+                    <TextBlock Text="• Maintenance prévue vendredi" Margin="5"/>
+                    <TextBlock Text="• Nouveau fournisseur ajouté à la base" Margin="5"/>
+                    <TextBlock Text="• Formation utilisateurs mardi prochain" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Bas de page -->
+        <StackPanel VerticalAlignment="Bottom" Background="#1E3A8A" Height="80">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                <!-- Colonne 1 : Logo et texte -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Logo et texte à gauche -->
+                <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="10">
+                    <Image Source="img/logo.png" Width="40" Height="40" />
+                    <StackPanel Margin="5,0,0,0">
+                        <TextBlock Text="Sibilla Gestion" Foreground="White" FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Système de gestion des Halles de Lyon" Foreground="White" FontSize="12"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Espace entre -->
+                <TextBlock Grid.Column="1" Text=" " />
+
+                <!-- Icônes à droite -->
+                <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right" Margin="10">
+                    <Image Source="img/facebook-icon.png" Width="30" Height="20"/>
+                    <Image Source="img/twitter-icon.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                    <Image Source="img/linkedin-icon.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                    <Image Source="img/instagram-icon.png" Width="20" Height="20"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Copyright -->
+            <TextBlock Text="© 2025 Sibilla Gestion. Tous droits réservés" Foreground="White" FontSize="10" HorizontalAlignment="Center"/>
+        </StackPanel>
     </Grid>
 </Window>
