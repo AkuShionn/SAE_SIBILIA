@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SAE_SIBILIA.UserControls"
              mc:Ignorable="d" 
-             Height="598" Width="400" Background="White">
+            Background="White">
     <Grid Margin="20">
         <TabControl x:Name="TabCommandes">
             <!-- Onglet À récupérer -->
@@ -21,11 +21,7 @@
                         <DataGridTemplateColumn Header="Statut" Width="150">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Border Background="{Binding Payee, Converter={StaticResource StatutColorConverter}}"
-                                            Padding="5" CornerRadius="10">
-                                        <TextBlock Text="{Binding Payee, Converter={StaticResource StatutTextConverter}}" 
-                                                   Foreground="Black" FontWeight="Bold" HorizontalAlignment="Center"/>
-                                    </Border>
+
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -35,7 +31,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="👁 Voir" Foreground="Blue" Background="Transparent"
-                                            BorderThickness="0" Cursor="Hand" Click="VoirCommande_Click"/>
+                                            BorderThickness="0" Cursor="Hand" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -55,11 +51,7 @@
                         <DataGridTemplateColumn Header="Statut" Width="150">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Border Background="{Binding Payee, Converter={StaticResource StatutColorConverter}}"
-                                            Padding="5" CornerRadius="10">
-                                        <TextBlock Text="{Binding Payee, Converter={StaticResource StatutTextConverter}}" 
-                                                   Foreground="Black" FontWeight="Bold" HorizontalAlignment="Center"/>
-                                    </Border>
+                                  
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -67,7 +59,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="👁 Voir" Foreground="Blue" Background="Transparent"
-                                            BorderThickness="0" Cursor="Hand" Click="VoirCommande_Click"/>
+                                            BorderThickness="0" Cursor="Hand" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
