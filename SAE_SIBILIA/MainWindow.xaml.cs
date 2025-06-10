@@ -39,5 +39,11 @@ namespace SAE_SIBILIA
             CreerCommande commmandeControl = new CreerCommande();
             Menu.Content = commmandeControl;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CreerCommande commmandeControl = new CreerCommande();
+            Menu.Content = commmandeControl;
+        }
     }
 }
