@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using SAE_SIBILIA.UserControls;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,18 @@ namespace SAE_SIBILIA
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void ButtonClient_Click(object sender, RoutedEventArgs e)
+        {
+            CreationClients clientControl = new CreationClients();
+            Menu.Content = clientControl;
+        }
+
+        private void ButtonAcceuil_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            Menu.Content = mainWindow;
         }
     }
 }
