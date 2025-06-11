@@ -12,7 +12,7 @@ using System.Windows.Media.Media3D;
 
 namespace SAE_SIBILIA.Classes
 {
-    public class Client : ICrud<Client>, INotifyPropertyChanged
+    public class Client : ICrud<Client>, INotifyPropertyChanged, IEquatable<Client?>
     {
         private int numClient;
         private string nomClient;
@@ -148,7 +148,28 @@ namespace SAE_SIBILIA.Classes
 
         public int Delete()
         {
-            throw new NotImplementedException();
+            using (var cmdUpdate = new NpgsqlCommand("delete from client where numclient =@numclient;"))
+            {
+                cmdUpdate.Parameters.AddWithValue("numclient", this.NumClient);
+                return DataAccess.Instance.ExecuteSet(cmdUpdate);
+            }
+
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return Equals(obj as Client);
+        }
+
+        public bool Equals(Client? other)
+        {
+            return other is not null &&
+                   NomClient == other.NomClient &&
+                   PrenomClient == other.PrenomClient &&
+                   TelClient == other.TelClient &&
+                   AdresseRue == other.AdresseRue &&
+                   AdresseCP == other.AdresseCP &&
+                   AdresseVille == other.AdresseVille;
         }
 
         public List<Client> FindAll()
@@ -185,14 +206,43 @@ namespace SAE_SIBILIA.Classes
             throw new NotImplementedException();
         }
 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(NomClient, PrenomClient, TelClient, AdresseRue, AdresseCP, AdresseVille);
+        }
+
         public void Read()
         {
-            throw new NotImplementedException();
+            using (var cmdSelect = new NpgsqlCommand("SELECT * FROM Client WHERE numclient = @numclient;"))
+            {
+                cmdSelect.Parameters.AddWithValue("@numclient", this.NumClient);
+
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+                    this.NomClient = (string)dt.Rows[0]["nomclient"];
+                    this.PrenomClient = (string)dt.Rows[0]["prenomclient"];
+                    this.TelClient = (string)dt.Rows[0]["tel"];
+                    this.AdresseRue = (string)dt.Rows[0]["adresserue"];
+                    this.AdresseCP = (string)dt.Rows[0]["adressecp"];
+                    this.AdresseVille = (string)dt.Rows[0]["adresseville"];
+            }
         }
 
         public int Update()
         {
-            throw new NotImplementedException();
+            using (var cmdUpdate = new NpgsqlCommand("UPDATE Client SET nomclient = @nomclient, prenomclient = @prenomclient, " +
+                "tel = @tel, adresserue = @adresserue, adressecp = @adressecp, adresseville = @adresseville WHERE numclient = @numclient"))
+            {
+                // Ajouter les paramètres à la requête SQL
+                cmdUpdate.Parameters.AddWithValue("@nomclient", this.NomClient);
+                cmdUpdate.Parameters.AddWithValue("@prenomclient", this.PrenomClient);
+                cmdUpdate.Parameters.AddWithValue("@tel", this.TelClient);
+                cmdUpdate.Parameters.AddWithValue("@adresserue", this.AdresseRue);
+                cmdUpdate.Parameters.AddWithValue("@adressecp", this.AdresseCP);
+                cmdUpdate.Parameters.AddWithValue("@adresseville", this.AdresseVille);
+                cmdUpdate.Parameters.AddWithValue("@numclient", this.NumClient); 
+
+                return DataAccess.Instance.ExecuteSet(cmdUpdate);
+            }
         }
     }
 }

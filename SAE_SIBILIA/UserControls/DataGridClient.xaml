@@ -7,6 +7,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <!-- Style pour les en-têtes -->
+        <Style x:Key="DataGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#1E3A8A"/>
+            <!-- Bleu clair pour le fond des en-têtes -->
+            <Setter Property="Foreground" Value="White"/>
+            <!-- Texte en blanc -->
+            <Setter Property="FontWeight" Value="Bold"/>
+            <!-- Texte en gras -->
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Height" Value="35"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <!-- Définition de la grille avec des lignes et colonnes flexibles -->
         <Grid.RowDefinitions>
@@ -20,31 +34,42 @@
         <!-- DataGrid -->
         <DataGrid
             x:Name="dgClients"
-            Grid.Row="1" 
+            Grid.Row="1"
             AutoGenerateColumns="False"
             IsReadOnly="True"
             ItemsSource="{Binding lesClients}"  
             HorizontalAlignment="Stretch" 
-            VerticalAlignment="Stretch">
+            VerticalAlignment="Stretch"
+            Margin="10"
+            Background="#F4F4F4"  
+            BorderBrush="#B0B0B0"
+            BorderThickness="1"
+            FontSize="14"
+            RowHeight="35"
+            AlternatingRowBackground="#E9E9E9"
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Auto"
+            SelectionMode="Single">
+
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*" Binding="{Binding NomClient, ValidatesOnExceptions=true}"
-                    Header="Nom" />
+                    Header="Nom" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
                 <DataGridTextColumn
                     Width="*" Binding="{Binding PrenomClient, ValidatesOnExceptions=true}"
-                    Header="Prénom" />
+                    Header="Prénom" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
                 <DataGridTextColumn
                     Width="*" Binding="{Binding TelClient, ValidatesOnExceptions=true}"
-                    Header="N° Téléphone" />
+                    Header="N° Téléphone" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
                 <DataGridTextColumn
                     Width="*" Binding="{Binding AdresseRue, ValidatesOnExceptions=true}"
-                    Header="Adresse" />
+                    Header="Adresse" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
                 <DataGridTextColumn
                     Width="*" Binding="{Binding AdresseCP, ValidatesOnExceptions=true}"
-                    Header="Code Postal" />
+                    Header="Code Postal" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
                 <DataGridTextColumn
                     Width="*" Binding="{Binding AdresseVille, ValidatesOnExceptions=true}"
-                    Header="Ville" />
+                    Header="Ville" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -60,7 +85,7 @@
             Margin="10" Click="ButtonCreerClient_Click" />
 
         <!-- Bouton Modifier Client -->
-        <Button
+        <Button x:Name="Modifier_Client"
             Grid.Row="0"
             Content="Modifier Client"
             Background="#1E3A8A"
@@ -68,7 +93,7 @@
             Foreground="White"
             Width="100" Height="30"
             HorizontalAlignment="Left" 
-            Margin="120,0,0,0" />
+            Margin="120,0,0,0" Click="ButtonModifierClient" />
 
         <!-- Bouton Supprimer Client -->
         <Button
@@ -79,6 +104,6 @@
             Foreground="White"
             Width="100" Height="30"
             HorizontalAlignment="Left" 
-            Margin="230,0,0,0" />
+            Margin="230,0,0,0" Click="SupprimerClient" />
     </Grid>
 </UserControl>

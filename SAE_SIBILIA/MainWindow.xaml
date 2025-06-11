@@ -15,15 +15,14 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <!-- Nouvelle colonne pour le bouton "Client" -->
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="Accueil" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10" Click="ButtonAcceuil_Click"/>
-            <Button Grid.Column="1" Content="Nouvelle Commande" Background="#F59E0B" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="10" Margin="10,0,0,0" Click="ButtonNouvelleCommande_Click"/>
-            <Button Grid.Column="2" Content="Commandes du Jour" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10"/>
-            <Button Grid.Column="3" Content="Gestion Plats" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10"/>
-            <Button Grid.Column="4" Content="Client" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10" Click="ButtonClient_Click"/>
+            <Button Grid.Column="0" Content="🏠 Accueil" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10" Click="ButtonAcceuil_Click"/>
+            <Button Grid.Column="1" Content="➕ Nouvelle Commande" Background="#F59E0B" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="10" Margin="10,0,0,0" Click="ButtonNouvelleCommande_Click"/>
+            <Button Grid.Column="2" Content="📅 Commandes du Jour" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10"/>
+            <Button Grid.Column="3" Content="🍽️ Gestion Plats" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10"/>
+            <Button Grid.Column="4" Content="👥 Client" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10" Click="ButtonClient_Click"/>
         </Grid>
 
         <!-- Contenu principal -->
@@ -53,7 +52,7 @@
             </StackPanel>
         </StackPanel>
 
-        <ContentControl x:Name="Menu" Margin="20,50,20,80"/>
+        <ContentControl x:Name="Menu" Margin="0,50,0,59"/>
 
         <!-- Bas de page -->
         <StackPanel VerticalAlignment="Bottom" Background="#1E3A8A" Height="80">

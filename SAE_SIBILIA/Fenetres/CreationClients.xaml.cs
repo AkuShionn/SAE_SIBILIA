@@ -42,7 +42,7 @@ namespace SAE_SIBILIA.Fenetres
             {
                 // Insérer le client dans la base de données
                 // Utilise une méthode d'insertion dans DataAccess, ici tu peux avoir une méthode comme InsertClient()
-                int result = DataAccess.Instance.InsertClient(nouveauClient);
+                int result = DataAccess.Instance.AjouterClient(nouveauClient);
 
                 // Vérifier si l'insertion a réussi
                 if (result > 0)

@@ -1,18 +1,19 @@
-﻿<Window x:Class="SAE_SIBILIA.Fenetres.CreationClients"
+﻿<Window x:Class="SAE_SIBILIA.Fenetres.ModificationClients"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE_SIBILIA.Fenetres"
         mc:Ignorable="d"
-        Title="CreationClients" Width="400" Height="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    
+        Title="ModificationClient" Width="400" Height="600"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
     <StackPanel Margin="20">
 
         <!-- En-tête -->
         <StackPanel HorizontalAlignment="Center" Margin="0,10">
-            <TextBlock Text="Création d'un client" FontSize="20" FontWeight="Bold" Foreground="#0D1F3C" Margin="0,10,0,0" TextAlignment="Center"/>
-            <TextBlock Text="Remplissez les informations ci-dessous" FontSize="12" Foreground="Gray" TextAlignment="Center"/>
+            <TextBlock Text="Modification d'un client" FontSize="20" FontWeight="Bold" Foreground="#0D1F3C" Margin="0,10,0,0" TextAlignment="Center"/>
+            <TextBlock Text="Modifiez les informations ci-dessous" FontSize="12" Foreground="Gray" TextAlignment="Center"/>
         </StackPanel>
 
         <!-- Formulaire -->
@@ -21,43 +22,43 @@
             <!-- Nom -->
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <Label x:Name="labNomClient" Content="Nom :" VerticalAlignment="Center" Width="120" Margin="0,0,10,0"/>
-                <TextBox x:Name="txtBoxNomClient" Width="200" BorderBrush="#D4A857" BorderThickness="1" Padding="5" Background="Transparent" Text="{Binding NomClient}"/>
+                <TextBox x:Name="txtBoxNomClient" Width="200" BorderBrush="#D4A857" BorderThickness="1" Padding="5" Background="Transparent"/>
             </StackPanel>
 
             <!-- Prénom -->
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <Label x:Name="labPrenomClient" Content="Prénom :" VerticalAlignment="Center" Width="120" Margin="0,0,10,0"/>
-                <TextBox x:Name="txtBoxPrenomClient" Width="200" BorderBrush="#D4A857" BorderThickness="1" Padding="5" Background="Transparent" Text="{Binding PrenomClient}"/>
+                <TextBox x:Name="txtBoxPrenomClient" Width="200" BorderBrush="#D4A857" BorderThickness="1" Padding="5" Background="Transparent"/>
             </StackPanel>
 
             <!-- Téléphone -->
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <Label x:Name="labTelClient" Content="Téléphone :" VerticalAlignment="Center" Width="120" Margin="0,0,10,0"/>
-                <TextBox x:Name="txtBoxTelClient" Width="200" BorderBrush="#D4A857" BorderThickness="1" Padding="5" Background="Transparent" Text="{Binding TelClient}"/>
+                <TextBox x:Name="txtBoxTelClient" Width="200" BorderBrush="#D4A857" BorderThickness="1" Padding="5" Background="Transparent"/>
             </StackPanel>
 
             <!-- Adresse -->
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <Label x:Name="labAdresseClient" Content="Adresse :" VerticalAlignment="Center" Width="120" Margin="0,0,10,0"/>
-                <TextBox x:Name="txtBoxAdresseClient" Width="200" BorderBrush="#D4A857" BorderThickness="1" Padding="5" Background="Transparent" Text="{Binding AdresseRue}"/>
+                <TextBox x:Name="txtBoxAdresseClient" Width="200" BorderBrush="#D4A857" BorderThickness="1" Padding="5" Background="Transparent"/>
             </StackPanel>
 
             <!-- Code Postal -->
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <Label x:Name="labCodePostalClient" Content="Code Postal :" VerticalAlignment="Center" Width="120" Margin="0,0,10,0"/>
-                <TextBox x:Name="txtBoxCPClient" Width="200" BorderBrush="#D4A857" BorderThickness="1" Padding="5" Background="Transparent" Text="{Binding AdresseCP}"/>
+                <TextBox x:Name="txtBoxCPClient" Width="200" BorderBrush="#D4A857" BorderThickness="1" Padding="5" Background="Transparent"/>
             </StackPanel>
 
             <!-- Ville -->
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <Label x:Name="labVilleClient" Content="Ville :" VerticalAlignment="Center" Width="120" Margin="0,0,10,0"/>
-                <TextBox x:Name="txtBoxVille" Width="200" BorderBrush="#D4A857" BorderThickness="1" Padding="5" Background="Transparent" Text="{Binding AdresseVille}"/>
+                <TextBox x:Name="txtBoxVille" Width="200" BorderBrush="#D4A857" BorderThickness="1" Padding="5" Background="Transparent"/>
             </StackPanel>
 
-            <!-- Bouton -->
-            <Button x:Name="buttValiderClient" Content="Créer le client"
+            <!-- Bouton pour mettre à jour le client -->
+            <Button x:Name="buttModifierClient" Content="Modifier le client"
                     Background="#0D1F3C" Foreground="#D4A857" FontWeight="Bold"
-                    Padding="10" Margin="0,20,0,0" BorderThickness="0" Cursor="Hand" Click="buttValiderClient_Click"/>
+                    Padding="10" Margin="0,20,0,0" BorderThickness="0" Cursor="Hand" Click="buttModifierClient_Click"/>
         </StackPanel>
 
         <!-- Footer -->

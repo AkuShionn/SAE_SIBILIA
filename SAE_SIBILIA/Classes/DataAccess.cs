@@ -146,7 +146,7 @@ namespace SAE_SIBILIA.Classes
             }
         }
 
-        public int InsertClient(Client client)
+        public int AjouterClient(Client client)
         {
             int result = 0;
             string query = "INSERT INTO Client (nomclient, prenomclient, tel, adresserue, adressecp, adresseville) " +
@@ -173,9 +173,13 @@ namespace SAE_SIBILIA.Classes
                 LogError.Log(ex, "Erreur lors de l'insertion du client");
                 throw new Exception("Problème d'insertion dans la base de données");
             }
-
             return result;
         }
+
+
+
+
+
     }
 
 

@@ -28,13 +28,8 @@ namespace SAE_SIBILIA.UserControls
         {
             try
             {
-                // Appeler la méthode FindAll() de la classe Client pour récupérer les clients
                 List<Client> clients = new Client().FindAll();
-
-                // Convertir la liste de clients en ObservableCollection pour la liaison dynamique
                 lesClients = new ObservableCollection<Client>(clients);
-
-                // Lier l'ObservableCollection au DataContext
                 this.DataContext = this;
             }
             catch (Exception ex)
@@ -44,5 +39,51 @@ namespace SAE_SIBILIA.UserControls
                 Application.Current.Shutdown();
             }
         }
+
+        private void ButtonModifierClient(object sender, RoutedEventArgs e)
+        {
+            ModificationClients fenetreModifClient = new ModificationClients();
+            fenetreModifClient.ShowDialog();
+        }
+
+        private void SupprimerClient(object sender, RoutedEventArgs e)
+        {
+            // Vérifie si un client est sélectionné dans le DataGrid
+            if (dgClients.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un client"," ",MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                // Récupérer le client sélectionné dans le DataGrid
+                Client clientSelectionne = (Client)dgClients.SelectedItem;
+
+                // Confirmer la suppression avec l'utilisateur
+                if (MessageBox.Show($"Attention, ce client sera définitivement supprimé. " + "Désirez-vous tout de même supprimer ce client ?","Attention", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        // Suppression du client dans la base de données
+                        clientSelectionne.Delete();  // Assure-toi que la méthode Delete() supprime le client de la base de données
+
+                        // Retirer le client de la collection des clients affichés
+                        lesClients.Remove(clientSelectionne);  // LesClients est la collection bindée au DataGrid
+
+                        // Afficher un message pour confirmer la suppression
+                        MessageBox.Show("Client supprimé.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Gérer les erreurs si la suppression échoue
+                        MessageBox.Show($"Erreur lors de la suppression du client: {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Client non supprimé", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+        }
+
     }
 }
