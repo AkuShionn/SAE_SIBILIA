@@ -146,6 +146,37 @@ namespace SAE_SIBILIA.Classes
             }
         }
 
+        public int InsertClient(Client client)
+        {
+            int result = 0;
+            string query = "INSERT INTO Client (nomclient, prenomclient, tel, adresserue, adressecp, adresseville) " +
+                           "VALUES (@nomclient, @prenomclient, @tel, @adresserue, @adressecp, @adresseville)";
 
+            try
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, GetConnection()))
+                {
+                    // Ajouter les paramètres à la requête SQL pour éviter les injections SQL
+                    cmd.Parameters.AddWithValue("@nomclient", client.NomClient);
+                    cmd.Parameters.AddWithValue("@prenomclient", client.PrenomClient);
+                    cmd.Parameters.AddWithValue("@tel", client.TelClient);
+                    cmd.Parameters.AddWithValue("@adresserue", client.AdresseRue);
+                    cmd.Parameters.AddWithValue("@adressecp", client.AdresseCP);
+                    cmd.Parameters.AddWithValue("@adresseville", client.AdresseVille);
+
+                    // Exécuter la requête INSERT
+                    result = cmd.ExecuteNonQuery();  // Si un enregistrement est ajouté, result sera > 0
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError.Log(ex, "Erreur lors de l'insertion du client");
+                throw new Exception("Problème d'insertion dans la base de données");
+            }
+
+            return result;
+        }
     }
+
+
 }
