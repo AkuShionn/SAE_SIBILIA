@@ -1,10 +1,14 @@
-﻿using System;
+﻿
+using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Media3D;
 
 namespace SAE_SIBILIA.Classes
 {
@@ -149,9 +153,33 @@ namespace SAE_SIBILIA.Classes
 
         public List<Client> FindAll()
         {
-            throw new NotImplementedException();
-        }
+            List<Client> clients = new List<Client>();
 
+            // Requête SQL pour récupérer les clients
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand(@"
+             SELECT nomclient, prenomclient, tel, adresserue, adressecp, adresseville
+             FROM Client"))
+            {
+                // Exécution de la requête SELECT pour récupérer les données
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+
+                // Parcours des lignes du DataTable pour créer des objets Client
+                foreach (DataRow dr in dt.Rows)
+                {
+                    // Création d'un objet Client avec les valeurs de chaque ligne
+                    clients.Add(new Client
+                    {
+                        NomClient = (string)dr["nomclient"],
+                        PrenomClient = (string)dr["prenomclient"],
+                        TelClient = (string)dr["tel"],
+                        AdresseRue = (string)dr["adresserue"],
+                        AdresseCP = (string)dr["adressecp"],
+                        AdresseVille = (string)dr["adresseville"]
+                    });
+                }
+            }
+            return clients;
+        }
         public List<Client> FindBySelection(string criteres)
         {
             throw new NotImplementedException();
