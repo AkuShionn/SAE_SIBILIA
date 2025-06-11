@@ -230,7 +230,7 @@ namespace SAE_SIBILIA.Classes
         public int Update()
         {
             using (var cmdUpdate = new NpgsqlCommand("UPDATE Client SET nomclient = @nomclient, prenomclient = @prenomclient, " +
-                "tel = @tel, adresserue = @adresserue, adressecp = @adressecp, adresseville = @adresseville WHERE numclient = @numclient"))
+                "telClient = @tel, adresserue = @adresserue, adressecp = @adressecp, adresseville = @adresseville WHERE numclient = @numclient"))
             {
                 // Ajouter les paramètres à la requête SQL
                 cmdUpdate.Parameters.AddWithValue("@nomclient", this.NomClient);

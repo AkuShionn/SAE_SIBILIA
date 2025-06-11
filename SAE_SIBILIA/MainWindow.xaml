@@ -19,9 +19,9 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" Content="🏠 Accueil" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10" Click="ButtonAcceuil_Click"/>
-            <Button Grid.Column="1" Content="➕ Nouvelle Commande" Background="#F59E0B" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="10" Margin="10,0,0,0" Click="ButtonNouvelleCommande_Click"/>
+            <Button Grid.Column="1" Content="➕ Nouvelle Commande" Background="#F59E0B" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="10" Margin="10,0,0,0" Click="Button_Click"/>
             <Button Grid.Column="2" Content="📅 Commandes du Jour" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10"/>
-            <Button Grid.Column="3" Content="🍽️ Gestion Plats" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10"/>
+            <Button Grid.Column="3" Content="🍽️ Gestion Plats" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10" Click="ButtClickGestionPlat"/>
             <Button Grid.Column="4" Content="👥 Client" Background="Transparent" Foreground="White" FontWeight="Bold" Margin="10" Click="ButtonClient_Click"/>
         </Grid>
 
@@ -35,7 +35,7 @@
 
             <!-- Boutons d'action -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
-                <Button Content="Nouvelle Commande" Background="#F59E0B" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10" Click="Button_Click"/>
+                <Button Content="Nouvelle Commande" Background="#F59E0B" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10" Click="ButtClickGestionPlat"/>
                 <Button Content="Commandes du Jour" Background="#1E3A8A" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10"/>
                 <Button Content="Gestion Plats" Background="#1E3A8A" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10"/>
             </StackPanel>
