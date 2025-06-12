@@ -51,11 +51,11 @@ namespace SAE_SIBILIA.UserControls
 
         private bool RechercheMotClefPlat(object obj)
         {
-            if (string.IsNullOrEmpty(textMotClefPlats.Text))
+            if (string.IsNullOrEmpty(searchBox.Text))
                 return true;
 
             Plat plat = obj as Plat;
-            return plat != null && plat.NomPlat.Contains(textMotClefPlats.Text, StringComparison.OrdinalIgnoreCase);
+            return plat != null && plat.NomPlat.Contains(searchBox.Text, StringComparison.OrdinalIgnoreCase);
         }
 
         private void Refresh_Plats(object sender, TextChangedEventArgs e)
