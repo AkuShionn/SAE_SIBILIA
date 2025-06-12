@@ -174,53 +174,7 @@
                     </StackPanel>
                 </Border>
 
-                <!-- Actions rapides -->
-                <Border Style="{StaticResource CardStyle}">
-                    <StackPanel>
-                        <TextBlock Text="Actions Rapides" FontSize="24" FontWeight="SemiBold" Foreground="#1E293B" Margin="0,0,0,20" HorizontalAlignment="Center"/>
-
-                        <UniformGrid Rows="1" Columns="3" Margin="0,10">
-                            <!-- Carte Nouvelle Commande -->
-                            <Border Background="#FEF3C7" CornerRadius="12" Margin="8" Padding="20">
-                                <Border.Effect>
-                                    <DropShadowEffect Color="#F59E0B" Opacity="0.2" BlurRadius="8" ShadowDepth="2"/>
-                                </Border.Effect>
-                                <StackPanel HorizontalAlignment="Center">
-                                    <Ellipse Width="50" Height="50" Fill="#F59E0B" Margin="0,0,0,12"/>
-                                    <TextBlock Text="Nouvelle Commande" FontWeight="SemiBold" FontSize="16" Foreground="#92400E" HorizontalAlignment="Center" Margin="0,0,0,8"/>
-                                    <TextBlock Text="Créer une nouvelle commande rapidement" FontSize="12" Foreground="#78350F" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0,0,0,12"/>
-                                    <Button Content="Créer" Style="{StaticResource PrimaryButton}" Margin="0" Padding="12,8"/>
-                                </StackPanel>
-                            </Border>
-
-                            <!-- Carte Commandes du Jour -->
-                            <Border Background="#DBEAFE" CornerRadius="12" Margin="8" Padding="20">
-                                <Border.Effect>
-                                    <DropShadowEffect Color="#3B82F6" Opacity="0.2" BlurRadius="8" ShadowDepth="2"/>
-                                </Border.Effect>
-                                <StackPanel HorizontalAlignment="Center">
-                                    <Ellipse Width="50" Height="50" Fill="#3B82F6" Margin="0,0,0,12"/>
-                                    <TextBlock Text="Commandes du Jour" FontWeight="SemiBold" FontSize="16" Foreground="#1E40AF" HorizontalAlignment="Center" Margin="0,0,0,8"/>
-                                    <TextBlock Text="Consulter les commandes en cours" FontSize="12" Foreground="#1E3A8A" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0,0,0,12"/>
-                                    <Button Content="Voir" Style="{StaticResource ModernButton}" Margin="0" Padding="12,8"/>
-                                </StackPanel>
-                            </Border>
-
-                            <!-- Carte Gestion Plats -->
-                            <Border Background="#D1FAE5" CornerRadius="12" Margin="8" Padding="20">
-                                <Border.Effect>
-                                    <DropShadowEffect Color="#10B981" Opacity="0.2" BlurRadius="8" ShadowDepth="2"/>
-                                </Border.Effect>
-                                <StackPanel HorizontalAlignment="Center">
-                                    <Ellipse Width="50" Height="50" Fill="#10B981" Margin="0,0,0,12"/>
-                                    <TextBlock Text="Gestion Plats" FontWeight="SemiBold" FontSize="16" Foreground="#047857" HorizontalAlignment="Center" Margin="0,0,0,8"/>
-                                    <TextBlock Text="Gérer le catalogue des plats" FontSize="12" Foreground="#065F46" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0,0,0,12"/>
-                                    <Button Content="Gérer" Background="#10B981" Foreground="White" Style="{StaticResource ModernButton}" Margin="0" Padding="12,8"/>
-                                </StackPanel>
-                            </Border>
-                        </UniformGrid>
-                    </StackPanel>
-                </Border>
+                
 
                 <!-- Section Actualités -->
                 <Border Style="{StaticResource CardStyle}">

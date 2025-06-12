@@ -177,9 +177,10 @@ namespace SAE_SIBILIA.Classes
             List<Client> clients = new List<Client>();
 
             // Requête SQL pour récupérer les clients
+            // AJOUT DE "numclient" À LA REQUÊTE
             using (NpgsqlCommand cmdSelect = new NpgsqlCommand(@"
-             SELECT nomclient, prenomclient, tel, adresserue, adressecp, adresseville
-             FROM Client"))
+        SELECT numclient, nomclient, prenomclient, tel, adresserue, adressecp, adresseville
+        FROM Client"))
             {
                 // Exécution de la requête SELECT pour récupérer les données
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
@@ -190,6 +191,8 @@ namespace SAE_SIBILIA.Classes
                     // Création d'un objet Client avec les valeurs de chaque ligne
                     clients.Add(new Client
                     {
+                        // ASSIGNATION DE L'ID RÉCUPÉRÉ
+                        NumClient = (int)dr["numclient"],
                         NomClient = (string)dr["nomclient"],
                         PrenomClient = (string)dr["prenomclient"],
                         TelClient = (string)dr["tel"],
