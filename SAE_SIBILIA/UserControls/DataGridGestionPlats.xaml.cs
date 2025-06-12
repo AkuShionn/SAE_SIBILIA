@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SAE_SIBILIA.Fenetres;
 
 namespace SAE_SIBILIA.UserControls
 {
@@ -43,6 +44,17 @@ namespace SAE_SIBILIA.UserControls
                 MessageBox.Show("Problème lors de récupération des données", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 Application.Current.Shutdown();
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            
+                AjouterPlats fenetreAjout = new AjouterPlats();
+                fenetreAjout.ShowDialog(); // Affiche la fenêtre en modal (bloquante)
+
+                // Tu peux ici rafraîchir le DataGrid après ajout
+                // ChargerLesPlats(); // à implémenter si besoin
+           
         }
     }
 }
