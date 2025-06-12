@@ -47,7 +47,7 @@ namespace SAE_SIBILIA.Fenetres
                 comboBox_SousCategorie.SelectedValuePath = "NumSousCategorie";
             }
         }
-        private void ajouterCategorie (object sender, SelectionChangedEventArgs e)
+        private void ajouterCategorie(object sender, SelectionChangedEventArgs e)
         {
             if (comboBox_Categorie.SelectedItem is Categorie selectedCategorie)
             {
@@ -57,8 +57,11 @@ namespace SAE_SIBILIA.Fenetres
                 comboBox_SousCategorie.SelectedValuePath = "NumSousCategorie";
             }
         }
-
-       
-        
+     
     }
+
+
+
 }
+    
+

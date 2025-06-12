@@ -41,7 +41,7 @@
                 <!-- Plat -->
                 <TextBlock Text="Plat" FontSize="12" Foreground="Gray"/>
                 <Border BorderBrush="#D4A857" BorderThickness="1" CornerRadius="8" Padding="8" Margin="0,5">
-                    <ComboBox x:Name="comboPlats" BorderThickness="0" Background="Transparent"/>
+                    <ComboBox x:Name="comboBoxPlats" BorderThickness="0" Background="Transparent"/>
                 </Border>
 
                 <!-- Quantité -->
@@ -71,7 +71,7 @@
                 <!-- Bouton de validation -->
                 <Button Content="Valider la commande"
                     Background="#0D1F3C" Foreground="#D4A857" FontWeight="Bold"
-                    Padding="10" Margin="0,0,0,0" BorderThickness="0" Cursor="Hand"/>
+                    Padding="10" Margin="0,0,0,0" BorderThickness="0" Cursor="Hand" />
             </StackPanel>
         </ScrollViewer>
 

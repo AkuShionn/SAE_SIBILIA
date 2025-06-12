@@ -230,6 +230,27 @@ namespace SAE_SIBILIA.Classes
 
             return periodes;
         }
+        public List<Plat> GetPlats()
+        {
+            List<Plat> plats = new List<Plat>();
+            var cmd = new NpgsqlCommand("SELECT numplat, nomplat, prixunitaire, delaipreparation, nbpersonnes FROM PLAT", GetConnection());
+            var table = ExecuteSelect(cmd);
+
+            foreach (DataRow row in table.Rows)
+            {
+                plats.Add(new Plat
+                {
+                    NumPlat = Convert.ToInt32(row["numplat"]),
+                    NomPlat = row["nomplat"].ToString(),
+                    PrixUnitaire = Convert.ToDouble(row["prixunitaire"]),
+                    DelaiPreparation = Convert.ToInt32(row["delaipreparation"]),
+                    NbPersonnes = Convert.ToInt32(row["nbpersonnes"])
+                });
+            }
+
+            return plats;
+        }
+
 
 
 
