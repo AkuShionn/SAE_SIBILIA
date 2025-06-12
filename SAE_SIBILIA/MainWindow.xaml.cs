@@ -1,4 +1,5 @@
-﻿using SAE_SIBILIA.Fenetres;
+﻿using SAE_SIBILIA.Classes;
+using SAE_SIBILIA.Fenetres;
 using SAE_SIBILIA.UserControls;
 using System.Text;
 using System.Windows;
@@ -18,9 +19,29 @@ namespace SAE_SIBILIA
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Employe employeConnecte;
         public MainWindow()
         {
             InitializeComponent();
+            Login();
+            ChargeUserControl();
+        }
+        private void Employe()
+        {
+            Main.Content = new PageAcceuil();
+        }
+        private void Login()
+        {
+            Connexion co = new Connexion();
+            if (co.ShowDialog() == true)
+            {
+                employeConnecte = co.EmployeConnecte;
+            }
+        }
+        private void ChargeUserControl()
+        {
+            Main.Content = null;
+            Employe();
         }
 
         private void ButtonClient_Click(object sender, RoutedEventArgs e)
