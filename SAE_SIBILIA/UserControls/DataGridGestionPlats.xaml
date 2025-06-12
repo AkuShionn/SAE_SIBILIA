@@ -30,7 +30,7 @@
                 Foreground="#0D1F3C"
                 Text="Gestion des Plats" />
 
-            <!-- Barre de recherche (à droite) -->
+            <!-- Barre de recherche -->
             <StackPanel
                 Margin="0,0,0,20"
                 HorizontalAlignment="Right"
@@ -57,38 +57,50 @@
 
             <!-- DataGrid -->
             <DataGrid
-                x:Name="dgPlats"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                AutoGenerateColumns="False"
-                IsReadOnly="True"
-                ItemsSource="{Binding lesPlats}"
-                Background="#F4F4F4"
-                BorderBrush="#B0B0B0"
-                BorderThickness="1"
-                FontSize="14"
-                RowHeight="35"
-                AlternatingRowBackground="#E9E9E9"
-                HorizontalScrollBarVisibility="Auto"
-                VerticalScrollBarVisibility="Auto"
-                SelectionMode="Single">
+                    x:Name="dgPlats"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    AutoGenerateColumns="False"
+                    IsReadOnly="True"
+                    ItemsSource="{Binding lesPlats}"
+                    Background="#F4F4F4"
+                    BorderBrush="#B0B0B0"
+                    BorderThickness="1"
+                    FontSize="14"
+                    RowHeight="35"
+                    AlternatingRowBackground="#E9E9E9"
+                    HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto"
+                    SelectionMode="Single">
                 <DataGrid.Columns>
                     <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding NomPlat}"
-                        Header="Nom" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
+                            Width="*"
+                            Binding="{Binding NomPlat}"
+                            Header="Nom" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
                     <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding PrixUnitaire}"
-                        Header="Prix" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
+                            Width="*"
+                            Binding="{Binding PrixUnitaire}"
+                            Header="Prix" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
                     <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding DelaiPreparation}"
-                        Header="Délai de préparation" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
+                            Width="*"
+                            Binding="{Binding DelaiPreparation}"
+                            Header="Délai de préparation" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
                     <DataGridTextColumn
-                        Width="*"
-                        Binding="{Binding NbPersonnes}"
-                        Header="Nb Personnes" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
+                            Width="*"
+                            Binding="{Binding NbPersonnes}"
+                            Header="Nb Personnes" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
+                    <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Categorie}"
+                            Header="Catégorie" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
+                    <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding SousCategorie}"
+                            Header="Sous-catégorie" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
+                    <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Disponible}"
+                            Header="Disponible" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
                 </DataGrid.Columns>
             </DataGrid>
 
