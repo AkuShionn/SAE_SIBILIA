@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace SAE_SIBILIA.UserControls
 {
@@ -15,6 +16,8 @@ namespace SAE_SIBILIA.UserControls
         {
             InitializeComponent();
             ChargeData();  // Charger les données au démarrage
+            dgClients.Items.Filter = RechercheMotClefClient;
+
         }
 
         private void ButtonCreerClient_Click(object sender, RoutedEventArgs e)
@@ -83,6 +86,19 @@ namespace SAE_SIBILIA.UserControls
                     MessageBox.Show("Client non supprimé", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
+        }
+
+        private bool RechercheMotClefClient(object obj)
+        {
+            if (string.IsNullOrEmpty(textMotClefClients.Text))
+                return true;
+
+            Client client = obj as Client;
+            return client != null && client.NomClient.Contains(textMotClefClients.Text, StringComparison.OrdinalIgnoreCase);
+        }
+        private void Refresh_Clients(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dgClients.ItemsSource).Refresh();
         }
 
     }

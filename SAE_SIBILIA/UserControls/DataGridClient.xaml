@@ -25,9 +25,9 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Barre de recherche -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-            <TextBox x:Name="searchBox" Width="250" Height="30" Margin="0,0,10,0" Padding="5"/>
+        <!-- Barre de recherche (à gauche) -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+            <TextBox x:Name="textMotClefClients" Width="250" Height="30" Margin="0,0,10,0" Padding="5" TextChanged="Refresh_Clients"/>
         </StackPanel>
 
         <!-- DataGrid -->
@@ -36,7 +36,7 @@
             Grid.Row="1"
             AutoGenerateColumns="False"
             IsReadOnly="True"
-            ItemsSource="{Binding lesClients}"
+            ItemsSource="{Binding lesClients}"  
             HorizontalAlignment="Stretch" 
             VerticalAlignment="Stretch"
             Margin="10"
@@ -60,11 +60,14 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- Bouton Créer Client -->
-        <Button Grid.Row="0" Content="Créer Client" Background="#1E3A8A" FontWeight="Bold" Foreground="White" Width="100" Height="30" HorizontalAlignment="Left" Margin="10" Click="ButtonCreerClient_Click" />
-        <!-- Bouton Modifier Client -->
-        <Button x:Name="Modifier_Client" Grid.Row="0" Content="Modifier Client" Background="#1E3A8A" FontWeight="Bold" Foreground="White" Width="100" Height="30" HorizontalAlignment="Left" Margin="120,0,0,0" Click="ButtonModifierClient" />
-        <!-- Bouton Supprimer Client -->
-        <Button Grid.Row="0" Content="Supprimer Client" Background="#1E3A8A" FontWeight="Bold" Foreground="White" Width="100" Height="30" HorizontalAlignment="Left" Margin="230,0,0,0" Click="SupprimerClient" />
+        <!-- Boutons (à droite) -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <!-- Bouton Créer Client -->
+            <Button Content="Créer Client" Background="#1E3A8A" FontWeight="Bold" Foreground="White" Width="100" Height="30" Margin="0,0,10,0" Click="ButtonCreerClient_Click"/>
+            <!-- Bouton Modifier Client -->
+            <Button x:Name="Modifier_Client" Content="Modifier Client" Background="#1E3A8A" FontWeight="Bold" Foreground="White" Width="100" Height="30" Margin="0,0,10,0" Click="ButtonModifierClient"/>
+            <!-- Bouton Supprimer Client -->
+            <Button Content="Supprimer Client" Background="#1E3A8A" FontWeight="Bold" Foreground="White" Width="100" Height="30" Click="SupprimerClient"/>
+        </StackPanel>
     </Grid>
 </UserControl>
