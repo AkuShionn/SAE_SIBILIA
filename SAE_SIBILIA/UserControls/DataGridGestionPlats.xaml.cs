@@ -63,10 +63,10 @@ namespace SAE_SIBILIA.UserControls
             CollectionViewSource.GetDefaultView(dgPlats.ItemsSource).Refresh();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ButAjouterPlat(object sender, RoutedEventArgs e)
         {
-            AjouterPlats fenetreAjout = new AjouterPlats();
-            fenetreAjout.ShowDialog();
+            AjouterPlats fenetreAjouterPlats = new AjouterPlats();
+            fenetreAjouterPlats.ShowDialog();
         }
     }
 }

@@ -11,6 +11,16 @@ namespace SAE_SIBILIA.Classes
         private int numCategorie;
         private string nomCategorie;
 
+        public Categorie()
+        {
+        }
+
+        public Categorie(int numCategorie, string nomCategorie)
+        {
+            this.NumCategorie = numCategorie;
+            this.NomCategorie = nomCategorie;
+        }
+
         public int NumCategorie
         {
             get

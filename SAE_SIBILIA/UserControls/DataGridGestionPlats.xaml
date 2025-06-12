@@ -25,7 +25,7 @@
                 HorizontalAlignment="Right"
                 Orientation="Horizontal">
                 <TextBox
-                    x:Name="searchBox"
+                    x:Name="textMotClefPlats"
                     Width="250"
                     Height="30"
                     Margin="0,0,10,0"
@@ -47,7 +47,7 @@
                 Margin="0,0,0,20"
                 HorizontalAlignment="Right"
                 Background="#F59E0B"
-                Click="Button_Click_1"
+                Click="ButAjouterPlat"
                 Content="+ Ajouter plat"
                 FontWeight="Bold"
                 Foreground="White" />
