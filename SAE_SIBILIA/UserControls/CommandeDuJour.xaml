@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="SAE_SIBILIA.UserControls.CommandeDuJour"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SAE_SIBILIA.UserControls"
+             mc:Ignorable="d" 
+           >
+    <Grid Margin="0">
+        <StackPanel>
+            <TextBlock Text="📅 Commandes du jour"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="#FFF9AD07"
+                       Margin="0,0,0,20"/>
+
+            <DataGrid x:Name="dataGridCommandes"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      Height="400">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Numéro" Binding="{Binding NumCommande}" Width="Auto"/>
+                    <DataGridTextColumn Header="Client" Binding="{Binding NomClient}" Width="*"/>
+                    <DataGridTextColumn Header="Heure" Binding="{Binding Heure}" Width="*"/>
+                    <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>

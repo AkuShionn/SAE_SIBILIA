@@ -176,7 +176,7 @@
                 Content="Créer le plat"
                 Cursor="Hand"
                 FontWeight="Bold"
-                Foreground="#D4A857"  />
+                Foreground="#D4A857"   />
         </StackPanel>
 
         <!--  Footer  -->

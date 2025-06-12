@@ -53,5 +53,14 @@ namespace SAE_SIBILIA
            DataGridGestionPlats gestionPlatsControl = new DataGridGestionPlats();
            Menu.Content = gestionPlatsControl;
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+          
+                CommandeDuJour commandeDuJ = new CommandeDuJour();
+                Menu.Content = commandeDuJ;
+           
+
+        }
     }
 }
