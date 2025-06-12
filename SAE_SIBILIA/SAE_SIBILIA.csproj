@@ -11,10 +11,33 @@
   <ItemGroup>
     <None Remove="Classes\raxkfwe0.1gg~" />
     <None Remove="img\Bannier.png" />
+    <None Remove="img\facebook-icon.png" />
+    <None Remove="img\instagram-icon.png" />
+    <None Remove="img\linkedin-icon.png" />
+    <None Remove="img\logo.png" />
+    <None Remove="img\twitter-icon.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Npgsql" Version="9.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="img\facebook-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\instagram-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\linkedin-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\twitter-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
