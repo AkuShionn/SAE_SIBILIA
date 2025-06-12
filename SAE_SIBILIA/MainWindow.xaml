@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE_SIBILIA"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000">
+        Title="MainWindow" Height="600" Width="1000" WindowStartupLocation="CenterScreen">
     <Grid>
         <!-- Menu de navigation -->
         <Grid Name="MenuGrid" Height="50" Background="#1E3A8A" HorizontalAlignment="Stretch" VerticalAlignment="Top">
@@ -35,9 +35,9 @@
 
             <!-- Boutons d'action -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
-                <Button Content="Nouvelle Commande" Background="#F59E0B" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10" Click="ButtClickGestionPlat"/>
+                <Button Content="Nouvelle Commande" Background="#F59E0B" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10" Click="Button_Click"/>
                 <Button Content="Commandes du Jour" Background="#1E3A8A" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10"/>
-                <Button Content="Gestion Plats" Background="#1E3A8A" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10"/>
+                <Button Content="Gestion Plats" Background="#1E3A8A" Foreground="White" FontWeight="Bold" Padding="20,10" Margin="10" Click="ButtClickGestionPlat"/>
             </StackPanel>
 
             <!-- Section Dernières actualités -->

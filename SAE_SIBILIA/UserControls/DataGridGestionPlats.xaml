@@ -6,35 +6,60 @@
              xmlns:local="clr-namespace:SAE_SIBILIA.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
-        <!-- Conteneur principal -->
-        <StackPanel Margin="20">
-            <!-- Titre -->
-            <TextBlock Text="Gestion des Plats" FontSize="24" FontWeight="Bold" Foreground="#0D1F3C" Margin="0,0,0,20"/>
 
-            <!-- Barre de recherche -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,20">
-                <TextBox x:Name="searchBox" Width="250" Height="30" Margin="0,0,10,0" Padding="5" />
-                <Button Content="🔍" Background="#1E3A8A" Foreground="White" Width="40" Height="30" BorderBrush="#1E3A8A" BorderThickness="1"/>
-            </StackPanel>
+    <UserControl.Resources>
+        <!-- Style pour les en-têtes -->
+        <Style x:Key="DataGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#1E3A8A"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Height" Value="35"/>
+        </Style>
+    </UserControl.Resources>
 
-            <!-- Bouton Ajouter Plat -->
-            <Button Content="+ Ajouter plat" Background="#F59E0B" Foreground="White" FontWeight="Bold" Width="200" Height="40" HorizontalAlignment="Right"  Margin="0,0,0,20"/>
-
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Boutons -->
+            <RowDefinition Height="*"/>
             <!-- DataGrid -->
-            <DataGrid x:Name="dgPlats" 
-                  ItemsSource="{Binding lesPlats}" 
-                  AutoGenerateColumns="False" 
-                  IsReadOnly="True" 
-                  HorizontalAlignment="Stretch" 
-                  VerticalAlignment="Stretch">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Nom" Binding="{Binding NomPlat}" Width="*" />
-                    <DataGridTextColumn Header="Prix" Binding="{Binding PrixUnitaire}" Width="*" />
-                    <DataGridTextColumn Header="Délai de préparation" Binding="{Binding DelaiPreparation}" Width="*" />
-                    <DataGridTextColumn Header="Nb Personnes" Binding="{Binding NbPersonnes}" Width="*" />
-                </DataGrid.Columns>
-            </DataGrid>
+        </Grid.RowDefinitions>
+
+        <!-- Boutons en haut -->
+        <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="0">
+            <TextBox x:Name="textMotClefPlats" Width="200" Height="30" Margin="0,0,10,0" Padding="5" TextChanged="Refresh_Plats"/>
+            <Button Content="🔍 Rechercher" Background="#1E3A8A" Foreground="White" FontWeight="Bold"
+                    Width="120" Height="30" Margin="0,0,20,0"/>
+            <Button Content="+ Ajouter Plat" Background="#F59E0B" Foreground="White" FontWeight="Bold"
+                    Width="120" Height="30" Margin="0"/>
         </StackPanel>
+
+        <!-- DataGrid stylisé -->
+        <DataGrid x:Name="dgPlats"
+                  Grid.Row="1"
+                  ItemsSource="{Binding lesPlats}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Margin="10"
+                  Background="#F4F4F4"
+                  BorderBrush="#B0B0B0"
+                  BorderThickness="1"
+                  FontSize="14"
+                  RowHeight="35"
+                  AlternatingRowBackground="#E9E9E9"
+                  HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto"
+                  SelectionMode="Single">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom" Binding="{Binding NomPlat}" Width="*" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
+                <DataGridTextColumn Header="Prix" Binding="{Binding PrixUnitaire}" Width="*" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
+                <DataGridTextColumn Header="Délai de préparation" Binding="{Binding DelaiPreparation}" Width="*" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
+                <DataGridTextColumn Header="Nb Personnes" Binding="{Binding NbPersonnes}" Width="*" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
