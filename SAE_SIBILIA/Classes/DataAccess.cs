@@ -5,13 +5,14 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SAE_SIBILIA.Classes
 {
     public class DataAccess
     {
-        private static readonly DataAccess instance = new DataAccess();
-        private readonly string connectionString = "Host=srv-peda-new;Port=5433;Username=alvesdjo;Password=NgRpEr;Database=sibilia;Options='-c search_path=sibilia_shema'";
+        private static DataAccess instance;
+        public static string connectionString;
         private NpgsqlConnection connection;
 
         public static DataAccess Instance
@@ -23,12 +24,14 @@ namespace SAE_SIBILIA.Classes
         }
 
         //  Constructeur privé pour empêcher l'instanciation multiple
-        private DataAccess()
+        public DataAccess(string user, string password)
         {
-
+            connectionString = $"Host=srv-peda-new;Port=5433;Username={user};Password={password};Database=sibilia;Options='-c search_path=sibilia_shema'";
             try
             {
                 connection = new NpgsqlConnection(connectionString);
+                instance = this;
+                GetConnection();
             }
             catch (Exception ex)
             {
@@ -47,17 +50,13 @@ namespace SAE_SIBILIA.Classes
                 {
                     connection.Open();
                 }
-                catch (Exception ex)
+                catch
                 {
-                    LogError.Log(ex, "Pb de connexion GetConnection \n" + connectionString);
-                    throw;
+                    MessageBox.Show("Mauvais mot de passe ou nom d'utilisateur", "Probleme de connection");
                 }
             }
-
-
             return connection;
         }
-
 
         //  pour requêtes SELECT et retourne un DataTable ( table de données en mémoire)
         public DataTable ExecuteSelect(NpgsqlCommand cmd)
@@ -227,17 +226,8 @@ namespace SAE_SIBILIA.Classes
                     LibellePeriode = row["libelleperiode"].ToString()
                 });
             }
-
             return periodes;
         }
-
-
-
-
-
-
-
-
     }
 
 
