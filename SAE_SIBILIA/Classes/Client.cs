@@ -232,17 +232,18 @@ namespace SAE_SIBILIA.Classes
 
         public int Update()
         {
+            // La requête UPDATE doit utiliser les noms de colonnes EXACTS de ta table SQL.
             using (var cmdUpdate = new NpgsqlCommand("UPDATE Client SET nomclient = @nomclient, prenomclient = @prenomclient, " +
-                "telClient = @tel, adresserue = @adresserue, adressecp = @adressecp, adresseville = @adresseville WHERE numclient = @numclient"))
+                  "tel = @tel, adresserue = @adresserue, adressecp = @adressecp, adresseville = @adresseville WHERE numclient = @numclient"))
             {
                 // Ajouter les paramètres à la requête SQL
                 cmdUpdate.Parameters.AddWithValue("@nomclient", this.NomClient);
                 cmdUpdate.Parameters.AddWithValue("@prenomclient", this.PrenomClient);
-                cmdUpdate.Parameters.AddWithValue("@tel", this.TelClient);
+                cmdUpdate.Parameters.AddWithValue("@tel", this.TelClient); // Le paramètre @tel reçoit bien la valeur de la propriété TelClient
                 cmdUpdate.Parameters.AddWithValue("@adresserue", this.AdresseRue);
                 cmdUpdate.Parameters.AddWithValue("@adressecp", this.AdresseCP);
                 cmdUpdate.Parameters.AddWithValue("@adresseville", this.AdresseVille);
-                cmdUpdate.Parameters.AddWithValue("@numclient", this.NumClient); 
+                cmdUpdate.Parameters.AddWithValue("@numclient", this.NumClient);
 
                 return DataAccess.Instance.ExecuteSet(cmdUpdate);
             }

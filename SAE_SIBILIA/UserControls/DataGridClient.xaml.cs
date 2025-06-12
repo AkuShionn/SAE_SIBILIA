@@ -45,8 +45,25 @@ namespace SAE_SIBILIA.UserControls
 
         private void ButtonModifierClient(object sender, RoutedEventArgs e)
         {
-            ModificationClients fenetreModifClient = new ModificationClients();
-            fenetreModifClient.ShowDialog();
+            // 1. Vérifier si un client est bien sélectionné dans le DataGrid
+            if (dgClients.SelectedItem is Client clientSelectionne)
+            {
+                // 2. Créer la fenêtre de modification en utilisant le BON constructeur,
+                //    celui qui accepte un client en paramètre.
+                ModificationClients fenetreModifClient = new ModificationClients(clientSelectionne);
+
+                // 3. Ouvrir la fenêtre. Le code s'arrête ici jusqu'à ce que la fenêtre soit fermée.
+                fenetreModifClient.ShowDialog();
+
+                // 4. Une fois la fenêtre fermée, on rafraîchit le DataGrid pour voir les changements.
+                //    C'est important pour que les modifications s'affichent sans redémarrer.
+                dgClients.Items.Refresh();
+            }
+            else
+            {
+                // 5. Si aucun client n'est sélectionné, on prévient l'utilisateur.
+                MessageBox.Show("Veuillez sélectionner un client à modifier.", "Aucune sélection", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void SupprimerClient(object sender, RoutedEventArgs e)
