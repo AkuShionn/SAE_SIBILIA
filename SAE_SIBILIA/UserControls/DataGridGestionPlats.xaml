@@ -29,8 +29,6 @@
         <!-- Boutons en haut -->
         <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="0">
             <TextBox x:Name="textMotClefPlats" Width="200" Height="30" Margin="0,0,10,0" Padding="5" TextChanged="Refresh_Plats"/>
-            <Button Content="🔍 Rechercher" Background="#1E3A8A" Foreground="White" FontWeight="Bold"
-                    Width="120" Height="30" Margin="0,0,20,0"/>
             <Button Content="+ Ajouter Plat" Background="#F59E0B" Foreground="White" FontWeight="Bold"
                     Width="120" Height="30" Margin="0"/>
         </StackPanel>
