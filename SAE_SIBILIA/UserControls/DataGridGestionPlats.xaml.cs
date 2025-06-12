@@ -46,15 +46,6 @@ namespace SAE_SIBILIA.UserControls
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            
-                AjouterPlats fenetreAjout = new AjouterPlats();
-                fenetreAjout.ShowDialog(); // Affiche la fenêtre en modal (bloquante)
-
-                // Tu peux ici rafraîchir le DataGrid après ajout
-                // ChargerLesPlats(); // à implémenter si besoin
-           
-        }
+     
     }
 }
