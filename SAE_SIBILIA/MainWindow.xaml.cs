@@ -51,7 +51,7 @@ namespace SAE_SIBILIA
         private void ButtClickGestionPlat(object sender, RoutedEventArgs e)
         {
            DataGridGestionPlats gestionPlatsControl = new DataGridGestionPlats();
-           Menu.Content = gestionPlatsControl; 
+           Menu.Content = gestionPlatsControl;
         }
     }
 }

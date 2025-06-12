@@ -177,6 +177,64 @@ namespace SAE_SIBILIA.Classes
         }
 
 
+        public List<Categorie> GetCategories()
+        {
+            var list = new List<Categorie>();
+            var cmd = new NpgsqlCommand("SELECT numcategorie, nomcategorie FROM CATEGORIE", GetConnection());
+            var table = ExecuteSelect(cmd);
+
+            foreach (DataRow row in table.Rows)
+            {
+                list.Add(new Categorie
+                {
+                    NumCategorie = Convert.ToInt32(row["numcategorie"]),
+                    NomCategorie = row["nomcategorie"].ToString()
+                });
+            }
+            return list;
+        }
+
+        public List<SousCategorie> GetSousCategoriesByCategorie(int numCategorie)
+        {
+            var list = new List<SousCategorie>();
+            var cmd = new NpgsqlCommand("SELECT numsouscategorie, nomsouscategorie, numcategorie FROM SOUSCATEGORIE WHERE numcategorie = @id", GetConnection());
+            cmd.Parameters.AddWithValue("@id", numCategorie);
+            var table = ExecuteSelect(cmd);
+
+            foreach (DataRow row in table.Rows)
+            {
+                list.Add(new SousCategorie
+                {
+                    NumSousCategorie = Convert.ToInt32(row["numsouscategorie"]),
+                    NomSousCategorie = row["nomsouscategorie"].ToString(),
+                
+                });
+            }
+            return list;
+        }
+
+        public List<Periode> GetPeriodes()
+        {
+            var periodes = new List<Periode>();
+            var cmd = new NpgsqlCommand("SELECT numperiode, libelleperiode FROM PERIODE", GetConnection());
+            var table = ExecuteSelect(cmd);
+
+            foreach (DataRow row in table.Rows)
+            {
+                periodes.Add(new Periode
+                {
+                    NumPeriode = Convert.ToInt32(row["numperiode"]),
+                    LibellePeriode = row["libelleperiode"].ToString()
+                });
+            }
+
+            return periodes;
+        }
+
+
+
+
+
 
 
 

@@ -1,0 +1,196 @@
+﻿<Window
+    x:Class="SAE_SIBILIA.Fenetres.AjouterPlats"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SAE_SIBILIA.Fenetres"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="AjouterPlats"
+    Width="400"
+    Height="800"
+    mc:Ignorable="d">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  En-tête  -->
+        <StackPanel
+            Grid.Row="0"
+            Margin="0,10"
+            HorizontalAlignment="Center">
+            <TextBlock
+                Margin="0,10,0,0"
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="#0D1F3C"
+                Text="Création d'un plat"
+                TextAlignment="Center" />
+            <TextBlock
+                FontSize="12"
+                Foreground="Gray"
+                Text="Remplissez les informations ci-dessous"
+                TextAlignment="Center" />
+        </StackPanel>
+
+        <!--  Formulaire  -->
+        <StackPanel Grid.Row="1">
+
+            <!--  Nom Plat  -->
+            <TextBlock
+                FontSize="12"
+                Foreground="Gray"
+                Text="Nom du plat" />
+            <Border
+                Margin="0,5"
+                Padding="8"
+                BorderBrush="#D4A857"
+                BorderThickness="1"
+                CornerRadius="8">
+                <TextBox
+                    x:Name="txtBoxNomPlat"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Text="{Binding NomPlat}" />
+            </Border>
+
+            <!--  Categorie  -->
+            <TextBlock
+                FontSize="12"
+                Foreground="Gray"
+                Text="Categorie" />
+            <Border
+                Margin="0,5"
+                Padding="8"
+                BorderBrush="#D4A857"
+                BorderThickness="1"
+                CornerRadius="8">
+                <ComboBox
+                    x:Name="comboBox_Categorie"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Text="{Binding NomCategorie}" />
+            </Border>
+
+            <!--  Sous-categorie  -->
+            <TextBlock
+                FontSize="12"
+                Foreground="Gray"
+                Text="Sous-categorie" />
+            <Border
+                Margin="0,5"
+                Padding="8"
+                BorderBrush="#D4A857"
+                BorderThickness="1"
+                CornerRadius="8">
+                <ComboBox
+                    x:Name="comboBox_SousCategorie"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Text="{Binding NomSousCategorie}" />
+            </Border>
+
+            <!--  Nombre de personnes  -->
+            <TextBlock
+                FontSize="12"
+                Foreground="Gray"
+                Text="Nombre de personnes" />
+            <Border
+                Margin="0,5"
+                Padding="8"
+                BorderBrush="#D4A857"
+                BorderThickness="1"
+                CornerRadius="8">
+                <TextBox
+                    x:Name="txtBoxNbPersonnes"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Text="{Binding NbPersonnes}" />
+            </Border>
+
+            <!--  Temps de préparation  -->
+            <TextBlock
+                FontSize="12"
+                Foreground="Gray"
+                Text="Temps de préparation" />
+            <Border
+                Margin="0,5"
+                Padding="8"
+                BorderBrush="#D4A857"
+                BorderThickness="1"
+                CornerRadius="8">
+                <TextBox
+                    x:Name="txtBoxTempsPreparation"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Text="{Binding DelaiPreparation}" />
+            </Border>
+
+            <!--  Periode  -->
+            <TextBlock
+             FontSize="12"
+              Foreground="Gray"
+              Text="Periode" />
+            <Border
+                  Margin="0,5"
+                 Padding="8"
+                 BorderBrush="#D4A857"
+                 BorderThickness="1"
+                 CornerRadius="8">
+             <ComboBox
+                 x:Name="comboBox_Periode"
+                 Background="Transparent"
+                 BorderThickness="0"
+                 Text="{Binding LibellePeriode}"
+               />
+               </Border>
+
+
+            <!--  Prix unitaire  -->
+            <TextBlock
+    FontSize="12"
+    Foreground="Gray"
+    Text="Prix Unitaire" />
+            <Border
+    Margin="0,5"
+    Padding="8"
+    BorderBrush="#D4A857"
+    BorderThickness="1"
+    CornerRadius="8">
+                <TextBox
+        x:Name="txtBoxPrixUnitaire"
+        Background="Transparent"
+        BorderThickness="0"
+        Text="{Binding PrixUnitaire}" />
+            </Border>
+
+            <!--  Bouton  -->
+            <Button
+                x:Name="buttCreerPlat"
+                Margin="0,20,0,0"
+                Padding="10"
+                Background="#0D1F3C"
+                BorderThickness="0"
+                Content="Créer le plat"
+                Cursor="Hand"
+                FontWeight="Bold"
+                Foreground="#D4A857"  />
+        </StackPanel>
+
+        <!--  Footer  -->
+        <StackPanel Grid.Row="2">
+            <TextBlock
+                FontSize="10"
+                Foreground="Gray"
+                Text="Version 2.0.1 © 2023 Sibilla Gestion"
+                TextAlignment="Center" />
+            <TextBlock
+                FontSize="10"
+                Foreground="Gray"
+                Text="Tous droits réservés"
+                TextAlignment="Center" />
+        </StackPanel>
+    </Grid>
+</Window>
