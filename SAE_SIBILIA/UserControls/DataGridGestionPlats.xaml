@@ -30,30 +30,30 @@
                 Foreground="#0D1F3C"
                 Text="Gestion des Plats" />
 
-            <!-- Barre de recherche -->
+            <!-- Barre de recherche et bouton Ajouter Plat alignés horizontalement -->
             <StackPanel
                 Margin="0,0,0,20"
                 HorizontalAlignment="Right"
                 Orientation="Horizontal">
-                <TextBox
+                <!-- Bouton Ajouter Plat -->
+                <Button
+                    Width="200"
+                    Height="40"
+                    Margin="0,0,10,0"
+                    Background="#F59E0B"
+                    Click="ButAjouterPlat"
+                    Content="+ Ajouter plat"
+                    FontWeight="Bold"
+                    Foreground="White" />
+
+                    <!-- Barre de recherche -->
+                    <TextBox
                     x:Name="textMotClefPlats"
                     Width="250"
                     Height="30"
                     Padding="5"
                     TextChanged="Refresh_Plats"/>
             </StackPanel>
-
-            <!-- Bouton Ajouter Plat -->
-            <Button
-                Width="200"
-                Height="40"
-                Margin="0,0,0,20"
-                HorizontalAlignment="Right"
-                Background="#F59E0B"
-                Click="ButAjouterPlat"
-                Content="+ Ajouter plat"
-                FontWeight="Bold"
-                Foreground="White" />
 
             <!-- DataGrid -->
             <DataGrid

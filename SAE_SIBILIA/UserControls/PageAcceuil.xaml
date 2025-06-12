@@ -149,11 +149,11 @@
                 </StackPanel>
             </StackPanel>
 
-            <Button Grid.Column="1" Content="🏠 Accueil" Style="{StaticResource MenuButton}" HorizontalAlignment="Left"/>
-            <Button Grid.Column="2" Content="➕ Nouvelle Commande" Style="{StaticResource PrimaryButton}"/>
-            <Button Grid.Column="3" Content="📅 Commandes du Jour" Style="{StaticResource MenuButton}"/>
-            <Button Grid.Column="4" Content="🍽️ Gestion Plats" Style="{StaticResource MenuButton}"/>
-            <Button Grid.Column="5" Content="👥 Client" Style="{StaticResource MenuButton}" Margin="10,0,20,0"/>
+            <Button Grid.Column="1" Content="🏠 Accueil" Style="{StaticResource MenuButton}" HorizontalAlignment="Left" Click="ButtonAcceuil_Click"/>
+            <Button Grid.Column="2" Content="➕ Nouvelle Commande" Style="{StaticResource PrimaryButton}" Click="ButtonNouvelleCommande_Click"/>
+            <Button Grid.Column="3" Content="📅 Commandes du Jour" Style="{StaticResource MenuButton}" Click="ButtCommandeDuJour"/>
+            <Button Grid.Column="4" Content="🍽️ Gestion Plats" Style="{StaticResource MenuButton}" Click="ButtClickGestionPlat" />
+            <Button Grid.Column="5" Content="👥 Client" Style="{StaticResource MenuButton}" Margin="10,0,20,0" Click="ButtonClient_Click"/>
         </Grid>
 
         <!-- Contenu principal avec scrolling -->

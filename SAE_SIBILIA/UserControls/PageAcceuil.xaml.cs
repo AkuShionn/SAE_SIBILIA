@@ -24,5 +24,44 @@ namespace SAE_SIBILIA.UserControls
         {
             InitializeComponent();
         }
+
+        private void ButtonClient_Click(object sender, RoutedEventArgs e)
+        {
+            DataGridClient dgclientControl = new DataGridClient();
+            Menu.Content = dgclientControl;
+        }
+
+        private void ButtonAcceuil_Click(object sender, RoutedEventArgs e)
+        {
+            Menu.Content = null;
+
+        }
+
+        private void ButtonNouvelleCommande_Click(object sender, RoutedEventArgs e)
+        {
+            CreerCommande commmandeControl = new CreerCommande();
+            Menu.Content = commmandeControl;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CreerCommande commmandeControl = new CreerCommande();
+            Menu.Content = commmandeControl;
+        }
+
+        private void ButtClickGestionPlat(object sender, RoutedEventArgs e)
+        {
+            DataGridGestionPlats gestionPlatsControl = new DataGridGestionPlats();
+            Menu.Content = gestionPlatsControl;
+        }
+
+        private void ButtCommandeDuJour(object sender, RoutedEventArgs e)
+        {
+
+            CommandeDuJour commandeDuJ = new CommandeDuJour();
+            Menu.Content = commandeDuJ;
+
+
+        }
     }
 }
