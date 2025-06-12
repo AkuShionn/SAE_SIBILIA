@@ -28,6 +28,7 @@ namespace SAE_SIBILIA.UserControls
         {
             InitializeComponent();
             ChargePlats();
+            dgPlats.Items.Filter = RechercheMotClefPlat;
         }
 
         private void ChargePlats()
@@ -44,8 +45,24 @@ namespace SAE_SIBILIA.UserControls
                 MessageBox.Show("Problème lors de récupération des données", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 Application.Current.Shutdown();
             }
+
+
         }
 
-     
+        private bool RechercheMotClefPlat(object obj)
+        {
+            if (string.IsNullOrEmpty(textMotClefPlats.Text))
+                return true;
+
+            Plat plat = obj as Plat;
+            return plat != null && plat.NomPlat.Contains(textMotClefPlats.Text, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private void Refresh_Plats(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dgPlats.ItemsSource).Refresh();
+        }
+
+
     }
 }
