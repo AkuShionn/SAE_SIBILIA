@@ -5,34 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SAE_SIBILIA.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="1200"
+             FontFamily="Segoe UI">
+
     <UserControl.Resources>
-        <!-- Styles modernes -->
-        <Style x:Key="ModernButton" TargetType="Button">
-            <Setter Property="Background" Value="#3B82F6"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#F59E0B"/>
+            <Setter Property="Foreground" Value="#1E293B"/>
+            <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Padding" Value="16,12"/>
-            <Setter Property="Margin" Value="8"/>
+            <Setter Property="Padding" Value="18,10"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-                                CornerRadius="8"
-                                Padding="{TemplateBinding Padding}">
-                            <Border.Effect>
-                                <DropShadowEffect Color="#1E40AF" Opacity="0.25" BlurRadius="8" ShadowDepth="2"/>
-                            </Border.Effect>
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="8">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#2563EB"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#1D4ED8"/>
+                                <Setter TargetName="border" Property="Background" Value="#D97706"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -40,40 +32,23 @@
             </Setter>
         </Style>
 
-        <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
-            <Setter Property="Background" Value="#F59E0B"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#D97706"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#B45309"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
         <Style x:Key="MenuButton" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Foreground" Value="#E2E8F0"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Padding" Value="16,12"/>
-            <Setter Property="Margin" Value="4"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="Margin" Value="5,0"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-                                CornerRadius="6"
-                                Padding="{TemplateBinding Padding}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#1E40AF"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#1D4ED8"/>
+                                <Setter TargetName="border" Property="Background" Value="#475569"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -84,184 +59,122 @@
         <Style x:Key="CardStyle" TargetType="Border">
             <Setter Property="Background" Value="White"/>
             <Setter Property="CornerRadius" Value="12"/>
-            <Setter Property="Padding" Value="24"/>
-            <Setter Property="Margin" Value="16"/>
+            <Setter Property="Padding" Value="30"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+            <Setter Property="BorderBrush" Value="#E2E8F0"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect Color="#64748B" Opacity="0.1" BlurRadius="16" ShadowDepth="4"/>
+                    <DropShadowEffect ShadowDepth="1" BlurRadius="20" Color="#CBD5E0" Opacity="0.2"/>
                 </Setter.Value>
             </Setter>
-        </Style>
-
-        <Style x:Key="TitleText" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="32"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#1E293B"/>
-        </Style>
-
-        <Style x:Key="SubtitleText" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Foreground" Value="#64748B"/>
-            <Setter Property="FontWeight" Value="Normal"/>
         </Style>
     </UserControl.Resources>
 
     <Grid>
-        <!-- Arrière-plan avec gradient subtil -->
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                <GradientStop Color="#F8FAFC" Offset="0"/>
-                <GradientStop Color="#F1F5F9" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
 
-        <!-- Menu de navigation moderne -->
-        <Grid Name="MenuGrid" Height="70" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <Grid.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="#1E3A8A" Offset="0"/>
-                    <GradientStop Color="#3B82F6" Offset="1"/>
-                </LinearGradientBrush>
-            </Grid.Background>
-            <Grid.Effect>
-                <DropShadowEffect Color="#1E40AF" Opacity="0.3" BlurRadius="12" ShadowDepth="4"/>
-            </Grid.Effect>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <!-- Logo section -->
-            <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="20,0">
-                <Ellipse Width="40" Height="40" Fill="#F59E0B" Margin="0,0,10,0">
-                    <Ellipse.Effect>
-                        <DropShadowEffect Color="#F59E0B" Opacity="0.5" BlurRadius="8"/>
-                    </Ellipse.Effect>
-                </Ellipse>
-                <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="Sibilla" Foreground="White" FontWeight="Bold" FontSize="18"/>
-                    <TextBlock Text="Gestion" Foreground="#94A3B8" FontSize="12"/>
-                </StackPanel>
-            </StackPanel>
-
-            <Button Grid.Column="1" Content="🏠 Accueil" Style="{StaticResource MenuButton}" HorizontalAlignment="Left" Click="ButtonAcceuil_Click"/>
-            <Button Grid.Column="2" Content="➕ Nouvelle Commande" Style="{StaticResource PrimaryButton}" Click="ButtonNouvelleCommande_Click"/>
-            <Button Grid.Column="3" Content="📅 Commandes du Jour" Style="{StaticResource MenuButton}" Click="ButtCommandeDuJour"/>
-            <Button Grid.Column="4" Content="🍽️ Gestion Plats" Style="{StaticResource MenuButton}" Click="ButtClickGestionPlat" />
-            <Button Grid.Column="5" Content="👥 Client" Style="{StaticResource MenuButton}" Margin="10,0,20,0" Click="ButtonClient_Click"/>
-        </Grid>
-
-        <!-- Contenu principal avec scrolling -->
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,70,0,100">
-            <StackPanel>
-                <!-- Section Hero -->
-                <Border Style="{StaticResource CardStyle}" Margin="32,32,32,16">
-                    <StackPanel HorizontalAlignment="Center">
-                        <!-- Icône principale -->
-                        <Ellipse Width="80" Height="80" Fill="#3B82F6" Margin="0,0,0,20">
-                            <Ellipse.Effect>
-                                <DropShadowEffect Color="#3B82F6" Opacity="0.4" BlurRadius="16"/>
-                            </Ellipse.Effect>
-                        </Ellipse>
-
-                        <TextBlock Text="Bienvenue sur Sibilla Gestion" Style="{StaticResource TitleText}" HorizontalAlignment="Center" Margin="0,0,0,8"/>
-                        <TextBlock Text="Système de gestion moderne des commandes des Halles de Lyon" Style="{StaticResource SubtitleText}" HorizontalAlignment="Center" TextWrapping="Wrap" MaxWidth="600"/>
-                    </StackPanel>
-                </Border>
-
-                
-
-                <!-- Section Actualités -->
-                <Border Style="{StaticResource CardStyle}">
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
-                            <Ellipse Width="8" Height="8" Fill="#F59E0B" VerticalAlignment="Center" Margin="0,0,12,0"/>
-                            <TextBlock Text="Dernières Actualités" FontSize="22" FontWeight="SemiBold" Foreground="#1E293B"/>
-                        </StackPanel>
-
-                        <StackPanel>
-                            <Border Background="#F8FAFC" CornerRadius="8" Padding="16" Margin="0,0,0,12">
-                                <StackPanel Orientation="Horizontal">
-                                    <Ellipse Width="6" Height="6" Fill="#10B981" VerticalAlignment="Center" Margin="0,0,12,0"/>
-                                    <TextBlock Text="Nouveau plat saisonnier disponible" FontSize="14" Foreground="#374151"/>
-                                </StackPanel>
-                            </Border>
-
-                            <Border Background="#FEF3C7" CornerRadius="8" Padding="16" Margin="0,0,0,12">
-                                <StackPanel Orientation="Horizontal">
-                                    <Ellipse Width="6" Height="6" Fill="#F59E0B" VerticalAlignment="Center" Margin="0,0,12,0"/>
-                                    <TextBlock Text="Maintenance prévue vendredi" FontSize="14" Foreground="#374151"/>
-                                </StackPanel>
-                            </Border>
-
-                            <Border Background="#DBEAFE" CornerRadius="8" Padding="16" Margin="0,0,0,12">
-                                <StackPanel Orientation="Horizontal">
-                                    <Ellipse Width="6" Height="6" Fill="#3B82F6" VerticalAlignment="Center" Margin="0,0,12,0"/>
-                                    <TextBlock Text="Nouveau fournisseur ajouté à la base" FontSize="14" Foreground="#374151"/>
-                                </StackPanel>
-                            </Border>
-
-                            <Border Background="#F3E8FF" CornerRadius="8" Padding="16">
-                                <StackPanel Orientation="Horizontal">
-                                    <Ellipse Width="6" Height="6" Fill="#8B5CF6" VerticalAlignment="Center" Margin="0,0,12,0"/>
-                                    <TextBlock Text="Formation utilisateurs mardi prochain" FontSize="14" Foreground="#374151"/>
-                                </StackPanel>
-                            </Border>
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
-        </ScrollViewer>
-
-        <ContentControl x:Name="Menu" Margin="0,70,0,100"/>
-
-        <!-- Footer moderne -->
-        <Grid VerticalAlignment="Bottom" Height="100">
-            <Grid.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="#1E293B" Offset="0"/>
-                    <GradientStop Color="#334155" Offset="1"/>
-                </LinearGradientBrush>
-            </Grid.Background>
-            <Grid.Effect>
-                <DropShadowEffect Color="#000000" Opacity="0.1" BlurRadius="8" ShadowDepth="-2"/>
-            </Grid.Effect>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <!-- Contenu principal du footer -->
-            <Grid Grid.Row="0" Margin="32,20,32,10">
+        <Border Grid.Row="0" Background="#1E293B">
+            <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Logo et informations -->
-                <StackPanel Grid.Column="0" Orientation="Horizontal">
-                    <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="Sibilla Gestion" Foreground="White" FontWeight="Bold" FontSize="18"/>
-                        <TextBlock Text="Système de gestion moderne des Halles de Lyon" Foreground="#94A3B8" FontSize="13"/>
-                    </StackPanel>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="25,0" VerticalAlignment="Center">
+                    <Border Width="36" Height="36" Background="#D4A857" CornerRadius="8">
+                        <TextBlock Text="S" Foreground="#1E293B" FontWeight="Bold" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Sibilla Gestion" Foreground="White" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" Margin="15,0,0,0"/>
                 </StackPanel>
 
-                <!-- Réseaux sociaux -->
-                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center"/>
-            </Grid>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button Style="{StaticResource MenuButton}" Content="🏠  Accueil" Click="ButtonAcceuil_Click"/>
+                    <Button Style="{StaticResource MenuButton}" Content="📅  Commandes du Jour" Click="ButtCommandeDuJour"/>
+                    <Button Style="{StaticResource MenuButton}" Content="🍽️  Gestion Plats" Click="ButtClickGestionPlat"/>
+                    <Button Style="{StaticResource MenuButton}" Content="👥  Clients" Click="ButtonClient_Click"/>
+                </StackPanel>
 
-            <!-- Copyright -->
-            <Border Grid.Row="1" Background="#0F172A" Height="30">
-                <TextBlock Text="© 2025 Sibilla Gestion. Tous droits réservés" 
-                          Foreground="#64748B" FontSize="12" 
-                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Border>
-        </Grid>
+                <Button Grid.Column="2" Content="➕  Nouvelle Commande" Style="{StaticResource PrimaryButton}" Margin="0,0,25,0" Click="ButtonNouvelleCommande_Click"/>
+            </Grid>
+        </Border>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Background="#F1F5F9">
+            <ContentControl x:Name="Menu">
+                <StackPanel Margin="40">
+
+                    <Border Style="{StaticResource CardStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="Bienvenue sur votre tableau de bord" FontSize="28" FontWeight="Bold" Foreground="#1E293B"/>
+                                <TextBlock Text="Système de gestion moderne des commandes pour les Halles de Lyon Paul Bocuse." FontSize="16" Foreground="#64748B" TextWrapping="Wrap" MaxWidth="600" Margin="0,8,0,0"/>
+                            </StackPanel>
+                            <TextBlock Grid.Column="1" Text="🍖" FontSize="64" VerticalAlignment="Center" Margin="40,0,0,0"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="Dernières Actualités" FontSize="22" FontWeight="SemiBold" Foreground="#1E293B" Margin="0,0,0,20"/>
+                            <StackPanel>
+                                <Border BorderBrush="#E2E8F0" BorderThickness="0,0,0,1" Padding="0,0,0,15" Margin="0,0,0,15">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" Width="4" Height="24" Background="#10B981" CornerRadius="2" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                                        <TextBlock Grid.Column="1" Text="Nouveau plat saisonnier : la Blanquette de cabillaud est disponible pour Mars et Avril." FontSize="15" Foreground="#374151" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                                <Border BorderBrush="#E2E8F0" BorderThickness="0,0,0,1" Padding="0,0,0,15" Margin="0,0,0,15">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" Width="4" Height="24" Background="#F59E0B" CornerRadius="2" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                                        <TextBlock Grid.Column="1" Text="Maintenance du système prévue Vendredi prochain à 22h." FontSize="15" Foreground="#374151" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                                <Border Padding="0,0,0,0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" Width="4" Height="24" Background="#3B82F6" CornerRadius="2" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                                        <TextBlock Grid.Column="1" Text="Pensez à vérifier les commandes du jour à récupérer." FontSize="15" Foreground="#374151" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ContentControl>
+        </ScrollViewer>
+
+        <Border Grid.Row="2" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="0,1,0,0">
+            <Grid Margin="25,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="© 2025 Sibilla Gestion. Tous droits réservés." Foreground="#64748B" FontSize="12" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="Connecté en tant que : [Nom de l'Employé]" Foreground="#64748B" FontSize="12"/>
+                    <Button Content="Déconnexion" Foreground="Red" FontWeight="SemiBold" Background="Transparent" BorderThickness="0" Margin="15,0,0,0" Cursor="Hand" Click="ButtDeconnexion"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

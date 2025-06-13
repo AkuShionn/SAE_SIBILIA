@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAE_SIBILIA.Fenetres;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,6 @@ namespace SAE_SIBILIA.UserControls
         private void ButtonAcceuil_Click(object sender, RoutedEventArgs e)
         {
             Menu.Content = null;
-
         }
 
         private void ButtonNouvelleCommande_Click(object sender, RoutedEventArgs e)
@@ -62,6 +62,21 @@ namespace SAE_SIBILIA.UserControls
             Menu.Content = commandeDuJ;
 
 
+        }
+
+        private void ButtDeconnexion(object sender, RoutedEventArgs e)
+        {
+            // 1. On crée et on AFFICHE la nouvelle fenêtre de connexion.
+            // On utilise .Show() et non .ShowDialog() car on ne veut pas bloquer le code.
+            Connexion fenetreConnexion = new Connexion();
+            fenetreConnexion.Show();
+
+            // 2. On trouve la fenêtre qui contient ce UserControl (la fenêtre d'accueil) et on la FERME.
+            Window fenetreActuelle = Window.GetWindow(this);
+            if (fenetreActuelle != null)
+            {
+                fenetreActuelle.Close();
+            }
         }
     }
 }

@@ -4,8 +4,56 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SAE_SIBILIA.UserControls"
-             mc:Ignorable="d" Background="White">
-    <Grid Margin="20">
+             mc:Ignorable="d" Background="#F7F8FC">
+
+    <UserControl.Resources>
+
+        <SolidColorBrush x:Key="HeaderBackgroundColor" Color="#2D3748"/>
+        <SolidColorBrush x:Key="HeaderForegroundColor" Color="White"/>
+        <SolidColorBrush x:Key="RowHoverBackgroundColor" Color="#E2E8F0"/>
+        <SolidColorBrush x:Key="RowAlternatingBackgroundColor" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="GridLinesColor" Color="#E2E8F0"/>
+
+        <Style x:Key="ModernDataGridHeader" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="{StaticResource HeaderBackgroundColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource HeaderForegroundColor}"/>
+            <Setter Property="Padding" Value="15,10"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+            <Setter Property="BorderBrush" Value="{StaticResource GridLinesColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
+
+        <Style x:Key="ModernDataGridCell" TargetType="DataGridCell">
+            <Setter Property="Padding" Value="15,10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Retiree}" Value="True">
+                    <Setter Property="TextBlock.TextDecorations" Value="Strikethrough"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ModernDataGridRow" TargetType="DataGridRow">
+            <Setter Property="MinHeight" Value="40"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource RowHoverBackgroundColor}"/>
+                </Trigger>
+                <DataTrigger Binding="{Binding Retiree}" Value="True">
+                    <Setter Property="Foreground" Value="Gray"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid Margin="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -13,56 +61,72 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="📅 Commandes à récupérer aujourd'hui" FontSize="24" FontWeight="Bold" Foreground="#0D1F3C" Margin="0,0,0,20"/>
+        <TextBlock Grid.Row="0" Text="📅 Commandes à récupérer aujourd'hui" FontSize="26" FontWeight="Bold" Foreground="#0D1F3C" Margin="0,0,0,25"/>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Content="Filtrer par nom de client :" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtFiltreClient" Width="200" VerticalAlignment="Center" Margin="5,0"/>
-            <CheckBox x:Name="chkMasquerRecuperees" Content="Masquer les commandes retirées" VerticalAlignment="Center" Margin="20,0,0,0" IsChecked="True"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,15">
+            <Label Content="Filtrer par nom de client :" VerticalAlignment="Center" FontSize="14"/>
+            <TextBox x:Name="txtFiltreClient" Width="220" VerticalAlignment="Center" Margin="5,0" Padding="8,6" FontSize="14"/>
+            <CheckBox x:Name="chkMasquerRecuperees" Content="Masquer les commandes retirées" VerticalAlignment="Center" Margin="25,0,0,0" IsChecked="True" FontSize="14"/>
         </StackPanel>
 
-        <DataGrid x:Name="dataGridCommandes" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" SelectionMode="Single" AlternatingRowBackground="#f5f5f5">
-            <DataGrid.RowStyle>
-                <Style TargetType="DataGridRow">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Retiree}" Value="True">
-                            <Setter Property="Background" Value="#e0e0e0"/>
-                            <Setter Property="Foreground" Value="Gray"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.RowStyle>
+        <Border Grid.Row="2" CornerRadius="8" BorderBrush="{StaticResource GridLinesColor}" BorderThickness="1" Background="White" ClipToBounds="True">
+            <DataGrid x:Name="dataGridCommandes" 
+                      AutoGenerateColumns="False" 
+                      IsReadOnly="True" 
+                      CanUserAddRows="False" 
+                      SelectionMode="Single"
+                      Background="Transparent"
+                      BorderThickness="0"
+                      GridLinesVisibility="Horizontal"
+                      HorizontalGridLinesBrush="{StaticResource GridLinesColor}"
+                      AlternatingRowBackground="{StaticResource RowAlternatingBackgroundColor}"
+                      ColumnHeaderStyle="{StaticResource ModernDataGridHeader}"
+                      RowStyle="{StaticResource ModernDataGridRow}"
+                      CellStyle="{StaticResource ModernDataGridCell}">
 
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Numéro" Binding="{Binding NumCommande}" Width="Auto"/>
-                <DataGridTextColumn Header="Client" Binding="{Binding NomClient}" Width="2*"/>
-                <DataGridTextColumn Header="Heure de retrait" Binding="{Binding HeureRetrait}" Width="*"/>
-                <DataGridTextColumn Header="Total" Binding="{Binding PrixTotal, StringFormat={}{0:C}}" Width="*"/>
-                <DataGridTemplateColumn Header="Statut" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Statut}" FontWeight="Bold">
-                                <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Retiree}" Value="False">
-                                                <Setter Property="Foreground" Value="OrangeRed"/>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Retiree}" Value="True">
-                                                <Setter Property="Foreground" Value="Green"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Numéro" Binding="{Binding NumCommande}" Width="Auto"/>
+                    <DataGridTextColumn Header="Client" Binding="{Binding NomClient}" Width="2*"/>
+                    <DataGridTextColumn Header="Heure de retrait" Binding="{Binding HeureRetrait}" Width="*"/>
+                    <DataGridTextColumn Header="Total" Binding="{Binding PrixTotal, StringFormat={}{0:C}}" Width="*"/>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-            <Button x:Name="btnMarquerRecuperee" Content="✔️ Marquer comme Retirée" Padding="10,5" Background="ForestGreen" Foreground="White" FontWeight="Bold"/>
+                    <DataGridTemplateColumn Header="Statut" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Padding="8,4" CornerRadius="10" HorizontalAlignment="Left">
+                                    <TextBlock Text="{Binding Statut}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Retiree}" Value="False">
+                                                    <Setter Property="Background" Value="#FFFBEB"/>
+                                                    <Setter Property="TextBlock.Foreground" Value="#92400E"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Retiree}" Value="True">
+                                                    <Setter Property="Background" Value="#F0FFF4"/>
+                                                    <Setter Property="TextBlock.Foreground" Value="#22543D"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button x:Name="btnMarquerRecuperee" Content="✔️ Marquer comme Retirée" Padding="12,8" Background="#2F855A" Foreground="White" FontWeight="Bold" BorderThickness="0" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -4,78 +4,193 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SAE_SIBILIA.UserControls"
-             mc:Ignorable="d" Foreground="White" Background="White" >
+             mc:Ignorable="d" 
+             Background="#F7F8FC">
 
-  
-            
-    <Grid Margin="20">
+    <UserControl.Resources>
+        <Style x:Key="FormLabel" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#4A5568"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+
+        <Style x:Key="InputContainer" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#CBD5E0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                    <Setter Property="BorderBrush" Value="#D4A857"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="FormTextBox" TargetType="TextBox">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="5,8"/>
+        </Style>
+
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#0D1F3C"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="0,12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
+            <Setter Property="Background" Value="#D4A857"/>
+        </Style>
+
+        <Style TargetType="GroupBox">
+            <Setter Property="BorderBrush" Value="#E2E8F0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <StackPanel>
+                            <ContentPresenter ContentSource="Header" />
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="White" CornerRadius="6" Padding="{TemplateBinding Padding}" Margin="0,5,0,0">
+                                <ContentPresenter />
+                            </Border>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="HeaderedContentControl" BasedOn="{StaticResource FormLabel}"/>
+
+    </UserControl.Resources>
+
+    <Grid Margin="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto" MinHeight="0"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- En-tête -->
-        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,10,0,10" Width="254">
-            <TextBlock Text="Nouvelle commande" FontSize="20" FontWeight="Bold" Foreground="#0D1F3C" TextAlignment="Center"/>
-            <TextBlock Text="Remplissez les informations client et commande" FontSize="12" Foreground="Gray" TextAlignment="Center"/>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,25">
+            <TextBlock Text="Nouvelle commande" FontSize="26" FontWeight="Bold" Foreground="#0D1F3C"/>
+            <TextBlock Text="Recherchez un client et composez la commande." FontSize="14" Foreground="Gray" Margin="0,5,0,0"/>
         </StackPanel>
 
-        <!-- Formulaire -->
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,0,12">
-            <StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="1*" MinWidth="300"/>
+            </Grid.ColumnDefinitions>
 
-                <!-- Infos client -->
-                <TextBlock Text="Nom du client" FontSize="12" Foreground="Gray"/>
-                <Border BorderBrush="#D4A857" BorderThickness="1" CornerRadius="8" Padding="8" Margin="0,5">
-                    <TextBox x:Name="txtNomClient" BorderThickness="0" Background="Transparent"/>
-                </Border>
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
+                    <GroupBox Header="1. Informations Client">
+                        <StackPanel>
+                            <TextBlock Text="Rechercher par nom" Style="{StaticResource FormLabel}"/>
+                            <Border Style="{StaticResource InputContainer}" Margin="0,0,0,10">
+                                <TextBox x:Name="txtNomClient" Style="{StaticResource FormTextBox}"/>
+                            </Border>
+                            <TextBlock Text="Rechercher par N° de téléphone" Style="{StaticResource FormLabel}"/>
+                            <Border Style="{StaticResource InputContainer}">
+                                <TextBox x:Name="txtTelClient" Style="{StaticResource FormTextBox}"/>
+                            </Border>
+                        </StackPanel>
+                    </GroupBox>
 
-                <TextBlock Text="Numero client" FontSize="12" Foreground="Gray"/>
-                <Border BorderBrush="#D4A857" BorderThickness="1" CornerRadius="8" Padding="8" Margin="0,5">
-                    <TextBox x:Name="txtTelClient" BorderThickness="0" Background="Transparent"/>
-                </Border>
+                    <GroupBox Header="2. Ajouter un plat">
+                        <StackPanel>
+                            <TextBlock Text="Plat" Style="{StaticResource FormLabel}"/>
+                            <Border Style="{StaticResource InputContainer}" Margin="0,0,0,10">
+                                <ComboBox x:Name="comboBoxPlats"/>
+                            </Border>
+                            <TextBlock Text="Quantité" Style="{StaticResource FormLabel}"/>
+                            <Border Style="{StaticResource InputContainer}" Margin="0,0,0,10">
+                                <TextBox x:Name="txtQuantite" Style="{StaticResource FormTextBox}"/>
+                            </Border>
+                            <TextBlock Text="Date de retrait prévue" Style="{StaticResource FormLabel}"/>
+                            <Border Style="{StaticResource InputContainer}" Margin="0,0,0,10">
+                                <DatePicker x:Name="dateRetrait"/>
+                            </Border>
+                            <Button Content="Ajouter à la commande" Style="{StaticResource SecondaryButton}" Padding="0,10"/>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
 
+            <Border Grid.Column="2" Background="White" CornerRadius="8" BorderBrush="#E2E8F0" BorderThickness="1">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
+                    <TextBlock Grid.Row="0" Text="Résumé de la commande" FontSize="18" FontWeight="Bold" Foreground="#0D1F3C" Margin="0,0,0,15"/>
 
-                <!-- Plat -->
-                <TextBlock Text="Plat" FontSize="12" Foreground="Gray"/>
-                <Border BorderBrush="#D4A857" BorderThickness="1" CornerRadius="8" Padding="8" Margin="0,5">
-                    <ComboBox x:Name="comboBoxPlats" BorderThickness="0" Background="Transparent"/>
-                </Border>
+                    <ListBox Grid.Row="1" x:Name="listPlatsCommandes" BorderThickness="0" Background="Transparent" HorizontalContentAlignment="Stretch">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Padding" Value="0,10"/>
+                                <Setter Property="BorderBrush" Value="#E2E8F0"/>
+                                <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListBoxItem">
+                                            <Border Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+                                                <ContentPresenter/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding NomPlat}" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{Binding Quantite, StringFormat='Quantité : {0}'}" Foreground="Gray" FontSize="12"/>
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="1" Text="{Binding Prix, StringFormat={}{0:C}}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                    <Button Grid.Column="2" Content="✕" Foreground="Red" Background="Transparent" BorderThickness="0" Cursor="Hand" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
 
-                <!-- Quantité -->
-                <TextBlock Text="Quantité" FontSize="12" Foreground="Gray"/>
-                <Border BorderBrush="#D4A857" BorderThickness="1" CornerRadius="8" Padding="8" Margin="0,5">
-                    <TextBox x:Name="txtQuantite" BorderThickness="0" Background="Transparent"/>
-                </Border>
+                    <StackPanel Grid.Row="2" Margin="0,20,0,0">
+                        <Separator/>
+                        <Grid Margin="0,10,0,0">
+                            <TextBlock Text="Total" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock x:Name="txtTotal" Text="0,00 €" FontSize="18" FontWeight="Bold" HorizontalAlignment="Right"/>
+                        </Grid>
+                    </StackPanel>
 
-                <!-- Date retrait -->
-                <TextBlock Text="Date de retrait prévue" FontSize="12" Foreground="Gray"/>
-                <Border BorderBrush="#D4A857" BorderThickness="1" CornerRadius="8" Padding="8" Margin="0,5">
-                    <DatePicker x:Name="dateRetrait" BorderThickness="0" Background="Transparent"/>
-                </Border>
-
-                <!-- Ajouter plat -->
-                <Button Content="Ajouter à la commande"
-                    Background="#D4A857" Foreground="White" FontWeight="Bold"
-                    Margin="0,10,0,0" Padding="8" BorderThickness="0" Cursor="Hand"/>
-
-                <!-- Liste des plats ajoutés -->
-                <TextBlock Text="Plats dans la commande :" FontSize="12" FontWeight="Bold" Margin="0,10,0,0"/>
-                <ListBox x:Name="listPlatsCommandes" Height="100" />
-
-                <!-- Total -->
-                <TextBlock x:Name="txtTotal" Text="Total : 0 €" FontSize="14" FontWeight="Bold" Margin="0,10,0,0" HorizontalAlignment="Right" Foreground="Black"/>
-
-                <!-- Bouton de validation -->
-                <Button Content="Valider la commande"
-                    Background="#0D1F3C" Foreground="#D4A857" FontWeight="Bold"
-                    Padding="10" Margin="0,0,0,0" BorderThickness="0" Cursor="Hand" />
-            </StackPanel>
-        </ScrollViewer>
-
-        <!-- Footer -->
-
+                    <Button Grid.Row="3" Content="Valider la commande" Style="{StaticResource PrimaryButton}" Margin="0,20,0,0"/>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>
