@@ -28,7 +28,7 @@ namespace SAE_SIBILIA
         }
         private void Employe()
         {
-            Main.Content = new PageAcceuil();
+            Main.Content = new PageAcceuil(); 
         }
         private void Login()
         {
