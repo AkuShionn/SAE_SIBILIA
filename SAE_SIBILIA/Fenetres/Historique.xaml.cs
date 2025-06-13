@@ -15,9 +15,9 @@ namespace SAE_SIBILIA.Fenetres
         public Historique() 
         {
             InitializeComponent();
-            //ChargerHistoriqueCommandes();
+            ChargerHistoriqueCommandes();
         }
-        /*
+        
         private void ChargerHistoriqueCommandes()
         {
             toutesCommandes = new List<Commande>();
