@@ -118,23 +118,28 @@ namespace SAE_SIBILIA.Classes
         {
             List<Plat> plats = new List<Plat>();
 
-            // Requête SQL pour récupérer les plats
+            // ÉTAPE 1 : On ajoute "numplat" à la requête SELECT
             using (NpgsqlCommand cmdSelect = new NpgsqlCommand(@"
-             SELECT numsouscategorie, numperiode, nomplat, prixunitaire, delaipreparation, nbpersonnes
-             FROM Plat"))
+        SELECT numplat, numsouscategorie, numperiode, nomplat, prixunitaire, delaipreparation, nbpersonnes
+        FROM plat")) // J'ai aussi mis le nom de la table en minuscules pour la cohérence
             {
-                // Exécution de la requête et récupération des résultats
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
 
                 foreach (DataRow dr in dt.Rows)
                 {
-                    // Création d'un objet Plat avec les valeurs de chaque ligne
                     plats.Add(new Plat
                     {
+                        // ÉTAPE 2 : On assigne le NumPlat à l'objet
+                        NumPlat = Convert.ToInt32(dr["numplat"]),
+
                         NomPlat = dr["nomplat"].ToString(),
-                        PrixUnitaire = Convert.ToDouble(dr["prixunitaire"]), // Convertir le prix en double
-                        DelaiPreparation = Convert.ToInt32(dr["delaipreparation"]), // Convertir le délai de préparation en int
-                        NbPersonnes = Convert.ToInt32(dr["nbpersonnes"]) // Convertir le nombre de personnes en int
+                        PrixUnitaire = Convert.ToDouble(dr["prixunitaire"]),
+                        DelaiPreparation = Convert.ToInt32(dr["delaipreparation"]),
+                        NbPersonnes = Convert.ToInt32(dr["nbpersonnes"])
+
+                        // Pour charger les objets Categorie, SousCategorie, etc.
+                        // il faudrait faire des requêtes supplémentaires ici, mais pour la suppression,
+                        // l'ID est la seule chose qui nous manquait.
                     });
                 }
             }
