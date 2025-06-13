@@ -9,15 +9,18 @@ using System.Threading.Tasks;
 
 namespace SAE_SIBILIA.Classes
 {
-    public class Plat : ICrud<Plat>, INotifyPropertyChanged, IEquatable<Client?>
+    public class Plat : ICrud<Plat>, INotifyPropertyChanged, IEquatable<Plat?>
     {
         private int numPlat;
         private string nomPlat;
         private double prixUnitaire;
         private int delaiPreparation;
         private int nbPersonnes;
+        private string nomCategorie;
+        private string nomSousCategorie;
+        private string libellePeriode;
 
-        private Periode disponiple;
+        private Periode disponible;
         private Categorie categorie;
         private SousCategorie sousCategorie;
 
@@ -86,15 +89,103 @@ namespace SAE_SIBILIA.Classes
             }
         }
 
-        public Periode Disponiple { get => disponiple; set => disponiple = value; }
-        public Categorie Categorie { get => categorie; set => categorie = value; }
-        public SousCategorie SousCategorie { get => sousCategorie; set => sousCategorie = value; }
+        public Periode Disponiple
+        {
+            get
+            {
+                return disponible;
+            }
+
+            set
+            {
+                disponible = value;
+            }
+        }
+
+        public Categorie Categorie
+        {
+            get
+            {
+                return categorie;
+            }
+
+            set
+            {
+                categorie = value;
+            }
+        }
+
+        public SousCategorie SousCategorie
+        {
+            get
+            {
+                return this.sousCategorie;
+            }
+
+            set
+            {
+                this.sousCategorie = value;
+            }
+        }
+
+        public string NomCategorie
+        {
+            get
+            {
+                return nomCategorie;
+            }
+
+            set
+            {
+                nomCategorie = value;
+            }
+        }
+
+        public string NomSousCategorie
+        {
+            get
+            {
+                return nomSousCategorie;
+            }
+
+            set
+            {
+                nomSousCategorie = value;
+            }
+        }
+
+        public string LibellePeriode
+        {
+            get
+            {
+                return this.libellePeriode;
+            }
+
+            set
+            {
+                this.libellePeriode = value;
+            }
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public int Create()
         {
-            throw new NotImplementedException();
+            // ... (code de la méthode Create que nous avons fait précédemment)
+            string query = @"
+                INSERT INTO plat (nomplat, prixunitaire, delaipreparation, nbpersonnes, numsouscategorie, numperiode)
+                VALUES (@nomplat, @prixunitaire, @delaipreparation, @nbpersonnes, @numsouscategorie, @numperiode)
+                RETURNING numplat;";
+            using (var cmd = new NpgsqlCommand(query))
+            {
+                cmd.Parameters.AddWithValue("@nomplat", this.NomPlat);
+                cmd.Parameters.AddWithValue("@prixunitaire", this.PrixUnitaire);
+                cmd.Parameters.AddWithValue("@delaipreparation", this.DelaiPreparation);
+                cmd.Parameters.AddWithValue("@nbpersonnes", this.NbPersonnes);
+                cmd.Parameters.AddWithValue("@numsouscategorie", this.SousCategorie.NumSousCategorie);
+                cmd.Parameters.AddWithValue("@numperiode", this.Disponiple.NumPeriode);
+                return DataAccess.Instance.ExecuteInsert(cmd);
+            }
         }
 
         public int Delete()
@@ -114,41 +205,53 @@ namespace SAE_SIBILIA.Classes
             throw new NotImplementedException();
         }
 
+        public bool Equals(Plat? other)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Plat> FindAll()
         {
             List<Plat> plats = new List<Plat>();
 
-            // ÉTAPE 1 : On ajoute "numplat" à la requête SELECT
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand(@"
-        SELECT numplat, numsouscategorie, numperiode, nomplat, prixunitaire, delaipreparation, nbpersonnes
-        FROM plat")) // J'ai aussi mis le nom de la table en minuscules pour la cohérence
+            // On modifie la requête pour joindre les autres tables et récupérer les noms
+            string query = @"
+                SELECT 
+                    p.numplat, p.nomplat, p.prixunitaire, p.delaipreparation, p.nbpersonnes,
+                    c.nomcategorie,
+                    sc.nomsouscategorie,
+                    pe.libelleperiode
+                FROM
+                    plat p
+                JOIN souscategorie sc ON p.numsouscategorie = sc.numsouscategorie
+                JOIN categorie c ON sc.numcategorie = c.numcategorie
+                JOIN periode pe ON p.numperiode = pe.numperiode
+                ORDER BY
+                    p.nomplat;";
+
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand(query))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
-
                 foreach (DataRow dr in dt.Rows)
                 {
                     plats.Add(new Plat
                     {
-                        // ÉTAPE 2 : On assigne le NumPlat à l'objet
+                        // On remplit les propriétés de base
                         NumPlat = Convert.ToInt32(dr["numplat"]),
-
-                        NomPlat = dr["nomplat"].ToString(),
+                        NomPlat = (string)dr["nomplat"],
                         PrixUnitaire = Convert.ToDouble(dr["prixunitaire"]),
                         DelaiPreparation = Convert.ToInt32(dr["delaipreparation"]),
-                        NbPersonnes = Convert.ToInt32(dr["nbpersonnes"])
+                        NbPersonnes = Convert.ToInt32(dr["nbpersonnes"]),
 
-                        // Pour charger les objets Categorie, SousCategorie, etc.
-                        // il faudrait faire des requêtes supplémentaires ici, mais pour la suppression,
-                        // l'ID est la seule chose qui nous manquait.
+                        // ON REMPLIT LES NOUVELLES PROPRIÉTÉS
+                        NomCategorie = (string)dr["nomcategorie"],
+                        NomSousCategorie = (string)dr["nomsouscategorie"],
+                        LibellePeriode = (string)dr["libelleperiode"]
                     });
                 }
             }
-
             return plats;
         }
-
-
-
 
         public List<Plat> FindBySelection(string criteres)
         {
@@ -164,6 +267,6 @@ namespace SAE_SIBILIA.Classes
         {
             throw new NotImplementedException();
         }
-        
     }
+    
 }

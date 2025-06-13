@@ -1,49 +1,31 @@
 ﻿<UserControl x:Class="SAE_SIBILIA.UserControls.DataGridGestionPlats"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SAE_SIBILIA.UserControls"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="450"
-             d:DesignWidth="800"
-             mc:Ignorable="d">
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000"
+             Background="#F7F8FC">
 
     <UserControl.Resources>
-        <!-- Style pour les en-têtes du DataGrid -->
-        <Style x:Key="DataGridHeaderStyle" TargetType="DataGridColumnHeader">
+        <Style x:Key="ActionButton" TargetType="Button">
             <Setter Property="Background" Value="#1E3A8A"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Padding" Value="10,5"/>
-            <Setter Property="Height" Value="35"/>
-        </Style>
-
-        <!-- Style des boutons modernes -->
-        <Style x:Key="ModernButton" TargetType="Button">
-            <Setter Property="Background" Value="#3B82F6"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Padding" Value="16,12"/>
-            <Setter Property="Margin" Value="8"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="Margin" Value="5,0"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-                                CornerRadius="8"
-                                Padding="{TemplateBinding Padding}">
-                            <Border.Effect>
-                                <DropShadowEffect Color="#1E40AF" Opacity="0.25" BlurRadius="8" ShadowDepth="2"/>
-                            </Border.Effect>
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#2563EB"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#1D4ED8"/>
+                                <Setter TargetName="border" Property="Background" Value="#1E40AF"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -51,106 +33,91 @@
             </Setter>
         </Style>
 
-        <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
-            <Setter Property="Background" Value="#F59E0B"/>
+        <Style x:Key="DeleteButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+            <Setter Property="Background" Value="#DC2626"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#D97706"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#B45309"/>
+                    <Setter Property="Background" Value="#B91C1C"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="ModernDataGridHeader" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F1F5F9"/>
+            <Setter Property="Foreground" Value="#334155"/>
+            <Setter Property="Padding" Value="15,10"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="BorderBrush" Value="#E2E8F0"/>
+        </Style>
+
+        <Style x:Key="ModernDataGridCell" TargetType="DataGridCell">
+            <Setter Property="Padding" Value="15,10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="ModernDataGridRow" TargetType="DataGridRow">
+            <Setter Property="MinHeight" Value="40"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E9EFFF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
     </UserControl.Resources>
 
-    <Grid Background="White">
-        <!-- Conteneur principal -->
-        <StackPanel Margin="20">
-            <!-- Titre -->
-            <TextBlock
-                Margin="0,0,0,20"
-                FontSize="24"
-                FontWeight="Bold"
-                Foreground="#0D1F3C"
-                Text="Gestion des Plats" />
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-            <!-- Barre de recherche et bouton Ajouter Plat alignés horizontalement -->
-            <StackPanel
-                Margin="0,0,0,20"
-                HorizontalAlignment="Right"
-                Orientation="Horizontal">
-                <!-- Barre de recherche -->
-                <TextBox
-                    x:Name="textMotClefPlats"
-                    Width="250"
-                    Height="30"
-                    Padding="5"
-                    TextChanged="Refresh_Plats"/>
-                    
-                <!-- Bouton Ajouter Plat -->
-                <Button
-                    Width="150"
-                    Height="40"
-                    Margin="5,0,10,0"
-                    Style="{StaticResource PrimaryButton}"
-                    Click="ButAjouterPlat"
-                    Content="+ Ajouter plat"
-                    FontWeight="Bold"
-                    Foreground="White" />
-                <Button Content="Modifier Plat" Style="{StaticResource PrimaryButton}" Width="150" Height="40" Margin="0,0,10,0"/>
-                <!-- Bouton Supprimer Plat -->
-                <Button Content="Supprimer Plat" Style="{StaticResource PrimaryButton}" Width="150" Height="40" Click="SupprimerPlats"/>
+        <Grid Grid.Row="0" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="🍽️ Gestion des Plats" FontSize="26" FontWeight="Bold" Foreground="#0D1F3C" VerticalAlignment="Center"/>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <TextBox x:Name="textMotClefPlats" Width="250" Padding="8,6" VerticalAlignment="Center" TextChanged="Refresh_Plats" ToolTip="Rechercher un plat..."/>
+                <Button Content="+ Ajouter" Style="{StaticResource ActionButton}" Click="ButAjouterPlat"/>
+                <Button Content="Modifier" Style="{StaticResource ActionButton}"/>
+                <Button Content="Supprimer" Style="{StaticResource DeleteButton}" Click="SupprimerPlats"/>
             </StackPanel>
+        </Grid>
 
-            <!-- DataGrid -->
+        <Border Grid.Row="1" CornerRadius="8" BorderBrush="#E2E8F0" BorderThickness="1" Background="White" ClipToBounds="True">
             <DataGrid
-                    x:Name="dgPlats"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    AutoGenerateColumns="False"
-                    IsReadOnly="True"
-                    ItemsSource="{Binding lesPlats}"
-                    Background="#F4F4F4"
-                    BorderBrush="#B0B0B0"
-                    BorderThickness="1"
-                    FontSize="14"
-                    RowHeight="35"
-                    AlternatingRowBackground="#E9E9E9"
-                    HorizontalScrollBarVisibility="Auto"
-                    VerticalScrollBarVisibility="Auto"
-                    SelectionMode="Single">
+                x:Name="dgPlats"
+                ItemsSource="{Binding lesPlats}"
+                AutoGenerateColumns="False"
+                IsReadOnly="True"
+                SelectionMode="Single"
+                Background="Transparent"
+                BorderThickness="0"
+                GridLinesVisibility="Horizontal"
+                HorizontalGridLinesBrush="#E2E8F0"
+                AlternatingRowBackground="#FAFAFC"
+                ColumnHeaderStyle="{StaticResource ModernDataGridHeader}"
+                RowStyle="{StaticResource ModernDataGridRow}"
+                CellStyle="{StaticResource ModernDataGridCell}">
+
                 <DataGrid.Columns>
-                    <DataGridTextColumn
-                            Width="*"
-                            Binding="{Binding NomPlat}"
-                            Header="Nom" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
-                    <DataGridTextColumn
-                            Width="*"
-                            Binding="{Binding PrixUnitaire}"
-                            Header="Prix" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
-                    <DataGridTextColumn
-                            Width="*"
-                            Binding="{Binding DelaiPreparation}"
-                            Header="Délai de préparation" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
-                    <DataGridTextColumn
-                            Width="*"
-                            Binding="{Binding NbPersonnes}"
-                            Header="Nb Personnes" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
-                    <DataGridTextColumn
-                            Width="*"
-                            Binding="{Binding Plats.Categorie.Nomcategorie}"
-                            Header="Catégorie" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
-                    <DataGridTextColumn
-                            Width="*"
-                            Binding="{Binding Plats.SousCategorie.Nomsouscategorie}"
-                            Header="Sous-catégorie" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
-                    <DataGridTextColumn
-                            Width="*"
-                            Binding="{Binding Plats.Disponible.LibellePeriode}"
-                            Header="Disponible" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
+                    <DataGridTextColumn Header="Nom du Plat" Binding="{Binding NomPlat}" Width="2*"/>
+                    <DataGridTextColumn Header="Catégorie" Binding="{Binding NomCategorie}" Width="*"/>
+                    <DataGridTextColumn Header="Sous-catégorie" Binding="{Binding NomSousCategorie}" Width="*"/>
+                    <DataGridTextColumn Header="Prix" Binding="{Binding PrixUnitaire, StringFormat={}{0:C}}" Width="Auto"/>
+                    <DataGridTextColumn Header="Nb Pers." Binding="{Binding NbPersonnes}" Width="Auto"/>
+                    <DataGridTextColumn Header="Délai (j)" Binding="{Binding DelaiPreparation}" Width="Auto"/>
+                    <DataGridTextColumn Header="Disponibilité" Binding="{Binding LibellePeriode}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
-        </StackPanel>
+        </Border>
     </Grid>
 </UserControl>
