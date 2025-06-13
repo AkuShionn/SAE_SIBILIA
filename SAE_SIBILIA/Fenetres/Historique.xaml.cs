@@ -67,5 +67,7 @@ namespace SAE_SIBILIA.Fenetres
 
             dataHistorique.ItemsSource = filtres;
         }
+
+        
     }
 }
