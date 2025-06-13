@@ -68,5 +68,43 @@ namespace SAE_SIBILIA.UserControls
             AjouterPlats fenetreAjouterPlats = new AjouterPlats();
             fenetreAjouterPlats.ShowDialog();
         }
+
+        private void SupprimerPlats(object sender, RoutedEventArgs e)
+        {
+            if (dgPlats.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un plat", "Alerte", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                Plat platSelectionne = (Plat)dgPlats.SelectedItem;
+
+                if (MessageBox.Show(
+                    $"Attention, ce plat sera définitivement supprimé. Désirez-vous tout de même supprimer {platSelectionne.NomPlat} ?",
+                    "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        platSelectionne.Delete(); // supprime de la BDD
+
+                        lesPlats.Remove(platSelectionne); // supprime de la liste bindée
+
+                        MessageBox.Show("Plat supprimé.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erreur lors de la suppression du plat : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Plat non supprimé", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+
+        }
+
+
+
     }
 }

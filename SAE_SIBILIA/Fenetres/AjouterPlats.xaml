@@ -107,12 +107,12 @@
 
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Catégorie" Style="{StaticResource FormLabel}"/>
                 <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource InputContainer}">
-                    <ComboBox x:Name="comboBox_Categorie" Text="{Binding NomCategorie}" Style="{StaticResource FormComboBox}"/>
+                    <ComboBox x:Name="comboBox_Categorie" Text="{Binding Plats.Categorie.NomCategorie}" Style="{StaticResource FormComboBox}"/>
                 </Border>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Sous-catégorie" Style="{StaticResource FormLabel}"/>
                 <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource InputContainer}">
-                    <ComboBox x:Name="comboBox_SousCategorie" Text="{Binding NomSousCategorie}" Style="{StaticResource FormComboBox}"/>
+                    <ComboBox x:Name="comboBox_SousCategorie" Text="{Binding Plats.souscategorie.Nomsouscategorie}" Style="{StaticResource FormComboBox}"/>
                 </Border>
 
                 <Grid Grid.Row="3" Grid.ColumnSpan="2">
@@ -167,7 +167,7 @@
                     <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" x:Name="buttCreerPlat" Content="Créer le plat" Style="{StaticResource PrimaryButton}"/>
+                <Button Grid.Column="0" x:Name="buttCreerPlat" Content="Créer le plat" Style="{StaticResource PrimaryButton}" Click="buttCreerPlat_Click"/>
                 <Button Grid.Column="2" Content="Annuler" Style="{StaticResource OutlineButton}"/>
             </Grid>
         </Grid>

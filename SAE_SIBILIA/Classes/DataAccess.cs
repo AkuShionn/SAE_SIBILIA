@@ -228,6 +228,44 @@ namespace SAE_SIBILIA.Classes
             }
             return periodes;
         }
+
+
+        public int AjouterPlat(Plat plat)
+        {
+            int result = 0;
+
+            string query = @"
+        INSERT INTO PLAT (nomplat, prixunitaire, delaipreparation, nbpersonnes, numperiode, numsouscategorie)
+        VALUES (@nomplat, @prix, @delai, @nb, @periode, @souscat)";
+
+            try
+            {
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, GetConnection()))
+                {
+                    if (plat.Disponiple == null || plat.SousCategorie == null)
+                        throw new Exception("La période ou la sous-catégorie n’est pas définie.");
+
+                    cmd.Parameters.AddWithValue("@nomplat", plat.NomPlat);
+                    cmd.Parameters.AddWithValue("@prix", plat.PrixUnitaire);
+                    cmd.Parameters.AddWithValue("@delai", plat.DelaiPreparation);
+                    cmd.Parameters.AddWithValue("@nb", plat.NbPersonnes);
+                    cmd.Parameters.AddWithValue("@periode", plat.Disponiple.NumPeriode); // OK
+                    cmd.Parameters.AddWithValue("@souscat", plat.SousCategorie.NumSousCategorie); // OK
+
+                    result = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError.Log(ex, "Erreur lors de l'insertion du plat");
+                throw new Exception("Erreur à l'insertion : " + ex.Message);
+            }
+
+            return result;
+        }
+
+
+
     }
 
 

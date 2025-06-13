@@ -149,7 +149,7 @@
                     </Grid>
                 </Border>
 
-                <Button Grid.Row="5" Grid.Column="1" x:Name="buttCreerPlat" Content="Créer le plat" Style="{StaticResource PrimaryButton}"/>
+                <Button Grid.Row="5" Grid.Column="1" x:Name="buttCreerPlat" Content="Créer le plat" Style="{StaticResource PrimaryButton}" Click="buttCreerPlat_Click"/>
 
             </Grid>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,20,0,0">

@@ -17,6 +17,10 @@ namespace SAE_SIBILIA.Classes
         private int delaiPreparation;
         private int nbPersonnes;
 
+        private Periode disponiple;
+        private Categorie categorie;
+        private SousCategorie sousCategorie;
+
         public int NumPlat
         {
             get
@@ -82,6 +86,10 @@ namespace SAE_SIBILIA.Classes
             }
         }
 
+        public Periode Disponiple { get => disponiple; set => disponiple = value; }
+        public Categorie Categorie { get => categorie; set => categorie = value; }
+        public SousCategorie SousCategorie { get => sousCategorie; set => sousCategorie = value; }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public int Create()
@@ -91,8 +99,15 @@ namespace SAE_SIBILIA.Classes
 
         public int Delete()
         {
-            throw new NotImplementedException();
+            string query = "DELETE FROM plat WHERE numplat = @id";
+
+            using (var cmd = new NpgsqlCommand(query, DataAccess.Instance.GetConnection()))
+            {
+                cmd.Parameters.AddWithValue("@id", this.NumPlat);
+                return cmd.ExecuteNonQuery(); // retourne le nombre de lignes supprimées
+            }
         }
+
 
         public bool Equals(Client? other)
         {
