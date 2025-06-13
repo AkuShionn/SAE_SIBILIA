@@ -39,7 +39,7 @@ namespace SAE_SIBILIA.Fenetres
                 {
                     while (reader.Read())
                     {
-                        toutesCommandes.Add(new Commande
+                        Commande commande = new Commande
                         {
                             NumCommande = reader.GetInt32(0),
                             DateCommande = reader.GetDateTime(1),
@@ -47,7 +47,9 @@ namespace SAE_SIBILIA.Fenetres
                             Payee = reader.GetBoolean(3),
                             Retiree = reader.GetBoolean(4),
                             PrixTotal = reader.GetDouble(5)
-                        });
+                        };
+
+                        toutesCommandes.Add(commande);
                     }
                 }
             }
@@ -59,15 +61,21 @@ namespace SAE_SIBILIA.Fenetres
         {
             string filtre = txtRechercheCommande.Text.ToLower();
 
-            var filtres = toutesCommandes.FindAll(c =>
+            var resultats = toutesCommandes.Where(c =>
                 c.NumCommande.ToString().Contains(filtre) ||
                 c.DateCommande.ToString("dd/MM/yyyy").Contains(filtre) ||
-                c.DateRetraitPrevue.ToString("dd/MM/yyyy").Contains(filtre)
-            );
+                c.DateRetraitPrevue.ToString("dd/MM/yyyy").Contains(filtre) ||
+                (c.Payee ? "oui" : "non").Contains(filtre) ||
+                (c.Retiree ? "oui" : "non").Contains(filtre)
+            ).ToList();
 
-            dataHistorique.ItemsSource = filtres;
+            dataHistorique.ItemsSource = resultats;
         }
 
-        
+        private void Fermer_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }
