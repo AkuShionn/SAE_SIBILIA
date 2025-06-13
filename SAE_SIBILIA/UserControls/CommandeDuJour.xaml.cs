@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using SAE_SIBILIA.Classes;
+using SAE_SIBILIA.Fenetres;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -123,6 +124,12 @@ namespace SAE_SIBILIA.UserControls
             {
                 MessageBox.Show("Veuillez sélectionner une commande.", "Aucune sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void BtnHistorique_Click(object sender, RoutedEventArgs e)
+        {
+            Historique historique = new Historique();
+            historique.ShowDialog();
         }
     }
 }
