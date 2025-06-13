@@ -73,7 +73,7 @@
                       AlternatingRowBackground="{StaticResource RowAlternatingBackgroundColor}"
                       ColumnHeaderStyle="{StaticResource ModernDataGridHeader}"
                       RowStyle="{StaticResource ModernDataGridRow}"
-                      CellStyle="{StaticResource ModernDataGridCell}" SelectionChanged="dataHistorique_SelectionChanged">
+                      CellStyle="{StaticResource ModernDataGridCell}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Numéro" Binding="{Binding NumCommande}" Width="Auto"/>
                     <DataGridTextColumn Header="Client" Binding="{Binding NomClient}" Width="2*"/>
