@@ -112,7 +112,7 @@
             <!-- Bouton Modifier Client -->
             <Button x:Name="Modifier_Client" Content="Modifier Client" Style="{StaticResource PrimaryButton}" Width="150" Height="45" Margin="0,0,10,0" Click="ButtonModifierClient"/>
             <!-- Bouton Supprimer Client -->
-            <Button Content="Supprimer Client" Style="{StaticResource PrimaryButton}" Width="150" Height="45" Click="SupprimerClient"/>
+            <Button Content="Supprimer Client" Style="{StaticResource PrimaryButton}" Width="150" Height="45" Click="SupprimerClient"/> 
         </StackPanel>
     </Grid>
 </UserControl>

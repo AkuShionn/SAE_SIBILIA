@@ -25,43 +25,75 @@ namespace SAE_SIBILIA.Fenetres
         public ModificationPlats(Plat plat)
         {
             InitializeComponent();
-
             this.platAModifier = plat;
-            this.DataContext = this.platAModifier;
-
-            // Logique pour charger les ComboBox (similaire à ta fenêtre d'ajout)
-            // et pré-sélectionner les bonnes valeurs
-            LoadComboBoxes();
+            this.DataContext = this.platAModifier; // Le binding se fait automatiquement
+            LoadAndSetComboBoxes();
         }
 
-        private void LoadComboBoxes()
+        private void LoadAndSetComboBoxes()
         {
-            // Charger toutes les catégories
-            comboBox_Categorie.ItemsSource = DataAccess.Instance.GetCategories();
+            // --- Catégories ---
+            var categories = DataAccess.Instance.GetCategories();
+            comboBox_Categorie.ItemsSource = categories;
             comboBox_Categorie.DisplayMemberPath = "NomCategorie";
-            // On pré-sélectionne la catégorie actuelle du plat
-            comboBox_Categorie.Text = platAModifier.NomCategorie;
+            // Pré-sélectionner la catégorie actuelle du plat
+            comboBox_Categorie.SelectedItem = categories.FirstOrDefault(c => c.NumCategorie == platAModifier.Categorie.NumCategorie);
 
-            // ... (Faire de même pour Sous-catégorie et Période)
+            // --- Sous-catégories (dépend de la catégorie) ---
+            if (comboBox_Categorie.SelectedItem is Categorie selectedCategorie)
+            {
+                var sousCategories = DataAccess.Instance.GetSousCategoriesByCategorie(selectedCategorie.NumCategorie);
+                comboBox_SousCategorie.ItemsSource = sousCategories;
+                comboBox_SousCategorie.DisplayMemberPath = "NomSousCategorie";
+                // Pré-sélectionner la sous-catégorie actuelle
+                comboBox_SousCategorie.SelectedItem = sousCategories.FirstOrDefault(sc => sc.NumSousCategorie == platAModifier.SousCategorie.NumSousCategorie);
+            }
+
+            // --- Périodes ---
+            var periodes = DataAccess.Instance.GetPeriodes();
+            comboBox_Periode.ItemsSource = periodes;
+            comboBox_Periode.DisplayMemberPath = "LibellePeriode";
+            // Pré-sélectionner la période actuelle
+            comboBox_Periode.SelectedItem = periodes.FirstOrDefault(p => p.NumPeriode == platAModifier.Disponiple.NumPeriode);
         }
 
-        private void BtnEnregistrerModifs_Click(object sender, RoutedEventArgs e)
+        private void ComboBox_Categorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Mettre à jour la liste des sous-catégories quand la catégorie change
+            if (comboBox_Categorie.SelectedItem is Categorie selectedCategorie)
+            {
+                comboBox_SousCategorie.ItemsSource = DataAccess.Instance.GetSousCategoriesByCategorie(selectedCategorie.NumCategorie);
+                comboBox_SousCategorie.DisplayMemberPath = "NomSousCategorie";
+            }
+        }
+
+        private void BtnEnregistrer_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                // Mettre à jour les objets complexes si l'utilisateur a changé les ComboBox
-                platAModifier.Categorie = (Categorie)comboBox_Categorie.SelectedItem ?? platAModifier.Categorie;
-                // ... (Faire de même pour SousCategorie et Disponiple)
+                // Le binding TwoWay met à jour les champs simples (Nom, Prix, etc.)
+                // Mais il faut mettre à jour les objets complexes (liés aux ComboBox) manuellement.
+                if (comboBox_Categorie.SelectedItem is Categorie newCat) platAModifier.Categorie = newCat;
+                if (comboBox_SousCategorie.SelectedItem is SousCategorie newSousCat) platAModifier.SousCategorie = newSousCat;
+                if (comboBox_Periode.SelectedItem is Periode newPeriode) platAModifier.Disponiple = newPeriode;
 
+                // On appelle la méthode Update de l'objet Plat
                 platAModifier.Update();
+
                 MessageBox.Show("Plat mis à jour avec succès !", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.DialogResult = true; // Indiquer le succès pour rafraîchir la liste principale
+                this.DialogResult = true; // Indique le succès
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erreur lors de la mise à jour du plat : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Erreur lors de la mise à jour : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void BtnAnnuler_Click(object sender, RoutedEventArgs e)
+        {
+            // On ferme simplement la fenêtre. Le DialogResult sera null, indiquant une annulation.
+            this.Close();
         }
     }
 }

@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:SAE_SIBILIA.Fenetres"
         mc:Ignorable="d"
         Title="Modifier un Plat" Height="800" Width="600"
-        WindowStartupLocation="CenterScreen" Background="#F7F8FC">
+        WindowStartupLocation="CenterScreen" MinHeight="750"
+        Background="#F7F8FC">
+
     <Window.Resources>
         <Style x:Key="FormLabel" TargetType="TextBlock">
             <Setter Property="FontSize" Value="14"/>
@@ -29,7 +31,6 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Padding" Value="5,8"/>
         </Style>
-
         <Style x:Key="FormComboBox" TargetType="ComboBox">
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Background" Value="Transparent"/>
@@ -37,7 +38,6 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Padding" Value="5,0"/>
         </Style>
-
         <Style x:Key="PrimaryButton" TargetType="Button">
             <Setter Property="Background" Value="#0D1F3C"/>
             <Setter Property="Foreground" Value="White"/>
@@ -45,23 +45,106 @@
             <Setter Property="Padding" Value="0,12"/>
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
+        <Style x:Key="OutlineButton" TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#4A5568"/>
+            <Setter Property="BorderBrush" Value="#CBD5E0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
     </Window.Resources>
 
-    <Grid Margin="40,20">
-        <StackPanel>
-            <TextBlock Text="Modification du plat" FontSize="24" FontWeight="Bold" Foreground="#0D1F3C" TextAlignment="Center" Margin="0,0,0,20"/>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="40,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-            <TextBlock Text="Nom du plat" Style="{StaticResource FormLabel}"/>
-            <Border Style="{StaticResource InputContainer}">
-                <TextBox Text="{Binding NomPlat, Mode=TwoWay}" Style="{StaticResource FormTextBox}"/>
-            </Border>
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,30">
+                <TextBlock Text="Modification du plat" FontSize="24" FontWeight="Bold" Foreground="#0D1F3C" TextAlignment="Center"/>
+                <TextBlock Text="Mettez à jour les informations ci-dessous" FontSize="14" Foreground="Gray" TextAlignment="Center" Margin="0,5,0,0"/>
+            </StackPanel>
 
-            <TextBlock Text="Catégorie" Style="{StaticResource FormLabel}"/>
-            <Border Style="{StaticResource InputContainer}">
-                <ComboBox x:Name="comboBox_Categorie" Text="{Binding NomCategorie}" Style="{StaticResource FormComboBox}"/>
-            </Border>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <Button x:Name="btnEnregistrerModifs" Content="Enregistrer les modifications" Style="{StaticResource PrimaryButton}" Click="BtnEnregistrerModifs_Click" Margin="0,20,0,0"/>
-        </StackPanel>
-    </Grid>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Nom du plat" Style="{StaticResource FormLabel}" Margin="0,0,20,0"/>
+                <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource InputContainer}">
+                    <TextBox Text="{Binding NomPlat, Mode=TwoWay}" Style="{StaticResource FormTextBox}"/>
+                </Border>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Catégorie" Style="{StaticResource FormLabel}"/>
+                <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource InputContainer}">
+                    <ComboBox x:Name="comboBox_Categorie" Style="{StaticResource FormComboBox}" SelectionChanged="ComboBox_Categorie_SelectionChanged"/>
+                </Border>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Sous-catégorie" Style="{StaticResource FormLabel}"/>
+                <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource InputContainer}">
+                    <ComboBox x:Name="comboBox_SousCategorie" Style="{StaticResource FormComboBox}"/>
+                </Border>
+
+                <Grid Grid.Row="3" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Nb. de personnes" Style="{StaticResource FormLabel}"/>
+                        <Border Style="{StaticResource InputContainer}">
+                            <TextBox Text="{Binding NbPersonnes, Mode=TwoWay}" Style="{StaticResource FormTextBox}"/>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Prix Unitaire" Style="{StaticResource FormLabel}"/>
+                        <Border Style="{StaticResource InputContainer}">
+                            <TextBox Text="{Binding PrixUnitaire, Mode=TwoWay}" Style="{StaticResource FormTextBox}"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="4" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Temps de prép. (jours)" Style="{StaticResource FormLabel}"/>
+                        <Border Style="{StaticResource InputContainer}">
+                            <TextBox Text="{Binding DelaiPreparation, Mode=TwoWay}" Style="{StaticResource FormTextBox}"/>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Période" Style="{StaticResource FormLabel}"/>
+                        <Border Style="{StaticResource InputContainer}">
+                            <ComboBox x:Name="comboBox_Periode" Style="{StaticResource FormComboBox}"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="2" Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="Enregistrer les modifications" Style="{StaticResource PrimaryButton}" Click="BtnEnregistrer_Click"/>
+                <Button Grid.Column="2" Content="Annuler" Style="{StaticResource OutlineButton}" Click="BtnAnnuler_Click"/>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>
