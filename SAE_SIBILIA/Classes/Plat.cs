@@ -3,9 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SAE_SIBILIA.Classes
 {
@@ -26,195 +23,135 @@ namespace SAE_SIBILIA.Classes
 
         public int NumPlat
         {
-            get
-            {
-                return numPlat;
-            }
-
-            set
-            {
-                numPlat = value;
-            }
+            get => numPlat;
+            set => numPlat = value;
         }
 
         public string NomPlat
         {
-            get
-            {
-                return nomPlat;
-            }
-
-            set
-            {
-                nomPlat = value;
-            }
+            get => nomPlat;
+            set => nomPlat = value;
         }
 
         public double PrixUnitaire
         {
-            get
-            {
-                return prixUnitaire;
-            }
-
-            set
-            {
-                prixUnitaire = value;
-            }
+            get => prixUnitaire;
+            set => prixUnitaire = value;
         }
 
         public int DelaiPreparation
         {
-            get
-            {
-                return delaiPreparation;
-            }
-
-            set
-            {
-                delaiPreparation = value;
-            }
+            get => delaiPreparation;
+            set => delaiPreparation = value;
         }
 
         public int NbPersonnes
         {
-            get
-            {
-                return this.nbPersonnes;
-            }
-
-            set
-            {
-                this.nbPersonnes = value;
-            }
+            get => nbPersonnes;
+            set => nbPersonnes = value;
         }
 
         public Periode Disponiple
         {
-            get
-            {
-                return disponible;
-            }
-
-            set
-            {
-                disponible = value;
-            }
+            get => disponible;
+            set => disponible = value;
         }
 
         public Categorie Categorie
         {
-            get
-            {
-                return categorie;
-            }
-
-            set
-            {
-                categorie = value;
-            }
+            get => categorie;
+            set => categorie = value;
         }
 
         public SousCategorie SousCategorie
         {
-            get
-            {
-                return this.sousCategorie;
-            }
-
-            set
-            {
-                this.sousCategorie = value;
-            }
+            get => sousCategorie;
+            set => sousCategorie = value;
         }
 
         public string NomCategorie
         {
-            get
-            {
-                return nomCategorie;
-            }
-
-            set
-            {
-                nomCategorie = value;
-            }
+            get => nomCategorie;
+            set => nomCategorie = value;
         }
 
         public string NomSousCategorie
         {
-            get
-            {
-                return nomSousCategorie;
-            }
-
-            set
-            {
-                nomSousCategorie = value;
-            }
+            get => nomSousCategorie;
+            set => nomSousCategorie = value;
         }
 
         public string LibellePeriode
         {
-            get
-            {
-                return this.libellePeriode;
-            }
-
-            set
-            {
-                this.libellePeriode = value;
-            }
+            get => libellePeriode;
+            set => libellePeriode = value;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public int Create()
         {
-            // ... (code de la méthode Create que nous avons fait précédemment)
             string query = @"
                 INSERT INTO plat (nomplat, prixunitaire, delaipreparation, nbpersonnes, numsouscategorie, numperiode)
                 VALUES (@nomplat, @prixunitaire, @delaipreparation, @nbpersonnes, @numsouscategorie, @numperiode)
                 RETURNING numplat;";
-            using (var cmd = new NpgsqlCommand(query))
-            {
-                cmd.Parameters.AddWithValue("@nomplat", this.NomPlat);
-                cmd.Parameters.AddWithValue("@prixunitaire", this.PrixUnitaire);
-                cmd.Parameters.AddWithValue("@delaipreparation", this.DelaiPreparation);
-                cmd.Parameters.AddWithValue("@nbpersonnes", this.NbPersonnes);
-                cmd.Parameters.AddWithValue("@numsouscategorie", this.SousCategorie.NumSousCategorie);
-                cmd.Parameters.AddWithValue("@numperiode", this.Disponiple.NumPeriode);
-                return DataAccess.Instance.ExecuteInsert(cmd);
-            }
+            using var cmd = new NpgsqlCommand(query);
+            cmd.Parameters.AddWithValue("@nomplat", NomPlat);
+            cmd.Parameters.AddWithValue("@prixunitaire", PrixUnitaire);
+            cmd.Parameters.AddWithValue("@delaipreparation", DelaiPreparation);
+            cmd.Parameters.AddWithValue("@nbpersonnes", NbPersonnes);
+            cmd.Parameters.AddWithValue("@numsouscategorie", SousCategorie.NumSousCategorie);
+            cmd.Parameters.AddWithValue("@numperiode", Disponiple.NumPeriode);
+            return DataAccess.Instance.ExecuteInsert(cmd);
         }
 
         public int Delete()
         {
             string query = "DELETE FROM plat WHERE numplat = @id";
-
-            using (var cmd = new NpgsqlCommand(query, DataAccess.Instance.GetConnection()))
-            {
-                cmd.Parameters.AddWithValue("@id", this.NumPlat);
-                return cmd.ExecuteNonQuery(); // retourne le nombre de lignes supprimées
-            }
-        }
-
-
-        public bool Equals(Client? other)
-        {
-            throw new NotImplementedException();
+            using var cmd = new NpgsqlCommand(query, DataAccess.Instance.GetConnection());
+            cmd.Parameters.AddWithValue("@id", NumPlat);
+            return cmd.ExecuteNonQuery();
         }
 
         public bool Equals(Plat? other)
         {
-            throw new NotImplementedException();
+            if (other is null) return false;
+            return this.NumPlat == other.NumPlat;
+        }
+
+        public void Read()
+        {
+            // Peut être implémenté pour charger les données du plat actuel depuis la BDD si besoin
+        }
+
+        public int Update()
+        {
+            string query = @"
+                UPDATE plat
+                SET nomplat = @nomplat,
+                    prixunitaire = @prixunitaire,
+                    delaipreparation = @delaipreparation,
+                    nbpersonnes = @nbpersonnes,
+                    numsouscategorie = @numsouscategorie,
+                    numperiode = @numperiode
+                WHERE numplat = @numplat";
+
+            using var cmd = new NpgsqlCommand(query);
+            cmd.Parameters.AddWithValue("@nomplat", NomPlat);
+            cmd.Parameters.AddWithValue("@prixunitaire", PrixUnitaire);
+            cmd.Parameters.AddWithValue("@delaipreparation", DelaiPreparation);
+            cmd.Parameters.AddWithValue("@nbpersonnes", NbPersonnes);
+            cmd.Parameters.AddWithValue("@numsouscategorie", SousCategorie.NumSousCategorie);
+            cmd.Parameters.AddWithValue("@numperiode", Disponiple.NumPeriode);
+            cmd.Parameters.AddWithValue("@numplat", NumPlat);
+
+            return DataAccess.Instance.ExecuteSet(cmd);
         }
 
         public List<Plat> FindAll()
         {
-            List<Plat> plats = new List<Plat>();
+            List<Plat> plats = new();
 
-            // On modifie la requête pour récupérer aussi les ID des tables liées
             string query = @"
         SELECT 
             p.numplat, p.nomplat, p.prixunitaire, p.delaipreparation, p.nbpersonnes,
@@ -229,81 +166,63 @@ namespace SAE_SIBILIA.Classes
         ORDER BY
             p.nomplat;";
 
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand(query))
+            using var cmd = new NpgsqlCommand(query);
+            var dt = DataAccess.Instance.ExecuteSelect(cmd);
+
+            foreach (DataRow dr in dt.Rows)
             {
-                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
-                foreach (DataRow dr in dt.Rows)
+                plats.Add(new Plat
                 {
-                    // On crée un objet Plat complet
-                    Plat plat = new Plat
-                    {
-                        NumPlat = Convert.ToInt32(dr["numplat"]),
-                        NomPlat = (string)dr["nomplat"],
-                        PrixUnitaire = Convert.ToDouble(dr["prixunitaire"]),
-                        DelaiPreparation = Convert.ToInt32(dr["delaipreparation"]),
-                        NbPersonnes = Convert.ToInt32(dr["nbpersonnes"]),
-
-                        NomCategorie = (string)dr["nomcategorie"],
-                        NomSousCategorie = (string)dr["nomsouscategorie"],
-                        LibellePeriode = (string)dr["libelleperiode"],
-
-                        Categorie = new Categorie
-                        {
-                            NumCategorie = Convert.ToInt32(dr["numcategorie"]),
-                            NomCategorie = (string)dr["nomcategorie"]
-                        },
-                        SousCategorie = new SousCategorie
-                        {
-                            NumSousCategorie = Convert.ToInt32(dr["numsouscategorie"]),
-                            NomSousCategorie = (string)dr["nomsouscategorie"]
-                        },
-                        Disponiple = new Periode
-                        {
-                            NumPeriode = Convert.ToInt32(dr["numperiode"]),
-                            LibellePeriode = (string)dr["libelleperiode"]
-                        }
-                    };
-                    plats.Add(plat);
-                }
+                    NumPlat = Convert.ToInt32(dr["numplat"]),
+                    NomPlat = (string)dr["nomplat"],
+                    PrixUnitaire = Convert.ToDouble(dr["prixunitaire"]),
+                    DelaiPreparation = Convert.ToInt32(dr["delaipreparation"]),
+                    NbPersonnes = Convert.ToInt32(dr["nbpersonnes"]),
+                    NomCategorie = (string)dr["nomcategorie"],
+                    NomSousCategorie = (string)dr["nomsouscategorie"],
+                    LibellePeriode = (string)dr["libelleperiode"]
+                });
             }
+
             return plats;
         }
 
         public List<Plat> FindBySelection(string criteres)
         {
-            throw new NotImplementedException();
-        }
+            List<Plat> plats = new();
 
-        public void Read()
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Update()
-        {
             string query = @"
-        UPDATE plat SET 
-            nomplat = @nomplat, 
-            prixunitaire = @prixunitaire, 
-            delaipreparation = @delaipreparation, 
-            nbpersonnes = @nbpersonnes, 
-            numsouscategorie = @numsouscategorie, 
-            numperiode = @numperiode
-        WHERE numplat = @numplat";
+                SELECT p.numplat, p.nomplat, p.prixunitaire, p.delaipreparation, p.nbpersonnes,
+                       c.nomcategorie, sc.nomsouscategorie, pe.libelleperiode
+                FROM plat p
+                JOIN souscategorie sc ON p.numsouscategorie = sc.numsouscategorie
+                JOIN categorie c ON sc.numcategorie = c.numcategorie
+                JOIN periode pe ON p.numperiode = pe.numperiode
+                WHERE p.nomplat ILIKE @critere
+                   OR c.nomcategorie ILIKE @critere
+                   OR sc.nomsouscategorie ILIKE @critere
+                ORDER BY p.nomplat;";
 
-            using (var cmd = new NpgsqlCommand(query))
+            using var cmd = new NpgsqlCommand(query);
+            cmd.Parameters.AddWithValue("@critere", $"%{criteres}%");
+            var dt = DataAccess.Instance.ExecuteSelect(cmd);
+
+            foreach (DataRow dr in dt.Rows)
             {
-                cmd.Parameters.AddWithValue("@nomplat", this.NomPlat);
-                cmd.Parameters.AddWithValue("@prixunitaire", this.PrixUnitaire);
-                cmd.Parameters.AddWithValue("@delaipreparation", this.DelaiPreparation);
-                cmd.Parameters.AddWithValue("@nbpersonnes", this.NbPersonnes);
-                cmd.Parameters.AddWithValue("@numsouscategorie", this.SousCategorie.NumSousCategorie);
-                cmd.Parameters.AddWithValue("@numperiode", this.Disponiple.NumPeriode);
-                cmd.Parameters.AddWithValue("@numplat", this.NumPlat);
-
-                return DataAccess.Instance.ExecuteSet(cmd);
+                plats.Add(new Plat
+                {
+                    NumPlat = Convert.ToInt32(dr["numplat"]),
+                    NomPlat = (string)dr["nomplat"],
+                    PrixUnitaire = Convert.ToDouble(dr["prixunitaire"]),
+                    DelaiPreparation = Convert.ToInt32(dr["delaipreparation"]),
+                    NbPersonnes = Convert.ToInt32(dr["nbpersonnes"]),
+                    NomCategorie = (string)dr["nomcategorie"],
+                    NomSousCategorie = (string)dr["nomsouscategorie"],
+                    LibellePeriode = (string)dr["libelleperiode"]
+                });
             }
+
+            return plats;
         }
     }
-    
 }
