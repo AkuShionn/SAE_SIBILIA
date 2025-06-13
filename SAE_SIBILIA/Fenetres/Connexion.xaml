@@ -4,38 +4,127 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE_SIBILIA.Fenetres"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Connexion" Height="450" Width="304">
-    <Grid Margin="0,0,0,4">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        mc:Ignorable="d"
+        Title="Sibilia Gestion - Connexion" Height="550" Width="400"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent">
 
-        <StackPanel Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Vertical">
-            <TextBlock Text="Sibilla Gestion" FontSize="18" FontWeight="Bold" Foreground="#0F2343" HorizontalAlignment="Center"/>
-            <TextBlock Text="Accédez à votre espace sécurisé" FontSize="12" Foreground="Gray" HorizontalAlignment="Center" Margin="0,5"/>
+    <Window.Resources>
+        <Style x:Key="FormLabel" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#4A5568"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
 
-            <!-- Champ Identifiant -->
-            <TextBlock Text="Identifiant" Margin="0,20,0,5" FontWeight="SemiBold" HorizontalAlignment="Left"/>
-            <Border Background="#FFF" Height="40" BorderBrush="#F2C66D" BorderThickness="1" CornerRadius="5" HorizontalAlignment="Stretch">
-                <TextBox x:Name="usernameTextBox" Margin="10,0" BorderThickness="0" Background="Transparent" VerticalContentAlignment="Center" />
-            </Border>
+        <Style x:Key="InputContainer" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E2E8F0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Height" Value="45"/>
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                    <Setter Property="BorderBrush" Value="#0D1F3C"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
-            <!-- Champ Mot de Passe -->
-            <TextBlock Text="Mot de passe" Margin="0,15,0,5" FontWeight="SemiBold" HorizontalAlignment="Left"/>
-            <Border Background="#FFF" Height="40" BorderBrush="#F2C66D" BorderThickness="1" CornerRadius="5" HorizontalAlignment="Stretch">
-                <PasswordBox x:Name="passwordBox" Margin="10,0" BorderThickness="0" Background="Transparent" VerticalContentAlignment="Center"/>
-            </Border>
+        <Style x:Key="FormTextBox" TargetType="TextBox">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="CaretBrush" Value="#0D1F3C"/>
+        </Style>
 
-            <!-- Le bouton "Se connecter" -->
-            <Button x:Name="LoginButton" Content="Se connecter" Background="#0F2343" Foreground="White" Height="45" Margin="0,20,0,0" BorderThickness="0" FontSize="14" FontWeight="Bold" Cursor="Hand" Click="LoginButton_Click"/>
-        </StackPanel>
+        <Style x:Key="FormPasswordBox" TargetType="PasswordBox">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="CaretBrush" Value="#0D1F3C"/>
+        </Style>
 
-        <StackPanel Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,10">
-            <TextBlock Text="Version 2.4.1 © 2025 Sibilla Gestion" Foreground="Gray" FontSize="10" TextAlignment="Center"/>
-            <TextBlock Text="Tous droits réservés" Foreground="Gray" FontSize="10" TextAlignment="Center"/>
-        </StackPanel>
-    </Grid>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#0D1F3C"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border CornerRadius="12" Background="#F7F8FC" BorderBrush="#E2E8F0" BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="0" BlurRadius="15" Color="Black" Opacity="0.1"/>
+        </Border.Effect>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Content="✕" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0"
+                    Width="30" Height="30" Background="Transparent" Foreground="Gray" BorderThickness="0"
+                    FontWeight="Bold" Cursor="Hand" ToolTip="Fermer" Click="ButtQuitterApp"/>
+
+            <StackPanel Grid.Row="0" Margin="0,40,0,0">
+                <Border Width="60" Height="60" CornerRadius="50" Background="#0D1F3C">
+                    <TextBlock Text="S" Foreground="#D4A857" FontSize="36" FontWeight="Bold" 
+                               HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,4"/>
+                </Border>
+                <TextBlock Text="Sibilla Gestion" FontSize="22" FontWeight="Bold" Foreground="#0D1F3C" 
+                           HorizontalAlignment="Center" Margin="0,15,0,0"/>
+                <TextBlock Text="Accédez à votre espace sécurisé" FontSize="14" Foreground="Gray" 
+                           HorizontalAlignment="Center" Margin="0,5,0,0"/>
+            </StackPanel>
+            
+            <StackPanel Grid.Row="1" Margin="30,25,30,30" VerticalAlignment="Center">
+                
+                <TextBlock Text="Identifiant" Style="{StaticResource FormLabel}"/>
+                <Border Style="{StaticResource InputContainer}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="👤" VerticalAlignment="Center" Margin="10,0,5,0" FontSize="16" Foreground="Gray"/>
+                        <TextBox Grid.Column="1" x:Name="usernameTextBox" Style="{StaticResource FormTextBox}"/>
+                    </Grid>
+                </Border>
+                
+                <TextBlock Text="Mot de passe" Style="{StaticResource FormLabel}" Margin="0,15,0,8"/>
+                <Border Style="{StaticResource InputContainer}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="🔒" VerticalAlignment="Center" Margin="10,0,5,0" FontSize="16" Foreground="Gray"/>
+                        <PasswordBox Grid.Column="1" x:Name="passwordBox" Style="{StaticResource FormPasswordBox}"/>
+                    </Grid>
+                </Border>
+
+                <TextBlock x:Name="ErrorMessage" Text="Identifiant ou mot de passe incorrect."
+                           Foreground="Red" Margin="0,10,0,0" TextWrapping="Wrap" Visibility="Collapsed"/>
+                
+                <Button x:Name="LoginButton" Content="Se connecter" Style="{StaticResource PrimaryButton}" Margin="0,20,0,0" Click="LoginButton_Click"/>
+            </StackPanel>
+
+            <TextBlock Grid.Row="1" Text="© 2025 Sibilla Gestion" Foreground="LightGray" FontSize="10" 
+                       HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,15"/>
+        </Grid>
+    </Border>
 </Window>
-

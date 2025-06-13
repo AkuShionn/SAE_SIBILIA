@@ -1,13 +1,16 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SAE_SIBILIA.Classes
 {
-    public class Commande
+    public class Commande : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
         private int numCommande;
         private DateTime dateCommande;
         private DateTime dateRetraitPrevue;
@@ -92,5 +95,19 @@ namespace SAE_SIBILIA.Classes
                 this.prixTotal = value;
             }
         }
+
+
+        public void MarquerCommeRetiree()
+        {
+            string query = "UPDATE commande SET retiree = TRUE, payee = TRUE WHERE num_commande = @id";
+            using (var cmd = new NpgsqlCommand(query))
+            {
+                cmd.Parameters.AddWithValue("@id", this.NumCommande);
+                DataAccess.Instance.ExecuteSet(cmd);
+                this.Retiree = true;
+                this.Payee = true;
+            }
+        }
+
     }
 }

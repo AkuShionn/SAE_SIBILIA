@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SAE_SIBILIA.UserControls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d">
+             mc:Ignorable="d" Background="White">
 
     <UserControl.Resources>
         <!-- Style pour les en-têtes -->
@@ -14,6 +14,51 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Padding" Value="10,5"/>
             <Setter Property="Height" Value="35"/>
+        </Style>
+
+        <!-- Style pour les boutons -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="#3B82F6"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="16,12"/>
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#1E40AF" Opacity="0.25" BlurRadius="8" ShadowDepth="2"/>
+                            </Border.Effect>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2563EB"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#1D4ED8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="#F59E0B"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#D97706"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#B45309"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
 
@@ -63,11 +108,11 @@
         <!-- Boutons (à droite) -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
             <!-- Bouton Créer Client -->
-            <Button Content="Créer Client" Background="#1E3A8A" FontWeight="Bold" Foreground="White" Width="100" Height="30" Margin="0,0,10,0" Click="ButtonCreerClient_Click"/>
+            <Button Content="Créer Client" Style="{StaticResource PrimaryButton}" Width="150" Height="45" Margin="0,0,10,0" Click="ButtonCreerClient_Click"/>
             <!-- Bouton Modifier Client -->
-            <Button x:Name="Modifier_Client" Content="Modifier Client" Background="#1E3A8A" FontWeight="Bold" Foreground="White" Width="100" Height="30" Margin="0,0,10,0" Click="ButtonModifierClient"/>
+            <Button x:Name="Modifier_Client" Content="Modifier Client" Style="{StaticResource PrimaryButton}" Width="150" Height="45" Margin="0,0,10,0" Click="ButtonModifierClient"/>
             <!-- Bouton Supprimer Client -->
-            <Button Content="Supprimer Client" Background="#1E3A8A" FontWeight="Bold" Foreground="White" Width="100" Height="30" Click="SupprimerClient"/>
+            <Button Content="Supprimer Client" Style="{StaticResource PrimaryButton}" Width="150" Height="45" Click="SupprimerClient"/>
         </StackPanel>
     </Grid>
 </UserControl>
