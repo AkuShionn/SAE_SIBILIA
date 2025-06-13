@@ -1,4 +1,5 @@
-﻿using SAE_SIBILIA.Fenetres;
+﻿using SAE_SIBILIA.Classes;
+using SAE_SIBILIA.Fenetres;
 using SAE_SIBILIA.UserControls;
 using System.Text;
 using System.Windows;
@@ -18,49 +19,31 @@ namespace SAE_SIBILIA
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Employe employeConnecte;
         public MainWindow()
         {
             InitializeComponent();
+            Login();
+            ChargeUserControl();
         }
-
-        private void ButtonClient_Click(object sender, RoutedEventArgs e)
+        private void Employe()
         {
-            DataGridClient dgclientControl = new DataGridClient();
-            Menu.Content = dgclientControl;
+            Main.Content = new PageAcceuil(); 
         }
-
-        private void ButtonAcceuil_Click(object sender, RoutedEventArgs e)
+        private void Login()
         {
-            MainWindow mainWindow = new MainWindow();
-            Menu.Content = null;
-
+            Connexion co = new Connexion();
+            if (co.ShowDialog() == true)
+            {
+                employeConnecte = co.EmployeConnecte;
+            }
         }
-
-        private void ButtonNouvelleCommande_Click(object sender, RoutedEventArgs e)
+        private void ChargeUserControl()
         {
-            CreerCommande commmandeControl = new CreerCommande();
-            Menu.Content = commmandeControl;
+            Main.Content = null;
+            Employe();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            CreerCommande commmandeControl = new CreerCommande();
-            Menu.Content = commmandeControl;
-        }
-
-        private void ButtClickGestionPlat(object sender, RoutedEventArgs e)
-        {
-           DataGridGestionPlats gestionPlatsControl = new DataGridGestionPlats();
-           Menu.Content = gestionPlatsControl;
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-          
-                CommandeDuJour commandeDuJ = new CommandeDuJour();
-                Menu.Content = commandeDuJ;
-           
-
-        }
+       
     }
 }

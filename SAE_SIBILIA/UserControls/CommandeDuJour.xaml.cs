@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAE_SIBILIA.Fenetres;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace SAE_SIBILIA.UserControls
         public CommandeDuJour()
         {
             InitializeComponent();
+        }
+
+        private void btnHistoriqueCommandes_Click(object sender, RoutedEventArgs e)
+        {
+            Historique historique = new Historique();
+            historique.ShowDialog();
         }
     }
 }

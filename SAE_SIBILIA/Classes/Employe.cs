@@ -110,7 +110,7 @@ namespace SAE_SIBILIA.Classes
         }
         public void Read()
         {
-            using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM sibilia.employe WHERE numemploye = @numemploye"))
+            using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM sibilia_shema.employe WHERE numemploye = @numemploye"))
             {
                 cmd.Parameters.AddWithValue("numemploye", this.Numero);
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmd);
@@ -130,7 +130,7 @@ namespace SAE_SIBILIA.Classes
         public List<Employe> FindAll()
         {
             List<Employe> lesEmployes = new List<Employe>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("SELECT * FROM sibilia.employe"))
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("SELECT * FROM sibilia_shema.employe"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
@@ -152,7 +152,7 @@ namespace SAE_SIBILIA.Classes
         }
         public static Employe FindByLoginAndPassword(string login, string password)
         {
-            using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM sibilia.employe WHERE login = @login AND password = @password"))
+            using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM sibilia_shema.employe WHERE login = @login AND password = @password"))
             {
                 cmd.Parameters.AddWithValue("login", login);
                 cmd.Parameters.AddWithValue("password", password);

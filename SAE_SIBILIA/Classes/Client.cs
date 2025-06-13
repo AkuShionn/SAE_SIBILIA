@@ -177,9 +177,10 @@ namespace SAE_SIBILIA.Classes
             List<Client> clients = new List<Client>();
 
             // Requête SQL pour récupérer les clients
+            // AJOUT DE "numclient" À LA REQUÊTE
             using (NpgsqlCommand cmdSelect = new NpgsqlCommand(@"
-             SELECT nomclient, prenomclient, tel, adresserue, adressecp, adresseville
-             FROM Client"))
+        SELECT numclient, nomclient, prenomclient, tel, adresserue, adressecp, adresseville
+        FROM Client"))
             {
                 // Exécution de la requête SELECT pour récupérer les données
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
@@ -190,6 +191,8 @@ namespace SAE_SIBILIA.Classes
                     // Création d'un objet Client avec les valeurs de chaque ligne
                     clients.Add(new Client
                     {
+                        // ASSIGNATION DE L'ID RÉCUPÉRÉ
+                        NumClient = (int)dr["numclient"],
                         NomClient = (string)dr["nomclient"],
                         PrenomClient = (string)dr["prenomclient"],
                         TelClient = (string)dr["tel"],
@@ -229,17 +232,18 @@ namespace SAE_SIBILIA.Classes
 
         public int Update()
         {
+            // La requête UPDATE doit utiliser les noms de colonnes EXACTS de ta table SQL.
             using (var cmdUpdate = new NpgsqlCommand("UPDATE Client SET nomclient = @nomclient, prenomclient = @prenomclient, " +
-                "telClient = @tel, adresserue = @adresserue, adressecp = @adressecp, adresseville = @adresseville WHERE numclient = @numclient"))
+                  "tel = @tel, adresserue = @adresserue, adressecp = @adressecp, adresseville = @adresseville WHERE numclient = @numclient"))
             {
                 // Ajouter les paramètres à la requête SQL
                 cmdUpdate.Parameters.AddWithValue("@nomclient", this.NomClient);
                 cmdUpdate.Parameters.AddWithValue("@prenomclient", this.PrenomClient);
-                cmdUpdate.Parameters.AddWithValue("@tel", this.TelClient);
+                cmdUpdate.Parameters.AddWithValue("@tel", this.TelClient); // Le paramètre @tel reçoit bien la valeur de la propriété TelClient
                 cmdUpdate.Parameters.AddWithValue("@adresserue", this.AdresseRue);
                 cmdUpdate.Parameters.AddWithValue("@adressecp", this.AdresseCP);
                 cmdUpdate.Parameters.AddWithValue("@adresseville", this.AdresseVille);
-                cmdUpdate.Parameters.AddWithValue("@numclient", this.NumClient); 
+                cmdUpdate.Parameters.AddWithValue("@numclient", this.NumClient);
 
                 return DataAccess.Instance.ExecuteSet(cmdUpdate);
             }
