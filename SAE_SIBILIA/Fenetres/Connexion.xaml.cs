@@ -17,7 +17,7 @@ namespace SAE_SIBILIA.Fenetres
         public Connexion()
         {
             InitializeComponent();
-            //this.Closing += FermetureDeLaConnexion;
+            this.Closing += FermetureDeLaConnexion;
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -65,7 +65,7 @@ namespace SAE_SIBILIA.Fenetres
                     Application.Current.Shutdown();
                 }
             }
-        /*
+        
         private void FermetureDeLaConnexion(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (this.DialogResult != true)
@@ -73,7 +73,7 @@ namespace SAE_SIBILIA.Fenetres
                 Application.Current.Shutdown();
             }
         }
-        */
+        
         private void ButtQuitterApp(object sender, RoutedEventArgs e)
         {
             this.Close();

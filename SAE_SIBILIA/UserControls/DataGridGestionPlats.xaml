@@ -100,7 +100,7 @@
                     Foreground="White" />
                 <Button Content="Modifier Plat" Style="{StaticResource PrimaryButton}" Width="150" Height="40" Margin="0,0,10,0"/>
                 <!-- Bouton Supprimer Plat -->
-                <Button Content="Supprimer Plat" Style="{StaticResource PrimaryButton}" Width="150" Height="40"/>
+                <Button Content="Supprimer Plat" Style="{StaticResource PrimaryButton}" Width="150" Height="40" Click="SupprimerPlats"/>
             </StackPanel>
 
             <!-- DataGrid -->
@@ -139,15 +139,15 @@
                             Header="Nb Personnes" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
                     <DataGridTextColumn
                             Width="*"
-                            Binding="{Binding Categorie}"
+                            Binding="{Binding Plats.Categorie.Nomcategorie}"
                             Header="Catégorie" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
                     <DataGridTextColumn
                             Width="*"
-                            Binding="{Binding SousCategorie}"
+                            Binding="{Binding Plats.SousCategorie.Nomsouscategorie}"
                             Header="Sous-catégorie" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
                     <DataGridTextColumn
                             Width="*"
-                            Binding="{Binding Disponible}"
+                            Binding="{Binding Plats.Disponible.LibellePeriode}"
                             Header="Disponible" HeaderStyle="{StaticResource DataGridHeaderStyle}"/>
                 </DataGrid.Columns>
             </DataGrid>
