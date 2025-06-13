@@ -95,6 +95,7 @@
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
             <Button x:Name="btnMarquerRecuperee" Content="✔️ Marquer comme Retirée" Padding="10,5" Background="ForestGreen" Foreground="White" FontWeight="Bold" Click="BtnMarquerRecuperee_Click"/>
             <Button x:Name="btnHistorique" Content="📜 Historique" Padding="10,5" Margin="10,0,0,0" Background="#2D3748" Foreground="White" FontWeight="Bold" Click="BtnHistorique_Click"/>
+            
         </StackPanel>
     </Grid>
 </UserControl>

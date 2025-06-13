@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SAE_SIBILIA.Classes.Categorie">
+    <Position X="5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAABAAAAAAAAAAAAAAAAAAAABAAAAAEAAAAA=</HashCode>
+      <FileName>Classes\Categorie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_SIBILIA.Classes.Client">
+    <Position X="2.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAIIAAAAAAACgAAQCgAogAECAMGAgAABhAAAAAA=</HashCode>
+      <FileName>Classes\Client.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SAE_SIBILIA.Classes.Commande" Collapsed="true">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAAABNIAAIACAACAAIAAAIiAAAAA0AAAEAAAEIAAA=</HashCode>
+      <FileName>Classes\Commandes.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SAE_SIBILIA.Classes.DataAccess">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAgAAAgAAAABIJAAAQBAABAAQAgAABiAAAA=</HashCode>
+      <FileName>Classes\DataAccess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_SIBILIA.Classes.Employe">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAEAAAAAIAAAIQIAAiACAAIAAAACEQAAABEAA=</HashCode>
+      <FileName>Classes\Employe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_SIBILIA.Classes.LogError">
+    <Position X="2.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\LogError.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_SIBILIA.Classes.Periode">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAIAAAACAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Classes\Periode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_SIBILIA.Classes.Plat">
+    <Position X="5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAQAAQAgQIAAgkAQQKBYoggECCEIBAAAACAAgEAA=</HashCode>
+      <FileName>Classes\Plat.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SAE_SIBILIA.Classes.PlatAvecQuantite">
+    <Position X="7.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\PlatAvecQuantite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_SIBILIA.Classes.Role">
+    <Position X="11.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAgAAAAAAAAAAAAAAAgAAAAgAAAAAAAA=</HashCode>
+      <FileName>Classes\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SAE_SIBILIA.Classes.SousCategorie">
+    <Position X="7.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAgAQQAAAAAAAAAIAAAAAAAAAQAAA=</HashCode>
+      <FileName>Classes\SousCategorie.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="SAE_SIBILIA.Classes.ICrud&lt;T&gt;">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAQCAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\ICrud.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
