@@ -66,7 +66,7 @@ namespace SAE_SIBILIA.Fenetres
             }).ToList();
 
             dataHistorique.ItemsSource = affichageCommandes;
-        }
+        } 
 
         private void txtRechercheCommande_TextChanged(object sender, TextChangedEventArgs e)
         {
