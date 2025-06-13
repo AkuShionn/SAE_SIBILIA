@@ -11,7 +11,7 @@
             <!-- Onglet À récupérer -->
             <TabItem Header="À récupérer">
                 <DataGrid x:Name="dgARecuperer" AutoGenerateColumns="False" HeadersVisibility="Column" Margin="0,10"
-                          CanUserAddRows="False" IsReadOnly="True" RowHeight="40">
+                          CanUserAddRows="False" IsReadOnly="True" RowHeight="40" SelectionChanged="dgARecuperer_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID Commande" Binding="{Binding NumCommande}" Width="100"/>
                         <DataGridTextColumn Header="Client" Binding="{Binding Client}" Width="200"/>
@@ -45,7 +45,7 @@
                           CanUserAddRows="False" IsReadOnly="True" RowHeight="40">
                     <!-- Réutilise les mêmes colonnes que ci-dessus -->
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="100"/>
+                        <DataGridTextColumn Header="ID Commande" Binding="{Binding Id}" Width="100"/>
                         <DataGridTextColumn Header="Client" Binding="{Binding Client}" Width="200"/>
                         <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat={}{0}€}" Width="100"/>
                         <DataGridTemplateColumn Header="Statut" Width="150">

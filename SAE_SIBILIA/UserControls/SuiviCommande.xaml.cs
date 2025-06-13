@@ -24,5 +24,10 @@ namespace SAE_SIBILIA.UserControls
         {
             InitializeComponent();
         }
+
+        private void dgARecuperer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

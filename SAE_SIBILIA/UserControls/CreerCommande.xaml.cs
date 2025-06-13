@@ -25,7 +25,7 @@ namespace SAE_SIBILIA.UserControls
         {
             InitializeComponent();
         }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+       /* private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             List<Plat> plats = DataAccess.Instance.GetPlats();
 
@@ -37,7 +37,7 @@ namespace SAE_SIBILIA.UserControls
 
             comboBoxPlats.ItemsSource = plats;
             comboBoxPlats.DisplayMemberPath = "NomPlat";
-        }
+        }*/
 
     }
 }
