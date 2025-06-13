@@ -214,40 +214,59 @@ namespace SAE_SIBILIA.Classes
         {
             List<Plat> plats = new List<Plat>();
 
-            // On modifie la requête pour joindre les autres tables et récupérer les noms
+            // On modifie la requête pour récupérer aussi les ID des tables liées
             string query = @"
-                SELECT 
-                    p.numplat, p.nomplat, p.prixunitaire, p.delaipreparation, p.nbpersonnes,
-                    c.nomcategorie,
-                    sc.nomsouscategorie,
-                    pe.libelleperiode
-                FROM
-                    plat p
-                JOIN souscategorie sc ON p.numsouscategorie = sc.numsouscategorie
-                JOIN categorie c ON sc.numcategorie = c.numcategorie
-                JOIN periode pe ON p.numperiode = pe.numperiode
-                ORDER BY
-                    p.nomplat;";
+        SELECT 
+            p.numplat, p.nomplat, p.prixunitaire, p.delaipreparation, p.nbpersonnes,
+            c.numcategorie, c.nomcategorie,
+            sc.numsouscategorie, sc.nomsouscategorie,
+            pe.numperiode, pe.libelleperiode
+        FROM
+            plat p
+        JOIN souscategorie sc ON p.numsouscategorie = sc.numsouscategorie
+        JOIN categorie c ON sc.numcategorie = c.numcategorie
+        JOIN periode pe ON p.numperiode = pe.numperiode
+        ORDER BY
+            p.nomplat;";
 
             using (NpgsqlCommand cmdSelect = new NpgsqlCommand(query))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    plats.Add(new Plat
+                    // On crée un objet Plat complet
+                    Plat plat = new Plat
                     {
-                        // On remplit les propriétés de base
+                        // Propriétés de base
                         NumPlat = Convert.ToInt32(dr["numplat"]),
                         NomPlat = (string)dr["nomplat"],
                         PrixUnitaire = Convert.ToDouble(dr["prixunitaire"]),
                         DelaiPreparation = Convert.ToInt32(dr["delaipreparation"]),
                         NbPersonnes = Convert.ToInt32(dr["nbpersonnes"]),
 
-                        // ON REMPLIT LES NOUVELLES PROPRIÉTÉS
+                        // Propriétés pour l'affichage direct
                         NomCategorie = (string)dr["nomcategorie"],
                         NomSousCategorie = (string)dr["nomsouscategorie"],
-                        LibellePeriode = (string)dr["libelleperiode"]
-                    });
+                        LibellePeriode = (string)dr["libelleperiode"],
+
+                        // CORRECTION : On crée les objets liés qui manquaient
+                        Categorie = new Categorie
+                        {
+                            NumCategorie = Convert.ToInt32(dr["numcategorie"]),
+                            NomCategorie = (string)dr["nomcategorie"]
+                        },
+                        SousCategorie = new SousCategorie
+                        {
+                            NumSousCategorie = Convert.ToInt32(dr["numsouscategorie"]),
+                            NomSousCategorie = (string)dr["nomsouscategorie"]
+                        },
+                        Disponiple = new Periode
+                        {
+                            NumPeriode = Convert.ToInt32(dr["numperiode"]),
+                            LibellePeriode = (string)dr["libelleperiode"]
+                        }
+                    };
+                    plats.Add(plat);
                 }
             }
             return plats;
@@ -265,7 +284,28 @@ namespace SAE_SIBILIA.Classes
 
         public int Update()
         {
-            throw new NotImplementedException();
+            string query = @"
+        UPDATE plat SET 
+            nomplat = @nomplat, 
+            prixunitaire = @prixunitaire, 
+            delaipreparation = @delaipreparation, 
+            nbpersonnes = @nbpersonnes, 
+            numsouscategorie = @numsouscategorie, 
+            numperiode = @numperiode
+        WHERE numplat = @numplat";
+
+            using (var cmd = new NpgsqlCommand(query))
+            {
+                cmd.Parameters.AddWithValue("@nomplat", this.NomPlat);
+                cmd.Parameters.AddWithValue("@prixunitaire", this.PrixUnitaire);
+                cmd.Parameters.AddWithValue("@delaipreparation", this.DelaiPreparation);
+                cmd.Parameters.AddWithValue("@nbpersonnes", this.NbPersonnes);
+                cmd.Parameters.AddWithValue("@numsouscategorie", this.SousCategorie.NumSousCategorie);
+                cmd.Parameters.AddWithValue("@numperiode", this.Disponiple.NumPeriode);
+                cmd.Parameters.AddWithValue("@numplat", this.NumPlat);
+
+                return DataAccess.Instance.ExecuteSet(cmd);
+            }
         }
     }
     
