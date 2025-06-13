@@ -104,7 +104,28 @@ namespace SAE_SIBILIA.UserControls
 
         }
 
+        private void ModifierPlat_Click(object sender, RoutedEventArgs e)
+        {
+            // 1. Vérifier si un plat est bien sélectionné dans le DataGrid
+            if (dgPlats.SelectedItem is Plat platSelectionne)
+            {
+                // 2. Créer la fenêtre de modification en lui passant le plat sélectionné
+                ModificationPlats fenetreModif = new ModificationPlats(platSelectionne);
 
+                // 3. Ouvrir la fenêtre et attendre sa fermeture
+                bool? resultat = fenetreModif.ShowDialog();
 
+                // 4. Si la modification a réussi (la fenêtre a renvoyé "true"), on recharge la liste
+                if (resultat == true)
+                {
+                    ChargePlats(); // Cette méthode recharge la liste depuis la BDD pour afficher les changements
+                }
+            }
+            else
+            {
+                // Si aucun plat n'est sélectionné, on prévient l'utilisateur
+                MessageBox.Show("Veuillez sélectionner un plat à modifier.", "Aucune sélection", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
     }
 }

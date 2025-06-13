@@ -153,18 +153,18 @@ namespace SAE_SIBILIA.Classes
             List<Plat> plats = new();
 
             string query = @"
-                SELECT 
-                    p.numplat, p.nomplat, p.prixunitaire, p.delaipreparation, p.nbpersonnes,
-                    c.nomcategorie,
-                    sc.nomsouscategorie,
-                    pe.libelleperiode
-                FROM
-                    plat p
-                JOIN souscategorie sc ON p.numsouscategorie = sc.numsouscategorie
-                JOIN categorie c ON sc.numcategorie = c.numcategorie
-                JOIN periode pe ON p.numperiode = pe.numperiode
-                ORDER BY
-                    p.nomplat;";
+        SELECT 
+            p.numplat, p.nomplat, p.prixunitaire, p.delaipreparation, p.nbpersonnes,
+            c.numcategorie, c.nomcategorie,
+            sc.numsouscategorie, sc.nomsouscategorie,
+            pe.numperiode, pe.libelleperiode
+        FROM
+            plat p
+        JOIN souscategorie sc ON p.numsouscategorie = sc.numsouscategorie
+        JOIN categorie c ON sc.numcategorie = c.numcategorie
+        JOIN periode pe ON p.numperiode = pe.numperiode
+        ORDER BY
+            p.nomplat;";
 
             using var cmd = new NpgsqlCommand(query);
             var dt = DataAccess.Instance.ExecuteSelect(cmd);
