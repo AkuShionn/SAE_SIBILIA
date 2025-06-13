@@ -12,11 +12,16 @@ namespace SAE_SIBILIA.Classes
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         private int numCommande;
-        private DateTime dateCommande;
         private DateTime dateRetraitPrevue;
         private bool payee;
         private bool retiree;
         private double prixTotal;
+        private string nomClient;
+        private string status;
+
+        public Commande()
+        {
+        }
 
         public int NumCommande
         {
@@ -31,18 +36,6 @@ namespace SAE_SIBILIA.Classes
             }
         }
 
-        public DateTime DateCommande
-        {
-            get
-            {
-                return dateCommande;
-            }
-
-            set
-            {
-                dateCommande = value;
-            }
-        }
 
         public DateTime DateRetraitPrevue
         {
@@ -53,7 +46,18 @@ namespace SAE_SIBILIA.Classes
 
             set
             {
-                dateRetraitPrevue = value;
+                if (dateRetraitPrevue != value)
+                {
+                    dateRetraitPrevue = value;
+                }
+            }
+        }
+
+        public string HeureRetrait
+        {
+            get
+            {
+                return this.DateRetraitPrevue.ToString("HH:mm");
             }
         }
 
@@ -96,6 +100,38 @@ namespace SAE_SIBILIA.Classes
             }
         }
 
+        public string NomClient
+        {
+            get
+            {
+                return this.nomClient;
+            }
+
+            set
+            {
+                this.nomClient = value;
+            }
+        }
+
+        public string Status
+        {
+            get
+            {
+                if (this.Retiree == true)
+                {
+                    return "Retirée";
+                }
+                else
+                {
+                    return "En attente";
+                }
+            }
+
+            set
+            {
+                this.status = value;
+            }
+        }
 
         public void MarquerCommeRetiree()
         {
@@ -109,5 +145,38 @@ namespace SAE_SIBILIA.Classes
             }
         }
 
+        // Dans le fichier Classes/Commandes.cs
+
+        public static List<Commande> FindCommandesDuJour()
+        {
+            var commandes = new List<Commande>();
+
+            // Les noms dans le SELECT sont probablement les bons, basés sur tes autres fichiers.
+            string query = @"
+        SELECT c.numcommande, c.dateretraitprevue, c.payee, c.retiree, c.prixtotal, cl.nomclient
+        FROM commande c
+        JOIN client cl ON c.numclient = cl.numclient 
+        WHERE DATE(c.dateretraitprevue) = CURRENT_DATE
+        ORDER BY c.dateretraitprevue;";
+
+            using (var cmd = new NpgsqlCommand(query))
+            {
+                var dt = DataAccess.Instance.ExecuteSelect(cmd);
+                foreach (System.Data.DataRow row in dt.Rows)
+                {
+                    commandes.Add(new Commande
+                    {
+                        // ON CORRIGE ICI pour que les noms correspondent au SELECT
+                        NumCommande = (int)row["numcommande"],
+                        DateRetraitPrevue = (DateTime)row["dateretraitprevue"],
+                        Payee = (bool)row["payee"],
+                        Retiree = (bool)row["retiree"],
+                        PrixTotal = Convert.ToDouble(row["prixtotal"]),
+                        NomClient = (string)row["nomclient"]
+                    });
+                }
+            }
+            return commandes;
+        }
     }
 }
