@@ -25,19 +25,24 @@ namespace SAE_SIBILIA.UserControls
         {
             InitializeComponent();
         }
-        /*private void Window_Loaded(object sender, RoutedEventArgs e)
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            List<Plat> plats = DataAccess.Instance.GetPlats();
 
-            if (plats.Count == 0)
-            {
-                MessageBox.Show("Aucun plat trouvé en base.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
+        }
+        /*private void Window_Loaded(object sender, RoutedEventArgs e)
+{
+   List<Plat> plats = DataAccess.Instance.GetPlats();
 
-            comboBoxPlats.ItemsSource = plats;
-            comboBoxPlats.DisplayMemberPath = "NomPlat";
-        }*/
+   if (plats.Count == 0)
+   {
+       MessageBox.Show("Aucun plat trouvé en base.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+       return;
+   }
+
+   comboBoxPlats.ItemsSource = plats;
+   comboBoxPlats.DisplayMemberPath = "NomPlat";
+}*/
 
     }
 }
