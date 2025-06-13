@@ -54,20 +54,40 @@ namespace SAE_SIBILIA.Fenetres
                 }
             }
 
-            dataHistorique.ItemsSource = toutesCommandes;
+            // Convertit les commandes pour affichage (Oui/Non)
+            var affichageCommandes = toutesCommandes.Select(c => new
+            {
+                c.NumCommande,
+                c.DateCommande,
+                c.DateRetraitPrevue,
+                Payee = c.Payee ? "Oui" : "Non",
+                Retiree = c.Retiree ? "Oui" : "Non",
+                c.PrixTotal
+            }).ToList();
+
+            dataHistorique.ItemsSource = affichageCommandes;
         }
 
         private void txtRechercheCommande_TextChanged(object sender, TextChangedEventArgs e)
         {
             string filtre = txtRechercheCommande.Text.ToLower();
 
-            var resultats = toutesCommandes.Where(c =>
-                c.NumCommande.ToString().Contains(filtre) ||
-                c.DateCommande.ToString("dd/MM/yyyy").Contains(filtre) ||
-                c.DateRetraitPrevue.ToString("dd/MM/yyyy").Contains(filtre) ||
-                (c.Payee ? "oui" : "non").Contains(filtre) ||
-                (c.Retiree ? "oui" : "non").Contains(filtre)
-            ).ToList();
+            var resultats = toutesCommandes
+                .Where(c =>
+                    c.NumCommande.ToString().Contains(filtre) ||
+                    c.DateCommande.ToString("dd/MM/yyyy").Contains(filtre) ||
+                    c.DateRetraitPrevue.ToString("dd/MM/yyyy").Contains(filtre) ||
+                    (c.Payee ? "oui" : "non").Contains(filtre) ||
+                    (c.Retiree ? "oui" : "non").Contains(filtre))
+                .Select(c => new
+                {
+                    c.NumCommande,
+                    c.DateCommande,
+                    c.DateRetraitPrevue,
+                    Payee = c.Payee ? "Oui" : "Non",
+                    Retiree = c.Retiree ? "Oui" : "Non",
+                    c.PrixTotal
+                }).ToList();
 
             dataHistorique.ItemsSource = resultats;
         }
@@ -76,6 +96,5 @@ namespace SAE_SIBILIA.Fenetres
         {
             this.Close();
         }
-
     }
 }
