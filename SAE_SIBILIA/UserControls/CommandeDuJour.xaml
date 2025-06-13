@@ -6,6 +6,13 @@
              mc:Ignorable="d" Background="White"
              Loaded="UserControl_Loaded">
     <UserControl.Resources>
+
+        <SolidColorBrush x:Key="HeaderBackgroundColor" Color="#2D3748"/>
+        <SolidColorBrush x:Key="HeaderForegroundColor" Color="White"/>
+        <SolidColorBrush x:Key="RowHoverBackgroundColor" Color="#E2E8F0"/>
+        <SolidColorBrush x:Key="RowAlternatingBackgroundColor" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="GridLinesColor" Color="#E2E8F0"/>
+
         <Style x:Key="ModernDataGridHeader" TargetType="DataGridColumnHeader">
             <Setter Property="Background" Value="#F1F5F9"/>
             <Setter Property="Foreground" Value="#334155"/>
@@ -23,10 +30,10 @@
     </UserControl.Resources>
     <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="📅 Commandes à récupérer aujourd'hui" FontSize="24" FontWeight="Bold" Foreground="#0D1F3C" Margin="0,0,0,20"/>
