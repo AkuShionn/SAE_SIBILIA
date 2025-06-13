@@ -87,7 +87,7 @@
             <StackPanel Grid.Column="1" Orientation="Horizontal">
                 <TextBox x:Name="textMotClefPlats" Width="250" Padding="8,6" VerticalAlignment="Center" TextChanged="Refresh_Plats" ToolTip="Rechercher un plat..."/>
                 <Button Content="+ Ajouter" Style="{StaticResource ActionButton}" Click="ButAjouterPlat"/>
-                <Button Content="Modifier" Style="{StaticResource ActionButton}" Click="ModifierPlat_Click"/>
+                <Button Content="Modifier" Style="{StaticResource ActionButton}"/>
                 <Button Content="Supprimer" Style="{StaticResource DeleteButton}" Click="SupprimerPlats"/>
             </StackPanel>
         </Grid>

@@ -237,19 +237,16 @@ namespace SAE_SIBILIA.Classes
                     // On crée un objet Plat complet
                     Plat plat = new Plat
                     {
-                        // Propriétés de base
                         NumPlat = Convert.ToInt32(dr["numplat"]),
                         NomPlat = (string)dr["nomplat"],
                         PrixUnitaire = Convert.ToDouble(dr["prixunitaire"]),
                         DelaiPreparation = Convert.ToInt32(dr["delaipreparation"]),
                         NbPersonnes = Convert.ToInt32(dr["nbpersonnes"]),
 
-                        // Propriétés pour l'affichage direct
                         NomCategorie = (string)dr["nomcategorie"],
                         NomSousCategorie = (string)dr["nomsouscategorie"],
                         LibellePeriode = (string)dr["libelleperiode"],
 
-                        // CORRECTION : On crée les objets liés qui manquaient
                         Categorie = new Categorie
                         {
                             NumCategorie = Convert.ToInt32(dr["numcategorie"]),
