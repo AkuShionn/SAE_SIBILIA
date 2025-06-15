@@ -27,10 +27,10 @@ namespace SAE_SIBILIA.Fenetres
         public AjouterPlats()
         {
             InitializeComponent();
-            Loaded += AjouterPlats_Loaded;
+            Loaded += Charge_AjouterPlats;
         }
 
-        private void AjouterPlats_Loaded(object sender, RoutedEventArgs e)
+        private void Charge_AjouterPlats(object sender, RoutedEventArgs e)
         {
             categories = DataAccess.Instance.GetCategories();
             periodes = DataAccess.Instance.GetPeriodes();
@@ -38,18 +38,18 @@ namespace SAE_SIBILIA.Fenetres
             comboBox_Categorie.ItemsSource = categories;
             comboBox_Categorie.DisplayMemberPath = "NomCategorie";
             comboBox_Categorie.SelectedValuePath = "NumCategorie";
-            comboBox_Categorie.SelectionChanged += ComboBox_Categorie_SelectionChanged;
+            comboBox_Categorie.SelectionChanged += ComboBox_Categorie;
 
             comboBox_Periode.ItemsSource = periodes;
             comboBox_Periode.DisplayMemberPath = "LibellePeriode";
             comboBox_Periode.SelectedValuePath = "NumPeriode";
         }
 
-        private void ComboBox_Categorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_Categorie(object sender, SelectionChangedEventArgs e)
         {
             if (comboBox_Categorie.SelectedItem is Categorie selectedCategorie)
             {
-                sousCategories = DataAccess.Instance.GetSousCategoriesByCategorie(selectedCategorie.NumCategorie);
+                sousCategories = DataAccess.Instance.SousCategoriesParCategorie(selectedCategorie.NumCategorie);
                 comboBox_SousCategorie.ItemsSource = sousCategories;
                 comboBox_SousCategorie.DisplayMemberPath = "NomSousCategorie";
                 comboBox_SousCategorie.SelectedValuePath = "NumSousCategorie";

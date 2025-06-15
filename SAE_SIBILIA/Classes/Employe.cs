@@ -150,7 +150,7 @@ namespace SAE_SIBILIA.Classes
             }
             return lesEmployes;
         }
-        public static Employe FindByLoginAndPassword(string login, string password)
+        public static Employe LoginEtMDP(string login, string password)
         {
             using (NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM sibilia_shema.employe WHERE login = @login AND password = @password"))
             {

@@ -32,7 +32,7 @@ namespace SAE_SIBILIA.Fenetres
             try
             {
                 new DataAccess(usernameTextBox.Text, passwordBox.Password);
-                Employe user = Employe.FindByLoginAndPassword(usernameTextBox.Text, passwordBox.Password);
+                Employe user = Employe.LoginEtMDP(usernameTextBox.Text, passwordBox.Password);
 
                 if (user is null)
                 {

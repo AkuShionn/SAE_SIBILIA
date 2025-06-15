@@ -193,7 +193,7 @@ namespace SAE_SIBILIA.Classes
             return list;
         }
 
-        public List<SousCategorie> GetSousCategoriesByCategorie(int numCategorie)
+        public List<SousCategorie> SousCategoriesParCategorie(int numCategorie)
         {
             var list = new List<SousCategorie>();
             var cmd = new NpgsqlCommand("SELECT numsouscategorie, nomsouscategorie, numcategorie FROM SOUSCATEGORIE WHERE numcategorie = @id", GetConnection());

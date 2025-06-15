@@ -42,7 +42,7 @@ namespace SAE_SIBILIA.Fenetres
             // --- Sous-catégories (dépend de la catégorie) ---
             if (comboBox_Categorie.SelectedItem is Categorie selectedCategorie)
             {
-                var sousCategories = DataAccess.Instance.GetSousCategoriesByCategorie(selectedCategorie.NumCategorie);
+                var sousCategories = DataAccess.Instance.SousCategoriesParCategorie(selectedCategorie.NumCategorie);
                 comboBox_SousCategorie.ItemsSource = sousCategories;
                 comboBox_SousCategorie.DisplayMemberPath = "NomSousCategorie";
                 // Pré-sélectionner la sous-catégorie actuelle
@@ -62,7 +62,7 @@ namespace SAE_SIBILIA.Fenetres
             // Mettre à jour la liste des sous-catégories quand la catégorie change
             if (comboBox_Categorie.SelectedItem is Categorie selectedCategorie)
             {
-                comboBox_SousCategorie.ItemsSource = DataAccess.Instance.GetSousCategoriesByCategorie(selectedCategorie.NumCategorie);
+                comboBox_SousCategorie.ItemsSource = DataAccess.Instance.SousCategoriesParCategorie(selectedCategorie.NumCategorie);
                 comboBox_SousCategorie.DisplayMemberPath = "NomSousCategorie";
             }
         }
@@ -81,7 +81,7 @@ namespace SAE_SIBILIA.Fenetres
                 platAModifier.Update();
 
                 MessageBox.Show("Plat mis à jour avec succès !", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.DialogResult = true; // Indique le succès
+                this.DialogResult = true;
                 this.Close();
             }
             catch (Exception ex)
@@ -92,7 +92,6 @@ namespace SAE_SIBILIA.Fenetres
 
         private void BtnAnnuler_Click(object sender, RoutedEventArgs e)
         {
-            // On ferme simplement la fenêtre. Le DialogResult sera null, indiquant une annulation.
             this.Close();
         }
     }

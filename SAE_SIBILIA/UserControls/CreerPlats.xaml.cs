@@ -36,16 +36,16 @@ namespace SAE_SIBILIA.UserControls
             comboBox_Categorie.ItemsSource = categories;
             comboBox_Categorie.DisplayMemberPath = "NomCategorie";
             comboBox_Categorie.SelectedValuePath = "NumCategorie";
-            comboBox_Categorie.SelectionChanged += ComboBox_Categorie_SelectionChanged;
+            comboBox_Categorie.SelectionChanged += ComboBox_Categorie;
 
             periodes = DataAccess.Instance.GetPeriodes();
         }
 
-        private void ComboBox_Categorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_Categorie(object sender, SelectionChangedEventArgs e)
         {
             if (comboBox_Categorie.SelectedItem is Categorie cat)
             {
-                var sousCats = DataAccess.Instance.GetSousCategoriesByCategorie(cat.NumCategorie);
+                var sousCats = DataAccess.Instance.SousCategoriesParCategorie(cat.NumCategorie);
                 comboBox_SousCategorie.ItemsSource = sousCats;
                 comboBox_SousCategorie.DisplayMemberPath = "NomSousCategorie";
                 comboBox_SousCategorie.SelectedValuePath = "NumSousCategorie";

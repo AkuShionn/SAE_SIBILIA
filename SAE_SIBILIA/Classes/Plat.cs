@@ -16,7 +16,6 @@ namespace SAE_SIBILIA.Classes
         private string nomCategorie;
         private string nomSousCategorie;
         private string libellePeriode;
-
         private Periode disponible;
         private Categorie categorie;
         private SousCategorie sousCategorie;

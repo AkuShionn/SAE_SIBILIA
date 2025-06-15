@@ -35,8 +35,6 @@ namespace SAE_SIBILIA.UserControls
                 MessageBox.Show($"Erreur lors du chargement des commandes : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        // ✅ Méthode publique pour recharger les commandes à partir d'un autre UserControl
         public void RechargerCommandes()
         {
             ChargerDonnees();
